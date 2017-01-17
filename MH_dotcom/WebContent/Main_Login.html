@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<script type="text/javascript" src="login_script.js" ></script>
+<head>
+<meta charset="UTF-8">
+<title>메인로그인 창!</title>
+</head>
+<body>
+
+<h1 align="center">MH 닷컴</h1>
+
+<form name="login" method="post">
+<table bgcolor="beige" cellpadding="5" align="center" border="1">
+	<tr>
+		<td align="center">ID</td><td><input type="text" width="100px" name="ID"></td>
+	</tr>
+	<tr>
+		<td align="center">pass</td><td><input type="password" width="100px" name="pass"></td>	
+	</tr>
+	<tr align="center">	
+		<td colspan="2"><input type="button" value="회원가입" onClick='login_submit(1)'>  
+		<input type="button" value="로그인" onClick='login_submit(2)'> </td>
+	</tr>
+</table>
+</form>
+
+</body>
+</html>
