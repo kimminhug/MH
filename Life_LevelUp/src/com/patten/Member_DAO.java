@@ -21,15 +21,18 @@ public class Member_DAO {
 	}
 	
 	public boolean insertMember(Member_DTO dto){
-		String query = "insert into levelup.member values (?, ?, ?, ?)";
+		String query = "insert into levelup.member values (?, ?, ?, ?, ?, ?, ?)";
 		boolean check = false;
 		
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, dto.getNum());
-			pstmt.setString(2, dto.getName());
-			pstmt.setString(3, dto.getTel());
-			pstmt.setString(4, dto.getAddr());
+			pstmt.setString(1, dto.getID());
+			pstmt.setString(2,  dto.getSalt());
+			pstmt.setString(3, dto.getHash());
+			pstmt.setString(4, dto.getName());
+			pstmt.setInt(5, dto.getSex());
+			pstmt.setInt(6, dto.getAge());
+			pstmt.setString(7, dto.getArea());
 			
 			int x = pstmt.executeUpdate();
 			
@@ -40,6 +43,7 @@ public class Member_DAO {
 			}
 			
 			pstmt.close();
+			// 컨넥션은 아직 닫지 않는다.
 			
 		}catch(SQLException ex){
 			System.out.println("SQL insert 오류 : "+ex.getLocalizedMessage());

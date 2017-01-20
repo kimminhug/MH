@@ -1,4 +1,5 @@
 package com.patten;
+/* [MVC 패턴] 중, Controller를 맡고 있는 객체 - MemberProcess */
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -19,16 +20,22 @@ public class MemberProcess	extends HttpServlet {
 		String command = uri.substring(uri.lastIndexOf("/") + 1, uri.lastIndexOf(".kim"));
 		
 		if (command != null && command.trim().equals("register")){
-			String num = request.getParameter("num");
+			String ID = request.getParameter("ID");
+			String salt = "temp";
+			String hash = request.getParameter("hash");
 			String name = request.getParameter("name");
-			String tel = request.getParameter("tel");
-			String addr = request.getParameter("addr");
+			String sex = request.getParameter("sex");
+			String age = request.getParameter("age");
+			String area = request.getParameter("area");
 			
 			Member_DTO dto = new Member_DTO();
-			dto.setNum(Integer.parseInt(num));
+			dto.setSex(Integer.parseInt(sex));
+			dto.setAge(Integer.parseInt(age));
+			dto.setID(ID);
+			dto.setSalt(salt);
+			dto.setHash(hash);
 			dto.setName(name);
-			dto.setTel(tel);
-			dto.setAddr(addr);
+			dto.setArea(area);
 			
 			Member_DAO dao = new Member_DAO();
 			boolean bool = dao.insertMember(dto);
@@ -38,7 +45,6 @@ public class MemberProcess	extends HttpServlet {
 			}else{
 				response.sendRedirect("Fail.html");
 			}
-			
 			
 		}else if(command.trim().equals("uqdate")){
 			

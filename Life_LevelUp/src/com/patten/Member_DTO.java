@@ -3,14 +3,26 @@ package com.patten;
 import java.io.Serializable;
 
 public class Member_DTO implements Serializable {
-	private int num;
-	private String name, tel, addr;
+	private String ID, salt, hash, name, area;
+	private int sex, age;
 	
-	public int getNum() {
-		return num;
+	public String getID() {
+		return ID;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setID(String iD) {
+		ID = iD;
+	}
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+	public String getHash() {
+		return hash;
+	}
+	public void setHash(String hash) {
+		this.hash = hash;
 	}
 	public String getName() {
 		return name;
@@ -18,16 +30,23 @@ public class Member_DTO implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getTel() {
-		return tel;
+	public String getArea() {
+		return area;
 	}
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setArea(String area) {
+		this.area = area;
 	}
-	public String getAddr() {
-		return addr;
+	public int getSex() {
+		return sex;
 	}
-	public void setAddr(String addr) {
-		this.addr = addr;
+	public void setSex(int sex) {
+		this.sex = sex;
 	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	
 }
