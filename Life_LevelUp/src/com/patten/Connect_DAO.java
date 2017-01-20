@@ -2,10 +2,10 @@ package com.patten;
 
 import java.sql.*;
 
-public class Member_DAO {
+public class Connect_DAO {
 	private static Connection conn;
 	
-	public Member_DAO() {
+	public Connect_DAO() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		}catch(ClassNotFoundException ex){

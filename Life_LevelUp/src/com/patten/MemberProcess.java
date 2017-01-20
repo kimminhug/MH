@@ -20,6 +20,7 @@ public class MemberProcess	extends HttpServlet {
 		String command = uri.substring(uri.lastIndexOf("/") + 1, uri.lastIndexOf(".kim"));
 		
 		if (command != null && command.trim().equals("register")){
+			request.setCharacterEncoding("UTF-8");
 			String ID = request.getParameter("ID");
 			String salt = "temp";
 			String hash = request.getParameter("hash");
@@ -37,7 +38,10 @@ public class MemberProcess	extends HttpServlet {
 			dto.setName(name);
 			dto.setArea(area);
 			
-			Member_DAO dao = new Member_DAO();
+			Level_DTO dto2 = new Level_DTO();
+			dto2.setID(ID);
+			
+			Connect_DAO dao = new Connect_DAO();
 			boolean bool = dao.insertMember(dto);
 			
 			if (bool){

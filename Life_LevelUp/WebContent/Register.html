@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="login_script.js" ></script>
 <meta charset="UTF-8">
 <title>가입을 환영합니다!</title>
 </head>
@@ -9,13 +10,14 @@
 		[기본 정보]<br>
 		- ID : <input type="text" name="ID"/><br>
 		- PW : <input type="password" name="hash"/><br>
-		- PW 확인 : <input type="text" name="hash2"/><br>
+		- PW 확인 : <input type="password" name="hash2"/><br>
 		- 닉네임 : <input type="text" name="name"/><br>
 		<br>
 		[신체 정보]<br>
 		- 성별 : 남성 <input type="radio" name="sex" value="0">
 			여성 <input type="radio" name="sex" value="1">
 		<br>
+		- 나이 : <input type="text" name="age">세<br>
 		- 신장 : <input type="text" name="height">cm<br>
 		- 체중 : <input type="text" name="weight">kg<br>
 		- 허리사이즈 : <input type="text" name="waist">인치<br>
@@ -27,6 +29,7 @@
 			<option value="1.725">아주 활동적이고 일주일에 6~7번 운동한다.</option>
 			<option value="1.9">매우 활동적이고 매일 적극적으로 운동을 한다.</option>
 		</select><br>
+		<input type="button" value="체지방률 확인" onClick="cal()">
 		<br>
 		[부가정보]<br>
 		- 지역 : <input type="text" name="area"/><br>
