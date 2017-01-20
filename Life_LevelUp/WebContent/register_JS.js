@@ -74,7 +74,6 @@ function cal(){
 	
 	waist = waist * 2.54;
 	hip = hip * 2.54;
-	
 	if(Sex==0 || Sex==null){
 		k = (Math.round((1-((weight*1.082)-(waist*0.7417)+44.682)/weight)*10000))/100;
 	}else{
