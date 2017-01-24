@@ -38,8 +38,8 @@ public class MemberProcess	extends HttpServlet {
 			dto.setName(name);
 			dto.setArea(area);
 			
-			Level_DTO dto2 = new Level_DTO();
-			dto2.setID(ID);
+			/*Level_DTO dto2 = new Level_DTO();
+			dto2.setID(ID);*/
 			
 			Connect_DAO dao = new Connect_DAO();
 			boolean bool = dao.insertMember(dto);
