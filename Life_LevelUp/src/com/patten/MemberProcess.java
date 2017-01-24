@@ -27,16 +27,22 @@ public class MemberProcess	extends HttpServlet {
 			String name = request.getParameter("name");
 			String sex = request.getParameter("sex");
 			String age = request.getParameter("age");
+			String height = request.getParameter("height");
+			String weight = request.getParameter("weight");
 			String area = request.getParameter("area");
+			String intro = request.getParameter("intro");
 			
 			Member_DTO dto = new Member_DTO();
 			dto.setSex(Integer.parseInt(sex));
 			dto.setAge(Integer.parseInt(age));
+			dto.setHeight(Integer.parseInt(height));
+			dto.setWeight(Integer.parseInt(weight));
 			dto.setID(ID);
 			dto.setSalt(salt);
 			dto.setHash(hash);
 			dto.setName(name);
 			dto.setArea(area);
+			dto.setIntro(intro);
 			
 			/*Level_DTO dto2 = new Level_DTO();
 			dto2.setID(ID);*/
@@ -45,7 +51,7 @@ public class MemberProcess	extends HttpServlet {
 			boolean bool = dao.insertMember(dto);
 			
 			if (bool){
-				response.sendRedirect("Success.html");
+				response.sendRedirect("Register_Retry.jsp");
 			}else{
 				response.sendRedirect("Fail.html");
 			}

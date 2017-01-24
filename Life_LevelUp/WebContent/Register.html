@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="register_JS.js" ></script>
+<script type="text/javascript" src="register_JS.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
 <meta charset="UTF-8">
 <title>가입을 환영합니다!</title>
 </head>
 <body>
 	<form name="registerFrm" action="register.kim" method="post">
 		[기본 정보]<br>
-		- ID : <input type="text" name="ID"/><br>
-		- PW : <input type="password" name="hash"/><br>
-		- PW 확인 : <input type="password" name="hash2"/><br>
-		- 닉네임 : <input type="text" name="name"/><br>
+		- ID : <input type="text" id="ID"/><br>
+		- PW : <input type="password" id="hash"/><br>
+		- PW 확인 : <input type="password" id="hash2"/><br>
+		- 닉네임 : <input type="text" id="name"/><br>
 		<br>
 		[신체 정보]<br>
-		- 성별 : 남성 <input type="radio" name="sex" value="0">
-			여성 <input type="radio" name="sex" value="1">
+		- 성별 : 남성 <input type="radio" id="sex" value="0" checked>
+			여성 <input type="radio" id="sex" value="1">
 		<br>
-		- 나이 : <select name="age">
+		- 나이 : <select id="age">
 			<option value="10">10세 이하</option>
 			<option value="11">11세</option>
 			<option value="12">12세</option>
@@ -80,7 +81,7 @@
 			<option value="69">69세</option>
 			<option value="70">70세 이상</option>
 		</select><br>
-		- 신장 : <select name="height">
+		- 신장 : <select id="height">
 			<option value="140">140cm 이하</option>
 			<option value="141">141cm</option>
 			<option value="142">142cm</option>
@@ -143,7 +144,7 @@
 			<option value="199">199cm</option>
 			<option value="200">200cm 이상</option>
 		</select> <br>
-		- 체중 : <select name="weight">
+		- 체중 : <select id="weight">
 			<option value="30">30kg 이하</option>
 			<option value="31">31kg</option>
 			<option value="32">32kg</option>
@@ -236,12 +237,11 @@
 			<option value="119">119kg</option>
 			<option value="120">120kg 이상</option>
 		</select><br>
-		<input type="button" value="테스트" onClick="cal()">
 		<br>
 		[부가정보]<br>
-		- 지역 : <input type="text" name="area"/><br>
+		- 지역 : <input type="text" id="area"/><br>
 		- 자기소개<br>
-		<textarea name=me cols=20 rows=4></textarea>
+		<textarea id="me" cols=20 rows=4></textarea>
 		<br>
 		<input type="submit" value="가입"/>
 	</form>

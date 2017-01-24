@@ -21,7 +21,7 @@ public class Connect_DAO {
 	}
 	
 	public boolean insertMember(Member_DTO dto){
-		String query = "insert into levelup.member values (?, ?, ?, ?, ?, ?, ?)";
+		String query = "insert into levelup.member values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		boolean check = false;
 		
 		try {
@@ -32,7 +32,14 @@ public class Connect_DAO {
 			pstmt.setString(4, dto.getName());
 			pstmt.setInt(5, dto.getSex());
 			pstmt.setInt(6, dto.getAge());
-			pstmt.setString(7, dto.getArea());
+			pstmt.setDouble(7, dto.getHeight());
+			pstmt.setDouble(8, dto.getWeight());
+			pstmt.setString(9, dto.getArea());
+			pstmt.setString(10, dto.getIntro());
+			pstmt.setInt(11, dto.getSex_vis());
+			pstmt.setInt(12, dto.getAge_vis());
+			pstmt.setInt(13, dto.getHei_vis());
+			pstmt.setInt(14, dto.getWei_vis());
 			
 			int x = pstmt.executeUpdate();
 			
