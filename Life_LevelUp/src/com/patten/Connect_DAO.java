@@ -50,7 +50,6 @@ public class Connect_DAO {
 			}
 			
 			pstmt.close();
-			// 컨넥션은 아직 닫지 않는다.
 			
 		}catch(SQLException ex){
 			System.out.println("SQL insert 오류 : "+ex.getLocalizedMessage());
