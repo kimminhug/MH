@@ -58,6 +58,38 @@ public class Connect_DAO {
 		return true;
 	}
 	
+	public boolean insertLevel(Level_DTO dto){
+		String query = "insert into levelup.level values (?, ?, ?, ?, ?, ?, ?, ?)";
+		boolean check = false;
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, dto.getID());
+			pstmt.setInt(2, dto.getLevel());
+			pstmt.setDouble(3, dto.getExp());
+			pstmt.setDouble(4, dto.getReq_exp());
+			pstmt.setDouble(5, dto.getBMI());
+			pstmt.setDouble(6, dto.getBMR());
+			pstmt.setDouble(7, dto.getObesity());
+			pstmt.setDouble(8, dto.getAverage());
+			
+			int x = pstmt.executeUpdate();
+			
+			if (x < 1){
+				System.out.println("정상적으로 저장되지 않았습니다!");
+			}else{
+				check = true;
+			}
+			
+			pstmt.close();
+			
+		}catch(SQLException ex){
+			System.out.println("SQL insert 오류 : "+ex.getLocalizedMessage());
+		}
+		
+		return true;
+	}
+	
 	public boolean updateMember(Member_DTO dto){
 		
 		return true;
