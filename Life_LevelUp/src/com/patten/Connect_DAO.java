@@ -10,7 +10,7 @@ public class Connect_DAO {
 			Class.forName("com.mysql.jdbc.Driver");
 		}catch(ClassNotFoundException ex){
 			System.out.println("드라이버를 찾을 수 없습니다!");
-		}
+		} 
 		
 		try{
 			conn = DriverManager.getConnection(

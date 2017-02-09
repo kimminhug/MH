@@ -12,10 +12,9 @@
 </head>
 <body>
 
-<form name="register_comp" action="mypage.jsp" method="post">
+<form name="register_Comp" action="mypage.jsp" method="post">
 	<%= (String)session.getAttribute("name")%>님만의 캐릭터가 생성되었습니다!<br>
 	축하합니다!!<br>
-	<br>
 	<br>
 	Lv : <%= (int)session.getAttribute("level")%>
 	<br>

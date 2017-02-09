@@ -2,6 +2,8 @@ package com.patten;
 
 import java.io.Serializable;
 
+// 현재 단계 : 레벨링 및 경험치 시스템!
+
 public class Level_DTO implements Serializable {
 	private String ID;
 	private int level;
@@ -44,11 +46,11 @@ public class Level_DTO implements Serializable {
 	public void setBMR(int sex, int age, double height, double weight) {
 		if(sex==0){
 			BMR = 66 + (13.7 * weight) + (5 * height) - (6.8 * age);
-			this.BMR = Double.parseDouble(String.format("%.0f", BMR));
+			this.BMR = Double.parseDouble(String.format("%1f", BMR));
 			
 		}else{
 			BMR = 655 + (9.6 * weight) + (1.7 * height) - (4.7 * age);
-			this.BMR = Double.parseDouble(String.format("%.0f", BMR));
+			this.BMR = Double.parseDouble(String.format("%1f", BMR));
 		}
 	}
 	public double getObesity() {
@@ -56,7 +58,7 @@ public class Level_DTO implements Serializable {
 	}
 	public void setObesity(double weight, double average) {
 		obesity = (weight - average) / average * 100;
-		this.obesity = Double.parseDouble(String.format("%.1f", obesity));
+		this.obesity = Double.parseDouble(String.format("%.2f", obesity));
 	}
 	public double getAverage() {
 		return average;

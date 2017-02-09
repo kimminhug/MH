@@ -12,9 +12,9 @@
 </head>
 <body>
 
-<form name="register_retry" action="register_retry.kim" method="post">
-	ID : <%= (String)session.getAttribute("ID")%><br>
-	닉네임 : <%= (String)session.getAttribute("name")%><br>
+<form name="register_Retry" action="register_Retry.kim" method="post">
+	ID : <%= (String)session.getAttribute("ID") %><br>
+	닉네임 : <%= (String)session.getAttribute("name") %><br>
 	<br>
 	BMI : <%= (double)session.getAttribute("BMI") %><br>
 	비만도 : <%= (double)session.getAttribute("obesity") %>%<br>

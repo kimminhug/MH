@@ -13,15 +13,14 @@ public class MemberProcess	extends HttpServlet {
 	
 	public void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		String uri = request.getRequestURI();
-		// System.out.println("uri = "+uri);
+		System.out.println("uri = "+uri);
 		
 		String command = uri.substring(uri.lastIndexOf("/") + 1, uri.lastIndexOf(".kim"));
 		
 		/************************* < 회원가입 -> 가입 확인 폼 > ***************************/
 		if (command != null && command.trim().equals("register")){
-			request.setCharacterEncoding("UTF-8");
 			String[] member = new String[14];
 			member[0] = request.getParameter("ID");
 			member[1] = "temp";
@@ -85,13 +84,13 @@ public class MemberProcess	extends HttpServlet {
 				session.setMaxInactiveInterval(60 * 60 * 3);
 				// 세선 유지시간 : 3시간
 				
-				response.sendRedirect("Register_Retry.jsp");
+				response.sendRedirect("register_Retry.jsp");
 			}else{
 				response.sendRedirect("Fail.html");
 			}
 			
 		/************************* < 가입 확인 -> 가입 완료 폼 > ***************************/
-		}else if (command.trim().equals("register_retry")){	
+		}else if (command.trim().equals("register_Retry")){	
 			HttpSession session = request.getSession();
 			String ID = (String)session.getAttribute("ID");
 			String salt = (String)session.getAttribute("salt");
@@ -142,7 +141,7 @@ public class MemberProcess	extends HttpServlet {
 			boolean l_check = dao.insertLevel(l_dto);
 			
 			if (m_check && l_check){
-				response.sendRedirect("Register_Comp.jsp");
+				response.sendRedirect("register_Comp.jsp");
 			}else{
 				response.sendRedirect("Fail.html");
 			}
