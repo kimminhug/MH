@@ -15,7 +15,7 @@ public class MemberProcess	extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String uri = request.getRequestURI();
-		System.out.println("uri = "+uri);
+		// System.out.println("uri = "+uri);
 		
 		String command = uri.substring(uri.lastIndexOf("/") + 1, uri.lastIndexOf(".kim"));
 		
