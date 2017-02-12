@@ -2,7 +2,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 @import url(http://fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
-/* Common styling */
+/* < Common styling >-----------------------------------------------------*/
 
 ::-webkit-input-placeholder {
 	text-align: right;
@@ -22,36 +22,88 @@ body {
 	color: #454545;
 }
 
-/* Menu form styling */
+a {
+	text-decoration: none;
+}
+
+/* < Menu form styling >-------------------------------------------------*/
 header {
     background-color: #F1C40F;
-    height: 40px;
-    padding: 10px;
+    height: 50px;
     text-decoration: none;
+    text-align: center;
     position: fixed;
     width: 100%;
     z-index: 1;
     -webkit-box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.4);
     box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+#left-box {
+    width: 20%;
+    float: left;
+    text-align: left;
+    padding: 5px;
+}
+
+#center-box {
+    text-align: center;
+    width: 40%;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 5px;
+}
+
+#right-box {
+    width: 20%;
+    float: right;
+    text-align: right;
+    padding: 5px;
+}
+
+#not-login {
+	background-color: #FFFFFF;
+    border-radius: 3px;
+    height: 30px;
+    width: 30px;
+    padding: 3px;
+    display: inline-block;
 }
 
 #user-menu {
 	background-color: #FFFFFF;
     border-radius: 3px;
-    cursor: pointer;
     height: 30px;
     width: 30px;
     padding: 3px;
-    position: relative;
+    display: inline-block;
 }
 
-#user-menu div {
-    background-color: #fff;
-    border: 1px solid #eee;
-    border-radius: 2px 2px 2px 2px;
-    height: 2px;
-    margin-top: 3px;
-    width: 90%;
+#comu-menu {
+	background-color: #FFFFFF;
+    border-radius: 3px;
+    height: 30px;
+    width: 30px;
+    padding: 3px;
+    display: inline-block;
+    color: #F1C40F;
+}
+
+#main-banner {
+    width: 185px;
+    padding: 3px;
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 auto;
+    display: inline-block;
+    font-size: 30px;
+}
+
+#logo-img {
+	width: 30px;
+	height: 30px;
+	font-size: 30px;
 }
 
 nav {
@@ -84,11 +136,77 @@ nav li {
     border-bottom: 1px solid #222222;
     border-top: 1px solid #444444;
     padding: 15px;
+    overflow:auto;
 }
 
 nav li a {
     color: #fff;
     text-decoration: none;
+    display: inline-block;
+}
+
+#my {
+	padding: 10px;
+}
+
+#my-cha{
+	width: 100%;
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+#my-cha #left-box {
+    width: 35%;
+    float: left;
+    text-align: left;
+}
+
+#my-cha #right-box {
+    width: 35%;
+    float: right;
+    text-align: right;
+}
+
+.button-con-logout {
+	-moz-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	-webkit-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	background-color:#40e0d0;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:14px;
+	font-weight:bold;
+	padding:3px 8px;
+	text-decoration:none;
+}
+
+#condition {
+	background: #fff;
+}
+
+#condition h3 {
+	color: #F1C40F;
+	font-size: 24px;
+	font-weight: 300;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+#condition h4 {
+	color: #F1C40F;
+	font-size: 20px;
+	font-weight: 300;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+#lv_font {
+	
 }
 
 #content {
@@ -114,7 +232,7 @@ nav li a {
 }
 
 
-/* Card form styling */
+/* < Card form styling >--------------------------------------------------- */
 
 .card {
 	border-radius: 4px;
@@ -123,7 +241,12 @@ nav li a {
 	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px
 		rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 	width: 85%;
+	vertical-align: middle;
 	overflow: hidden;
+}
+
+.login .card {
+	margin: 20% auto;
 }
 
 .card-header {
@@ -134,9 +257,28 @@ nav li a {
 	overflow: hidden;
 }
 
+.card-header h1 {
+	font-size: 38px;
+	font-weight: 300;
+}
+
 .card-header h2 {
 	font-size: 35px;
 	font-weight: 300;
+}
+
+.card-header h3 {
+	font-size: 26px;
+	font-weight: 300;
+	margin: 4px;
+	text-align: center;
+}
+
+.logo {
+	text-align: center;
+	display:inline-block;
+	width: 100%;
+	position: relative;
 }
 
 /* Input form styling */
@@ -174,6 +316,24 @@ nav li a {
 	font-size: 20px;
 }
 
+.button-white {
+	-moz-box-shadow:inset 0px 1px 6px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 6px 0px #ffffff;
+	box-shadow:inset 0px 1px 6px 0px #ffffff;
+	background-color:#ffffff;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	display:inline-block;
+	cursor:pointer;
+	color:##F1C40F;
+	font-family:Arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:13px 37px;
+	text-decoration:none;
+}
+
 .button {
 	-moz-box-shadow:inset 0px 1px 6px 0px #fce2c1;
 	-webkit-box-shadow:inset 0px 1px 6px 0px #fce2c1;
@@ -191,6 +351,7 @@ nav li a {
 	padding:13px 37px;
 	text-decoration:none;
 }
+
 .button:hover {
 	background-color:#ffbf40;
 }

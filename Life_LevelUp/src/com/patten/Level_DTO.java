@@ -2,12 +2,11 @@ package com.patten;
 
 import java.io.Serializable;
 
-// 현재 단계 : 레벨링 및 경험치 시스템!
-
 public class Level_DTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private String ID;
-	private int level;
-	private double exp, req_exp, average, BMI, BMR, obesity;
+	private int level, b_level, e_level;
+	private double b_exp, e_exp, average, BMI, BMR, obesity;
 	
 	public String getID() {
 		return ID;
@@ -21,17 +20,29 @@ public class Level_DTO implements Serializable {
 	public void setLevel(int level) {
 		this.level = level;
 	}
-	public double getExp() {
-		return exp;
+	public int getB_level() {
+		return b_level;
 	}
-	public void setExp(double exp) {
-		this.exp = exp;
+	public void setB_level(int b_level) {
+		this.b_level = b_level;
 	}
-	public double getReq_exp() {
-		return req_exp;
+	public int getE_level() {
+		return e_level;
 	}
-	public void setReq_exp(double req_exp) {
-		this.req_exp = req_exp;
+	public void setE_level(int e_level) {
+		this.e_level = e_level;
+	}
+	public double getB_exp() {
+		return b_exp;
+	}
+	public void setB_exp(double b_exp) {
+		this.b_exp = Double.parseDouble(String.format("%.2f", b_exp));
+	}
+	public double getE_exp() {
+		return e_exp;
+	}
+	public void setE_exp(double e_exp) {
+		this.e_exp = e_exp;
 	}
 	public double getBMI() {
 		return BMI;

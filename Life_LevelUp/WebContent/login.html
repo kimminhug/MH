@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="LevelUp.css?ver=1"
+	media="screen and (min-width: 1px) and (max-width: 1024px)"
+	rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>라이프레벨업 로그인</title>
+</head>
+<body>
+	<form class="login" name="login" action="login.kim" method="post">
+		<div class="card">
+			<div class="card-header">
+				<div class="logo">
+					<a href="main.jsp"><img src="https://s27.postimg.org/r54opvy37/image.png"></a>
+				</div>
+				<div class="input-wrap">
+					<span class="label">아이디</span>
+					<input class="input" type="text" name="ID" />
+				</div>
+				<div class="input-wrap">
+					<span class="label">패스워드</span>
+					<input class="input" type="password" name="hash" />
+				</div>
+				<div class="submit">
+					<input class="button-white" type="submit" value="로그인" />
+					<input class="button-white" type="button" value="회원가입" onClick="location.href='register.html'" />
+					<input class="button-white" type="button" value="아이디 / 비밀번호 찾기" onClick="location.href='#" />
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

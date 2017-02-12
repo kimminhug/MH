@@ -3,9 +3,11 @@ package com.patten;
 import java.io.Serializable;
 
 public class Member_DTO implements Serializable {
-	private String ID, salt, hash, name, area, intro;
+	private static final long serialVersionUID = 1L;
+	private String ID, salt, hash, name, job, area, intro;
 	private int sex, age, height, weight;
 	private int sex_vis, age_vis, hei_vis, wei_vis;
+	
 	
 	public int getSex_vis() {
 		return sex_vis;
@@ -66,6 +68,12 @@ public class Member_DTO implements Serializable {
 	}
 	public void setIntro(String intro) {
 		this.intro = intro;
+	}
+	public String getJob() {
+		return job;
+	}
+	public void setJob(String job) {
+		this.job = job;
 	}
 	public int getSex() {
 		return sex;
