@@ -1,7 +1,7 @@
 package com.patten;
 
 public class Cal_Level {
-	public boolean cal_b_level (Level_DTO dto){
+	public boolean cal_B_level (Level_DTO dto){
 		double obe = dto.getObesity();
 		int level = 0;
 		double exp = 0;
@@ -138,6 +138,46 @@ public class Cal_Level {
 		
 		dto.setB_level(level);
 		dto.setB_exp(exp);
+		return true;
+	}
+	
+	public boolean cal_E_BRR (Level_DTO dto){
+		int level = dto.getE_level();
+		int exp = dto.getE_exp();
+		int bef_exp, req_exp;
+		
+		if (level < 1 && level > 30){
+			return false;
+		}
+		
+		int[] base = new int[30];
+		int[] base2 = new int[30];
+		int[] req = new int[30];
+		int[] total = new int[31];
+		
+		base[1] = 1;
+		base2[1] = 1;
+		req[1] = 10;
+		total[0] = 0; total[1] = 50;
+		
+		for(int i=2; i<30; i++){
+			base[i] = base[i-1] + 1;
+			base2[i] = base2[i-1] + base[i];
+			req[i] = req[i-1] + base2[i];
+			total[i] = total[i-1] + req[i]; 
+		}
+		
+		bef_exp = total[level - 1];
+		req_exp = total[level];
+		
+		if (level != 30){
+			dto.setE_req_exp(req_exp);
+			dto.setE_rate((exp - bef_exp) / (req_exp - bef_exp) * 100);			
+		}else{
+			dto.setE_req_exp(bef_exp);
+			dto.setE_rate(100);
+		}
+		
 		return true;
 	}
 }

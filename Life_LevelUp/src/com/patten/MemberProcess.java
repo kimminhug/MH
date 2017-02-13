@@ -79,7 +79,7 @@ public class MemberProcess	extends HttpServlet {
 				l_dto.setObesity(weight, l_dto.getAverage());
 				
 				Cal_Level cal = new Cal_Level();
-				if (!cal.cal_b_level(l_dto)){
+				if (!cal.cal_B_level(l_dto)){
 					response.sendRedirect("Fail.html");
 				}
 				
@@ -142,10 +142,10 @@ public class MemberProcess	extends HttpServlet {
 			
 			Level_DTO l_dto = new Level_DTO();
 			l_dto.setID(ID);
-			l_dto.setLevel(b_level);
+			l_dto.setLevel(b_level+1);
 			l_dto.setB_level(b_level);
 			l_dto.setB_exp(b_exp);
-			l_dto.setE_level(0);
+			l_dto.setE_level(1);
 			l_dto.setE_exp(0);
 			l_dto.setAverage(sex, height);
 			l_dto.setBMI(height, weight);
@@ -211,12 +211,15 @@ public class MemberProcess	extends HttpServlet {
 				session.setAttribute("average", l_dto.getAverage());
 				
 				Cal_Level cal = new Cal_Level();
-				if (!cal.cal_b_level(l_dto)){
+				if (!cal.cal_B_level(l_dto) && !cal.cal_E_BRR(l_dto)){
 					session.invalidate();
 					response.sendRedirect("Fail.html");
 				}
+				
 				session.setAttribute("b_level", l_dto.getB_level());
 				session.setAttribute("b_exp", l_dto.getB_exp());
+				session.setAttribute("e_req_exp", l_dto.getE_req_exp());
+				session.setAttribute("e_rate", l_dto.getE_rate());
 				
 				session.setMaxInactiveInterval(60 * 60 * 2);
 				// 세선 유지시간 : 2시간

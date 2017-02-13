@@ -61,7 +61,7 @@ public class Connect_DAO {
 				l_dto.setB_level(rs.getInt("b_level"));
 				l_dto.setB_exp(rs.getDouble("b_exp"));
 				l_dto.setE_level(rs.getInt("e_level"));
-				l_dto.setE_exp(rs.getDouble("e_exp"));
+				l_dto.setE_exp(rs.getInt("e_exp"));
 				l_dto.setAverage(sex, height);
 				l_dto.setBMI(height, weight);
 				l_dto.setBMR(sex, age, height, weight);
@@ -134,7 +134,7 @@ public class Connect_DAO {
 			pstmt.setInt(3, dto.getB_level());
 			pstmt.setDouble(4, dto.getB_exp());
 			pstmt.setInt(5, dto.getE_level());
-			pstmt.setDouble(6, dto.getE_exp());
+			pstmt.setInt(6, dto.getE_exp());
 			pstmt.setDouble(7, dto.getAverage());
 			pstmt.setDouble(8, dto.getBMI());
 			pstmt.setDouble(9, dto.getBMR());

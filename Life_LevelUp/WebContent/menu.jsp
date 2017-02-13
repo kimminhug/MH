@@ -1,24 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="LevelUp.js" ></script>
-    <script type="text/javascript" src="circle-progress.js" ></script>
-    
-	<link href="LevelUp.css?ver=1" media="screen and (min-width: 1px) and (max-width: 1024px)" rel="stylesheet">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<meta name="viewport" content="width=device-width">
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
-	<title>Life LevelUp</title>
-</head>
-<body>
-<div id="container">
 
-	<header>
+<header>
 	<% if ((String)session.getAttribute("ID") == null){%>
 		<div id="left-box">
 			<a id="not-login" href="login.html"><img id="logo-img" src="image/logo.png"></a>
@@ -40,7 +23,7 @@
 			<a href="main.jsp"><div id="main-banner">Life LevelUp!</div></a>
 		</div>
     <%} %>
-    </header>
+</header>
     
     <nav>
         <ul>
@@ -52,7 +35,7 @@
             </li>
             <li id="condition">
             	<div id="con-mid">
-            		<img id="avarta" src="arvarta.jpg">
+            		<img id="avarta" src="avarta.jpg">
             		<span id="lv_eng_font">Lv. </span>
             		<span id="lv_num_font"><%=session.getAttribute("level")%></span>
             	</div>
@@ -72,8 +55,8 @@
 						<span id=right-label><strong><%=session.getAttribute("e_rate")%></strong><i>%</i></span>
 						<div class="right-circle"></div>
 						<div id="con-mid">
-							<div id="lv_e_font">
-								<%=session.getAttribute("e_exp")%> / <%=session.getAttribute("e_req_exp")%>
+							<div id="lv_b_font">
+								<%=session.getAttribute("e_exp")%> / <%=session.getAttribute("e_exp_req")%>
 							</div>
 							<span id="lv_e_font">운동
 							<span id="lv_eng_font"> Lv.</span>
@@ -88,12 +71,3 @@
             <li><a href="#">친구목록</a></li>
         </ul>
     </nav>
-
-    <div id="contentLayer"></div> <%-- 여기서부터 메뉴바깥 '내용' 부분 --%>
-    
-    <div id="content">
-    	
-    </div>
-</div>
-</body>
-</html>
