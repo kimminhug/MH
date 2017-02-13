@@ -26,6 +26,58 @@ a {
 	text-decoration: none;
 }
 
+/* < Circle and parameter styling >--------------------------------------*/
+
+#cir-warp {
+	position: relative;
+   	text-align: center;
+   	width: 100%;
+}
+
+#cir-warp #left-box {
+	float: left;
+	width: 40%;
+	text-align: center;
+	position: relative;
+}
+
+#cir-warp #right-box {
+	float: right;
+	width: 40%;
+	text-align: center;
+	position: relative;
+}
+
+#cir-warp strong {
+ 	 display: inline-block;
+ 	 line-height: 40px;
+ 	 font-size: 20px;
+ 	 margin-bottom: -5px;
+}
+
+#cir-warp i {
+  	font-style: normal;
+	font-size: 0.6em;
+	font-weight: normal;
+}
+
+#cir-warp #left-circle {
+	position: relative;
+}
+
+#cir-warp #left-label {
+ 	display: inline-block;
+}
+
+#cir-warp #right-circle {
+	position: relative;
+}
+
+#cir-warp #right-label {
+ 	display: inline-block;
+}
+
+
 /* < Menu form styling >-------------------------------------------------*/
 header {
     background-color: #F1C40F;
@@ -45,14 +97,16 @@ header {
     float: left;
     text-align: left;
     padding: 5px;
+    overflow: hidden;
 }
 
 #center-box {
     text-align: center;
-    width: 40%;
+    width: 50%;
     margin: 0 auto;
     overflow: hidden;
     padding: 5px;
+    overflow: hidden;
 }
 
 #right-box {
@@ -60,6 +114,7 @@ header {
     float: right;
     text-align: right;
     padding: 5px;
+    overflow: hidden;
 }
 
 #not-login {
@@ -92,12 +147,13 @@ header {
 
 #main-banner {
     width: 185px;
-    padding: 3px;
+    padding-top: 7px;
     color: #ffffff;
     text-decoration: none;
     margin: 0 auto;
     display: inline-block;
-    font-size: 30px;
+    vertical-align: middle;
+    font-size: 26px;
 }
 
 #logo-img {
@@ -136,6 +192,7 @@ nav li {
     border-bottom: 1px solid #222222;
     border-top: 1px solid #444444;
     padding: 15px;
+    padding-right: 25px;
     overflow:auto;
 }
 
@@ -147,6 +204,7 @@ nav li a {
 
 #my {
 	padding: 10px;
+	padding-right: 20px;
 }
 
 #my-cha{
@@ -168,33 +226,16 @@ nav li a {
     text-align: right;
 }
 
-.button-con-logout {
-	-moz-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
-	-webkit-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
-	box-shadow:inset 0px 1px 6px 0px #6bfe9e;
-	background-color:#40e0d0;
-	-moz-border-radius:7px;
-	-webkit-border-radius:7px;
-	border-radius:7px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	font-size:14px;
-	font-weight:bold;
-	padding:3px 8px;
-	text-decoration:none;
-}
-
 #condition {
 	background: #fff;
 }
 
 #condition h3 {
-	color: #F1C40F;
+	color: #000;
 	font-size: 24px;
 	font-weight: 300;
 	text-align: center;
-	margin-bottom: 5px;
+	margin: 5px;
 }
 
 #condition h4 {
@@ -202,19 +243,44 @@ nav li a {
 	font-size: 20px;
 	font-weight: 300;
 	text-align: center;
-	margin-bottom: 5px;
+	margin: 5px;
 }
 
-#lv_font {
-	
+#con-mid {
+	width: 100%;
+	text-align: center;
+}
+
+#lv_eng_font {
+	color: #000000;
+	font-size: 15px;
+}
+
+#lv_num_font {
+	color: #ffa500;
+	font-size: 38px;
+}
+
+#lv_b_font {
+	margin-top: 7px;
+	color: #ff4500;
+	font-size: 18px;
+}
+
+#lv_e_font {
+	margin-top: 7px;
+	color: #1e90ff;
+	font-size: 18px;
 }
 
 #content {
+	overflow: hidden;
     background-color: #FFFFFF;
     padding: 52px 10px 10px 10px;
     position: relative;
     width: 100%;
     height: 100%;
+    min-height: auto;
     -webkit-box-shadow: -10px 0px 9px 0px rgba(0, 0, 0, 0.4);
     box-shadow: -10px 0px 9px 0px rgba(0, 0, 0, 0.4);
 }
@@ -326,11 +392,46 @@ nav li a {
 	border-radius:7px;
 	display:inline-block;
 	cursor:pointer;
-	color:##F1C40F;
+	color:#F1C40F;
 	font-family:Arial;
 	font-size:18px;
 	font-weight:bold;
-	padding:13px 37px;
+	padding:8px 18px;
+	text-decoration:none;
+}
+
+.button-con-logout {
+	-moz-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	-webkit-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	background-color:#40e0d0;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:14px;
+	font-weight:bold;
+	padding:3px 8px;
+	text-decoration:none;
+}
+
+.button-con-exp {
+	-moz-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	-webkit-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	background-color:#00bfff;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:18px;
+	font-weight:bold;
+	padding:5px 11px;
+	margin-top: 10px;
 	text-decoration:none;
 }
 

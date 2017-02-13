@@ -6,6 +6,7 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="LevelUp.js" ></script>
+    <script type="text/javascript" src="circle-progress.js" ></script>
     
 	<link href="LevelUp.css?ver=1" media="screen and (min-width: 1px) and (max-width: 1024px)" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -50,10 +51,34 @@
             </div>
             </li>
             <li id="condition">
-            	<h3>Lv. <%=session.getAttribute("level")%> <%=session.getAttribute("name")%></h3>
-            	<h4>신체Lv : <%=session.getAttribute("b_level")%></h4>
-            	<h4>신체경험치: <%=session.getAttribute("b_exp")%> / 100</h4>
-            	<h4>운동레벨: <%=session.getAttribute("e_level")%></h4>
+            	<div id="con-mid">
+            		<span id="lv_eng_font">Lv. </span>
+            		<span id="lv_num_font"><%=session.getAttribute("level")%></span>
+            	</div>
+            	<div id="con-mid"><h3><%=session.getAttribute("name")%></h3></div>
+            	<div id="cir-warp">
+            		<div id="left-box">
+            			<span id=left-label><strong><%=session.getAttribute("b_exp")%></strong><i>%</i></span>
+						<div class="left-circle"></div>
+						<div id="con-mid">
+							<span id="lv_b_font">신체 
+							<span id="lv_eng_font"> Lv.</span>
+							<%=session.getAttribute("b_level")%></span>
+						</div>
+					</div>
+            		<div id="right-box">
+						<span id=right-label><strong><%=session.getAttribute("e_exp")%></strong><i>%</i></span>
+						<div class="right-circle"></div>
+						<div id="con-mid">
+							<span id="lv_e_font">운동
+							<span id="lv_eng_font"> Lv.</span>
+							<%=session.getAttribute("e_level")%></span>
+						</div>
+					</div>
+				</div>
+				<div id="con-mid">
+					<input class="button-con-exp" type="button" value="경험치입력" onClick="input_exp();" />
+				</div>
             </li>
             <li><a href="#">친구목록</a></li>
         </ul>

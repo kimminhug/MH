@@ -4,9 +4,11 @@ jQuery(document).ready(function () {
 
 	//Open the menu
 	jQuery("#user-menu").click(function () {
-
+		var b_exp = jQuery('#left-label').find('strong').text() * 0.01;
+		var e_exp = jQuery('#right-label').find('strong').text() * 0.01;
+		
 		jQuery('#content').css('min-height', jQuery(window).height());
-		jQuery('#content').css('overflow', 'hidden');
+		jQuery('#content').css('overflow', 'hidden')
 		jQuery('nav').css('opacity', 1);
 		
 		//set the width of primary content container -> content should not scale while animating
@@ -27,7 +29,29 @@ jQuery(document).ready(function () {
 		jQuery("#container").animate({"marginLeft": ["70%", 'easeOutExpo']}, {
 			duration: 700
 		});
-
+		
+		/* Jquery - 원형 그래프 */
+		jQuery('.left-circle').circleProgress({
+			value: b_exp,
+		    startAngle: 300,
+		    size: 80,       
+		    fill: {
+		    gradient: ["red", "orange"]    
+		    }
+		  }).on('circle-animation-progress', function(event, progress) {
+			  jQuery(this).find('strong').html();
+		});
+		
+		jQuery('.right-circle').circleProgress({
+			value: e_exp,
+		    startAngle: 300,
+		    size: 80,       
+		    fill: {
+		    gradient: ["blue", "dodgerblue"]    
+		    }
+		  }).on('circle-animation-progress', function(event, progress) {
+			  jQuery(this).find('strong').html();
+		});
 	});
 
 	//close the menu
@@ -40,7 +64,7 @@ jQuery(document).ready(function () {
 		jQuery("#container").animate({"marginLeft": ["-1", 'easeOutExpo']}, {
 			duration: 700,
 			complete: function () {
-				jQuery('#content').css('overflow','visible');
+				jQuery('#content').css('overflow','hidden');
 				jQuery('#content').css('width', 'auto');
 				jQuery('#contentLayer').css('display', 'none');
 				jQuery('nav').css('opacity', 0);
@@ -49,9 +73,10 @@ jQuery(document).ready(function () {
 			}
 		});
 	});
-
+	
 });	
 
+/* ----------로그아웃 스크립트 -----------*/
 function logout(){
 	var con = confirm("로그아웃 하시겠습니까?");
 
@@ -59,3 +84,4 @@ function logout(){
 		location.href="logout.jsp";
 	}
 }
+

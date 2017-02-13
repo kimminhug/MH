@@ -129,7 +129,7 @@ public class Cal_Level {
 			exp = (obe - L18) / (L19 - L18) * 100;
 		}else if (obe < LH){
 			level = 20;
-			exp = (obe - L19) / (LH - L19) * 100;
+			exp = 0;
 		}
 		
 		if (level == 0){
