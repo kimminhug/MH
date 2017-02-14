@@ -23,19 +23,19 @@
 			<a href="main.jsp"><div id="main-banner">Life LevelUp!</div></a>
 		</div>
     <%} %>
-</header>
+    </header>
     
     <nav>
         <ul>
             <li id="my">
             <div id="my-cha">
-            	<a id="left-box" href="#">내 캐릭터</a>
+            	<a id="left-box" href="mypage.jsp">내 캐릭터</a>
             	<div id="right-box"><input class="button-con-logout" type="button" value="로그아웃" onClick="logout();" /></div>
             </div>
             </li>
             <li id="condition">
             	<div id="con-mid">
-            		<img id="avarta" src="avarta.jpg">
+            		<div id="con-mid"><img id="avarta" src="image/avarta.jpg"></div>
             		<span id="lv_eng_font">Lv. </span>
             		<span id="lv_num_font"><%=session.getAttribute("level")%></span>
             	</div>
@@ -45,7 +45,7 @@
             			<span id=left-label><strong><%=session.getAttribute("b_exp")%></strong><i>%</i></span>
 						<div class="left-circle"></div>
 						<div id="con-mid">
-							<div id="lv_b_font"><%=session.getAttribute("b_exp")%> / 100 </div>
+							<div id="lv_exp_font"><%=session.getAttribute("b_exp")%> / 100 </div>
 							<span id="lv_b_font">신체 
 							<span id="lv_eng_font"> Lv.</span>
 							<%=session.getAttribute("b_level")%></span>
@@ -55,8 +55,8 @@
 						<span id=right-label><strong><%=session.getAttribute("e_rate")%></strong><i>%</i></span>
 						<div class="right-circle"></div>
 						<div id="con-mid">
-							<div id="lv_b_font">
-								<%=session.getAttribute("e_exp")%> / <%=session.getAttribute("e_exp_req")%>
+							<div id="lv_exp_font">
+								<%=session.getAttribute("e_exp")%> / <%=session.getAttribute("e_req_exp")%>
 							</div>
 							<span id="lv_e_font">운동
 							<span id="lv_eng_font"> Lv.</span>

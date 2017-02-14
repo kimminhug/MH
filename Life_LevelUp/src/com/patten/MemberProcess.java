@@ -86,8 +86,6 @@ public class MemberProcess	extends HttpServlet {
 				session.setAttribute("level", l_dto.getLevel());
 				session.setAttribute("b_level", l_dto.getB_level());
 				session.setAttribute("b_exp", l_dto.getB_exp());
-				session.setAttribute("e_level", l_dto.getE_level());
-				session.setAttribute("e_exp", l_dto.getE_exp());
 				session.setAttribute("BMI", l_dto.getBMI());
 				session.setAttribute("BMR", l_dto.getBMR());
 				session.setAttribute("obesity", l_dto.getObesity());
@@ -211,7 +209,11 @@ public class MemberProcess	extends HttpServlet {
 				session.setAttribute("average", l_dto.getAverage());
 				
 				Cal_Level cal = new Cal_Level();
-				if (!cal.cal_B_level(l_dto) && !cal.cal_E_BRR(l_dto)){
+				
+				boolean cal_b_check = cal.cal_B_level(l_dto);
+				boolean cal_e_check = cal.cal_E_BRR(l_dto);
+				
+				if (!cal_b_check && !cal_e_check){
 					session.invalidate();
 					response.sendRedirect("Fail.html");
 				}

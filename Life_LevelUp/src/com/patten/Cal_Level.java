@@ -145,6 +145,7 @@ public class Cal_Level {
 		int level = dto.getE_level();
 		int exp = dto.getE_exp();
 		int bef_exp, req_exp;
+		double rate;
 		
 		if (level < 1 && level > 30){
 			return false;
@@ -169,10 +170,18 @@ public class Cal_Level {
 		
 		bef_exp = total[level - 1];
 		req_exp = total[level];
+		rate = ((double)exp - (double)bef_exp) / ((double)req_exp - (double)bef_exp) * 100;
 		
 		if (level != 30){
 			dto.setE_req_exp(req_exp);
-			dto.setE_rate((exp - bef_exp) / (req_exp - bef_exp) * 100);			
+			dto.setE_rate(rate);	
+			
+			/*
+			System.out.println("로그인된 내 운동경험치 bef : "+dto.getE_bef_exp());
+			System.out.println("로그인된 내 운동경험치 req : "+dto.getE_req_exp());
+			System.out.println("로그인된 내 운동경험치 비율 : "+dto.getE_rate());
+			System.out.println("로그인된 내 운동경험치: "+dto.getE_exp());
+			*/
 		}else{
 			dto.setE_req_exp(bef_exp);
 			dto.setE_rate(100);

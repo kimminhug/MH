@@ -15,13 +15,13 @@
 
 <form class="login" name="register_Comp" action="register_Comp.kim" method="post">
 	<div class="card">
-		<div class="card-header">
-			<h3>Lv : <%=(int) session.getAttribute("b_level")%></h3>
-			<h3><%= (String)session.getAttribute("name")%>님의 캐릭터가 생성되었습니다!</h3>
+		<div id="con-mid">
+			<img id="avarta-my" src="image/avarta.jpg">
+			<h2><%= (String)session.getAttribute("name")%>님의 캐릭터가 생성되었습니다!</h2>
 			<br>
-			<h3>축하합니다!!</h3>
+			<h2>축하합니다!!</h2>
 			<div class="submit">
-				<input class="button-white" type="submit" value=" 홈으로  " />
+				<input class="button" type="submit" value=" 홈으로  " />
 			</div>
 		</div>
 	</div>

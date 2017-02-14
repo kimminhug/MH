@@ -28,8 +28,12 @@ a {
 
 /* < Circle and parameter styling >--------------------------------------*/
 
+.progress-label {
+	font-weight: bold;
+	text-shadow: 1px 1px 0 #fff;
+}
+
 #cir-warp {
-	position: relative;
    	text-align: center;
    	width: 100%;
 }
@@ -46,6 +50,22 @@ a {
 	width: 40%;
 	text-align: center;
 	position: relative;
+}
+
+#my-circle #cir-warp #left-box {
+	float: left;
+	width: 40%;
+	text-align: center;
+	position: relative;
+	margin: 3px 0 3px 20px;
+}
+
+#my-circle #cir-warp #right-box {
+	float: right;
+	width: 40%;
+	text-align: center;
+	position: relative;
+	margin: 3px 20px 3px 0;
 }
 
 #cir-warp strong {
@@ -67,6 +87,7 @@ a {
 
 #cir-warp #left-label {
  	display: inline-block;
+ 	color: #708090;
 }
 
 #cir-warp #right-circle {
@@ -75,6 +96,7 @@ a {
 
 #cir-warp #right-label {
  	display: inline-block;
+ 	color: #708090;
 }
 
 
@@ -153,7 +175,7 @@ header {
     margin: 0 auto;
     display: inline-block;
     vertical-align: middle;
-    font-size: 26px;
+    font-size: 24px;
 }
 
 #logo-img {
@@ -168,7 +190,7 @@ nav {
     top: 0px;
     position: fixed;
     z-index: 0;
-    width: 70%;
+    width: 85%;
     height: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -252,8 +274,38 @@ nav li a {
 }
 
 #avarta {
-	height: 150px;
-	width: 150px;
+	height: 100px;
+	width: 100px;
+	margin-top: -10px;
+}
+
+#my-menu {
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+}
+
+#avarta-my {
+	margin-top: 2px;
+	height: 120px;
+	width: 120px;
+}
+
+#my-left-box {
+	float: left;
+	width: 45%;
+	height: 100%;
+	vertical-align: middle;
+	text-align: center;
+	margin-left: 15px;
+}
+
+#my-right-box {
+	float: right;
+	width: 45%;
+	height: 100%;
+	text-align: center;
+	margin-right: 15px;
 }
 
 #lv_eng_font {
@@ -269,13 +321,19 @@ nav li a {
 #lv_b_font {
 	margin-top: 7px;
 	color: #ff4500;
-	font-size: 18px;
+	font-size: 15px;
 }
 
 #lv_e_font {
 	margin-top: 7px;
 	color: #1e90ff;
-	font-size: 18px;
+	font-size: 15px;
+}
+
+#lv_exp_font {
+	margin: 5px;
+	color: #708090;
+	font-size: 12px;
 }
 
 #content {
@@ -298,7 +356,7 @@ nav li a {
     position: absolute;
     right: 0;
     top: 0;
-    width: 30%;
+    width: 15%;
     z-index: 5;
 }
 
@@ -328,20 +386,27 @@ nav li a {
 	overflow: hidden;
 }
 
-.card-header h1 {
-	font-size: 38px;
+h1 {
+	font-size: 20px;
 	font-weight: 300;
 }
 
-.card-header h2 {
-	font-size: 35px;
+h2 {
+	font-size: 17px;
 	font-weight: 300;
+	margin-left: 0;
+	margin-right: 0;
 }
 
 .card-header h3 {
 	font-size: 26px;
 	font-weight: 300;
 	margin: 4px;
+	text-align: center;
+}
+
+.card h1 {
+	font-size: 22px;
 	text-align: center;
 }
 
@@ -405,6 +470,24 @@ nav li a {
 	text-decoration:none;
 }
 
+.button-my-detail {
+	-moz-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	-webkit-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	box-shadow:inset 0px 1px 6px 0px #6bfe9e;
+	background-color:#40e0d0;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 20px;
+	margin: 3px 30px 3px 0;
+	text-decoration:none;
+}
+
 .button-con-logout {
 	-moz-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
 	-webkit-box-shadow:inset 0px 1px 6px 0px #6bfe9e;
@@ -433,9 +516,9 @@ nav li a {
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-size:18px;
+	font-size:17px;
 	font-weight:bold;
-	padding:5px 11px;
+	padding:9px 12px;
 	margin-top: 10px;
 	text-decoration:none;
 }
@@ -452,9 +535,9 @@ nav li a {
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:18px;
+	font-size:15px;
 	font-weight:bold;
-	padding:13px 37px;
+	padding:9px 12px;
 	text-decoration:none;
 }
 

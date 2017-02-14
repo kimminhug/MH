@@ -20,16 +20,18 @@
 			<h3>ID : <%= (String)session.getAttribute("ID") %></h3>
 			<h3>닉네임 : <%= (String)session.getAttribute("name") %><br></h3>
 			<br>
-			<h3>표준체중 : <%= (double)session.getAttribute("average") %><br></h3>
-			<h3>BMI : <%= (double)session.getAttribute("BMI") %><br></h3>
-			<h3>비만도 : <%= (double)session.getAttribute("obesity") %>%<br></h3>
-			<h3>기초대사량 : <%= (double)session.getAttribute("BMR") %>cal<br></h3>
+		</div>
+		<div id="con-mid">
+			<h2>표준체중 : <%= (double)session.getAttribute("average") %><br></h2>
+			<h2>BMI : <%= (double)session.getAttribute("BMI") %><br></h2>
+			<h2>비만도 : <%= (double)session.getAttribute("obesity") %>%<br></h2>
+			<h2>기초대사량 : <%= (double)session.getAttribute("BMR") %>cal<br></h2>
 			<br>
-			<h3>당신의 신체레벨 : <%=(int)session.getAttribute("b_level") %><br></h3>
+			<h2>당신의 신체레벨 : <span id="lv_num_font"><%=(int)session.getAttribute("b_level") %></span><br></h2>
 			<br>
 			<div class="submit">
-			<input class="button-white" type="button" value=" < 재입력 " onClick='history.back()'>&nbsp;
-			<input class="button-white" type="submit" value=" 계속 > "/>
+			<input class="button" type="button" value=" < 재입력 " onClick='history.back()'>&nbsp;
+			<input class="button" type="submit" value=" 계속 > "/>
 			</div>
 		</div>
 	</div>

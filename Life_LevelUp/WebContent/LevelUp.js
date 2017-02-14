@@ -1,5 +1,5 @@
 
-/* <모바일 메뉴바 열고닫는 J쿼리*/
+/* <모바일 메뉴바 열고닫는 J쿼리 >*/
 jQuery(document).ready(function () {
 
 	//Open the menu
@@ -26,7 +26,7 @@ jQuery(document).ready(function () {
 		});
 
 		//set margin for the whole container with a jquery UI animation
-		jQuery("#container").animate({"marginLeft": ["70%", 'easeOutExpo']}, {
+		jQuery("#container").animate({"marginLeft": ["85%", 'easeOutExpo']}, {
 			duration: 700
 		});
 		
@@ -34,7 +34,7 @@ jQuery(document).ready(function () {
 		jQuery('.left-circle').circleProgress({
 			value: b_exp,
 		    startAngle: 300,
-		    size: 80,       
+		    size: 60,       
 		    fill: {
 		    gradient: ["red", "orange"]    
 		    }
@@ -45,7 +45,7 @@ jQuery(document).ready(function () {
 		jQuery('.right-circle').circleProgress({
 			value: e_exp,
 		    startAngle: 300,
-		    size: 80,       
+		    size: 60,       
 		    fill: {
 		    gradient: ["blue", "dodgerblue"]    
 		    }
@@ -75,6 +75,37 @@ jQuery(document).ready(function () {
 	});
 	
 });	
+
+/* < 마이페이지 원형그래프 실행 > */
+jQuery("#my-circle").ready(function () {
+	var b_exp = jQuery('#my-left-label').find('strong').text() * 0.01;
+	var b_rate = Math.round(b_exp * 100);
+	var e_exp = jQuery('#my-right-label').find('strong').text() * 0.01;
+	
+	jQuery('.my-left-circle').circleProgress({
+		value: b_exp,
+	    startAngle: 300,
+	    size: 60,       
+	    fill: {
+	    gradient: ["red", "orange"]    
+	    }
+	  }).on('circle-animation-progress', function(event, progress) {
+		  jQuery(this).find('strong').html();
+	});
+	
+	jQuery('.my-right-circle').circleProgress({
+		value: e_exp,
+	    startAngle: 300,
+	    size: 60,       
+	    fill: {
+	    gradient: ["blue", "dodgerblue"]    
+	    }
+	  }).on('circle-animation-progress', function(event, progress) {
+		  jQuery(this).find('strong').html();
+	});
+	
+});
+
 
 /* ----------로그아웃 스크립트 -----------*/
 function logout(){
