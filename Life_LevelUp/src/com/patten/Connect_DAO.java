@@ -19,8 +19,8 @@ public class Connect_DAO {
 		}
 	}
 	
-	public boolean login_LevelUp(Member_DTO m_dto, Level_DTO l_dto, String ID, String hash){
-		String m_query = "select * from LevelUp.member where ID = '"+ID+"'AND hash = '"+hash+"'";
+	public boolean login_LevelUp(Member_DTO m_dto, Level_DTO l_dto, String ID){
+		String m_query = "select * from LevelUp.member where ID = '"+ID+"'";
 		String l_query = "select * from LevelUp.level where ID = '"+ID+"'";
 		
 		try {
@@ -71,16 +71,17 @@ public class Connect_DAO {
 			stmt.close();
 			rs.close();
 			
-			System.out.println("입렵한 아이디 : "+ID+", 조회된 아이디 : "+m_dto.getID());
-			System.out.println("입렵한 비번 : "+hash+", 조회된 비번 : "+m_dto.getHash());
+			// System.out.println("<dao 테스트 > 입렵한 아이디 : "+ID+", 조회된 아이디 : "+l_dto.getID());
 			
+			// DAO에서는 해당 ID의 DB값이 있는지 없는지만 검사함 -> 검증은 MemberProcess에서!
 			try{
-				if (!m_dto.getHash().equals(hash)){
+				if (m_dto.getID().equals(null) || l_dto.getID().equals(null)){
 					return false;
 				}
 			}catch(NullPointerException ex){
 				return false;
 			}
+			
 		}catch(SQLException ex){
 			System.out.println("SQL Login error : "+ex.getLocalizedMessage());
 		}

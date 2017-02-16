@@ -2,6 +2,7 @@ package com.patten;
 /* [MVC 패턴] 중, Controller를 맡고 있는 객체 - MemberProcess */
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -103,7 +104,6 @@ public class MemberProcess	extends HttpServlet {
 		}else if (command.trim().equals("register_Retry")){	
 			HttpSession session = request.getSession();
 			String ID = (String)session.getAttribute("ID");
-			String salt = (String)session.getAttribute("salt");
 			String hash = (String)session.getAttribute("hash");
 			String name = (String)session.getAttribute("name");
 			int sex = (int)session.getAttribute("sex");
@@ -123,7 +123,6 @@ public class MemberProcess	extends HttpServlet {
 			
 			Member_DTO m_dto = new Member_DTO();
 			m_dto.setID(ID);
-			m_dto.setSalt(salt);
 			m_dto.setHash(hash);
 			m_dto.setName(name);
 			m_dto.setSex(sex);
@@ -152,6 +151,13 @@ public class MemberProcess	extends HttpServlet {
 			
 			/*Level_DTO dto2 = new Level_DTO();
 			dto2.setID(ID);*/
+			Cal_Hash cal = new Cal_Hash();
+			
+			try {
+				cal.Set_Hash(m_dto);
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
 			
 			Connect_DAO dao = new Connect_DAO();
 			boolean m_check = dao.insertMember(m_dto);
@@ -178,58 +184,67 @@ public class MemberProcess	extends HttpServlet {
 			
 			Member_DTO m_dto = new Member_DTO();
 			Level_DTO l_dto = new Level_DTO();
-			
+				
 			Connect_DAO dao = new Connect_DAO();
-			boolean check = dao.login_LevelUp(m_dto, l_dto, ID, hash);
+			Cal_Hash cal_hash = new Cal_Hash();
 			
-			if (check){
-				HttpSession session = request.getSession();
-				session.setAttribute("ID", m_dto.getID());
-				session.setAttribute("salt", m_dto.getSalt());
-				session.setAttribute("hash", m_dto.getHash());
-				session.setAttribute("name", m_dto.getName());
-				session.setAttribute("sex", m_dto.getSex());
-				session.setAttribute("age", m_dto.getAge());
-				session.setAttribute("height", m_dto.getHeight());
-				session.setAttribute("weight", m_dto.getWeight());
-				session.setAttribute("job", m_dto.getJob());
-				session.setAttribute("area", m_dto.getArea());
-				session.setAttribute("intro", m_dto.getIntro());
-				session.setAttribute("sex_vis", m_dto.getSex_vis());
-				session.setAttribute("age_vis", m_dto.getAge_vis());
-				session.setAttribute("hei_vis", m_dto.getHei_vis());
-				session.setAttribute("wei_vis", m_dto.getWei_vis());
+			boolean DAO_check = dao.login_LevelUp(m_dto, l_dto, ID);
+			
+			if (DAO_check){
+				boolean hash_check = cal_hash.Test_Hash(m_dto, hash);
 				
-				session.setAttribute("level", l_dto.getLevel());
-				session.setAttribute("e_level", l_dto.getE_level());
-				session.setAttribute("e_exp", l_dto.getE_exp());
-				session.setAttribute("BMI", l_dto.getBMI());
-				session.setAttribute("BMR", l_dto.getBMR());
-				session.setAttribute("obesity", l_dto.getObesity());
-				session.setAttribute("average", l_dto.getAverage());
-				
-				Cal_Level cal = new Cal_Level();
-				
-				boolean cal_b_check = cal.cal_B_level(l_dto);
-				boolean cal_e_check = cal.cal_E_BRR(l_dto);
-				
-				if (!cal_b_check && !cal_e_check){
-					session.invalidate();
+				if (hash_check){
+					HttpSession session = request.getSession();
+					session.setAttribute("ID", m_dto.getID());
+					session.setAttribute("salt", m_dto.getSalt());
+					session.setAttribute("hash", m_dto.getHash());
+					session.setAttribute("name", m_dto.getName());
+					session.setAttribute("sex", m_dto.getSex());
+					session.setAttribute("age", m_dto.getAge());
+					session.setAttribute("height", m_dto.getHeight());
+					session.setAttribute("weight", m_dto.getWeight());
+					session.setAttribute("job", m_dto.getJob());
+					session.setAttribute("area", m_dto.getArea());
+					session.setAttribute("intro", m_dto.getIntro());
+					session.setAttribute("sex_vis", m_dto.getSex_vis());
+					session.setAttribute("age_vis", m_dto.getAge_vis());
+					session.setAttribute("hei_vis", m_dto.getHei_vis());
+					session.setAttribute("wei_vis", m_dto.getWei_vis());
+					
+					session.setAttribute("level", l_dto.getLevel());
+					session.setAttribute("e_level", l_dto.getE_level());
+					session.setAttribute("e_exp", l_dto.getE_exp());
+					session.setAttribute("BMI", l_dto.getBMI());
+					session.setAttribute("BMR", l_dto.getBMR());
+					session.setAttribute("obesity", l_dto.getObesity());
+					session.setAttribute("average", l_dto.getAverage());
+					
+					Cal_Level cal_level = new Cal_Level();
+					
+					boolean cal_b_check = cal_level.cal_B_level(l_dto);
+					boolean cal_e_check = cal_level.cal_E_BRR(l_dto);
+					
+					if (!cal_b_check && !cal_e_check){
+						session.invalidate();
+						response.sendRedirect("Fail.html");
+					}
+					
+					session.setAttribute("b_level", l_dto.getB_level());
+					session.setAttribute("b_exp", l_dto.getB_exp());
+					session.setAttribute("e_req_exp", l_dto.getE_req_exp());
+					session.setAttribute("e_rate", l_dto.getE_rate());
+					
+					session.setMaxInactiveInterval(60 * 60 * 2);
+					// 세선 유지시간 : 2시간
+					
+					response.sendRedirect("main.jsp");
+				}else{
 					response.sendRedirect("Fail.html");
 				}
-				
-				session.setAttribute("b_level", l_dto.getB_level());
-				session.setAttribute("b_exp", l_dto.getB_exp());
-				session.setAttribute("e_req_exp", l_dto.getE_req_exp());
-				session.setAttribute("e_rate", l_dto.getE_rate());
-				
-				session.setMaxInactiveInterval(60 * 60 * 2);
-				// 세선 유지시간 : 2시간
-				
-				response.sendRedirect("main.jsp");
 			}else{
 				response.sendRedirect("Fail.html");
 			}
+			
 			
 		}else if(command.trim().equals("uqdate")){
 			
