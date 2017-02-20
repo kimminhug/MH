@@ -38,7 +38,7 @@ public class Connect_DAO {
 				m_dto.setSex(rs.getInt("sex"));
 				m_dto.setAge(rs.getInt("age"));
 				m_dto.setHeight(rs.getInt("height"));
-				m_dto.setWeight(rs.getInt("weight"));
+				m_dto.setWeight(rs.getDouble("weight"));
 				m_dto.setJob(rs.getString("job"));
 				m_dto.setArea(rs.getString("area"));
 				m_dto.setIntro(rs.getString("intro"));
@@ -51,7 +51,7 @@ public class Connect_DAO {
 			int sex = m_dto.getSex();
 			int age = m_dto.getAge();
 			int height = m_dto.getHeight();
-			int weight = m_dto.getWeight();
+			double weight = m_dto.getWeight();
 			
 			rs = stmt.executeQuery(l_query);
 			
@@ -100,7 +100,7 @@ public class Connect_DAO {
 			pstmt.setString(4, dto.getName());
 			pstmt.setInt(5, dto.getSex());
 			pstmt.setInt(6, dto.getAge());
-			pstmt.setDouble(7, dto.getHeight());
+			pstmt.setInt(7, dto.getHeight());
 			pstmt.setDouble(8, dto.getWeight());
 			pstmt.setString(9, dto.getJob());
 			pstmt.setString(10, dto.getArea());
@@ -156,6 +156,54 @@ public class Connect_DAO {
 		
 		return true;
 	}
+	public boolean updateWeight(Member_DTO dto){
+		String query = "UPDATE levelup.member SET weight = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setDouble(1, dto.getWeight());
+			
+			int x = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			if (x < 1){
+				System.out.println("DB전송 실패!");
+				return false;
+			}
+			
+		}catch(SQLException ex){
+			System.out.println("SQL insert error : "+ex.getLocalizedMessage());
+		}
+		
+		return true;
+	}
+	public boolean updateExp(Level_DTO dto){
+		String query = "UPDATE levelup.level SET b_level = ?, b_exp = ?, e_level = ?, e_exp = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, dto.getB_level());
+			pstmt.setDouble(2, dto.getB_exp());
+			pstmt.setInt(3, dto.getE_level());
+			pstmt.setDouble(4, dto.getE_exp());
+			
+			int x = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			if (x < 1){
+				System.out.println("DB전송 실패!");
+				return false;
+			}
+			
+		}catch(SQLException ex){
+			System.out.println("SQL insert error : "+ex.getLocalizedMessage());
+		}
+		
+		return true;
+	}
+	
 	
 	public boolean updateMember(Member_DTO dto){
 		

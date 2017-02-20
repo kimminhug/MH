@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class Member_DTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String ID, salt, hash, name, job, area, intro;
-	private int sex, age, height, weight;
+	private int sex, age, height;
+	private double weight;
 	private int sex_vis, age_vis, hei_vis, wei_vis;
 	
 	
@@ -93,12 +94,10 @@ public class Member_DTO implements Serializable {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-	
-	
 }

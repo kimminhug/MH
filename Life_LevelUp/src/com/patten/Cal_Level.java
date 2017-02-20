@@ -2,6 +2,8 @@ package com.patten;
 
 public class Cal_Level {
 	public boolean cal_B_level (Level_DTO dto){
+		// 역할 : [비만도] 정보를 받아서 [신체 레벨]과 [신체경험치]를 계산 (경험치 = 비율 고정)
+		
 		double obe = dto.getObesity();
 		int level = 0;
 		double exp = 0;
@@ -141,10 +143,12 @@ public class Cal_Level {
 		return true;
 	}
 	
-	public boolean cal_E_BRR (Level_DTO dto){
+	public boolean cal_E_rate (Level_DTO dto){
+		// 역할 : [운동레벨]정보를 받아서 [베이스 경험치], [요구 경험치], [경험치 비율]을 계산
+		
 		int level = dto.getE_level();
 		int exp = dto.getE_exp();
-		int bef_exp, req_exp;
+		int bas_exp, req_exp;
 		double rate;
 		
 		if (level < 1 && level > 30){
@@ -168,22 +172,24 @@ public class Cal_Level {
 			total[i] = total[i-1] + req[i]; 
 		}
 		
-		bef_exp = total[level - 1];
+		bas_exp = total[level - 1];
 		req_exp = total[level];
-		rate = ((double)exp - (double)bef_exp) / ((double)req_exp - (double)bef_exp) * 100;
+		rate = ((double)exp - (double)bas_exp) / ((double)req_exp - (double)bas_exp) * 100;
 		
 		if (level != 30){
+			dto.setE_bas_exp(bas_exp);
 			dto.setE_req_exp(req_exp);
 			dto.setE_rate(rate);	
 			
 			/*
-			System.out.println("로그인된 내 운동경험치 bef : "+dto.getE_bef_exp());
+			System.out.println("로그인된 내 운동경험치 bas : "+dto.getE_bas_exp());
 			System.out.println("로그인된 내 운동경험치 req : "+dto.getE_req_exp());
 			System.out.println("로그인된 내 운동경험치 비율 : "+dto.getE_rate());
 			System.out.println("로그인된 내 운동경험치: "+dto.getE_exp());
 			*/
 		}else{
-			dto.setE_req_exp(bef_exp);
+			dto.setE_bas_exp(bas_exp);
+			dto.setE_req_exp(bas_exp);
 			dto.setE_rate(100);
 		}
 		

@@ -47,7 +47,7 @@ public class MemberProcess	extends HttpServlet {
 			int sex = Integer.parseInt(member[4]);
 			int age = Integer.parseInt(member[5]);
 			int height = Integer.parseInt(member[6]);
-			int weight = Integer.parseInt(member[7]);
+			double weight = Double.parseDouble(member[7]);
 			int sex_vis = Integer.parseInt(member[11]);
 			int age_vis = Integer.parseInt(member[12]);
 			int hei_vis = Integer.parseInt(member[13]);
@@ -109,7 +109,7 @@ public class MemberProcess	extends HttpServlet {
 			int sex = (int)session.getAttribute("sex");
 			int age = (int)session.getAttribute("age");
 			int height = (int)session.getAttribute("height");
-			int weight = (int)session.getAttribute("weight");
+			double weight = (double)session.getAttribute("weight");
 			String job = (String)session.getAttribute("job");
 			String area = (String)session.getAttribute("area");
 			String intro = (String)session.getAttribute("intro");
@@ -219,10 +219,10 @@ public class MemberProcess	extends HttpServlet {
 					session.setAttribute("obesity", l_dto.getObesity());
 					session.setAttribute("average", l_dto.getAverage());
 					
-					Cal_Level cal_level = new Cal_Level();
+					Cal_Level cal = new Cal_Level();
 					
-					boolean cal_b_check = cal_level.cal_B_level(l_dto);
-					boolean cal_e_check = cal_level.cal_E_BRR(l_dto);
+					boolean cal_b_check = cal.cal_B_level(l_dto);
+					boolean cal_e_check = cal.cal_E_rate(l_dto);
 					
 					if (!cal_b_check && !cal_e_check){
 						session.invalidate();
@@ -245,7 +245,53 @@ public class MemberProcess	extends HttpServlet {
 				response.sendRedirect("Fail.html");
 			}
 			
+		/************************* < 경험치 입력 폼 > ***************************/
+		}else if (command.trim().equals("exp_Input")){	
+			/* < 경험치 입력 과정 >
+			 * 1) 입력된 몸무게(경험치)와 이전 몸무게(경험치)를 받는다.
+			 * 2) 비만도 및 경험치 변동 후 레벨 변동을 계산한다.
+			 * 3) 계산된 모든 정보를 DAO를 통해 DB에 저장한다.
+			 * 4) 필요한 정보를 경험치획득 이벤트 페이지로 넘긴다.
+			 */
 			
+			HttpSession session = request.getSession();
+			
+			double wei_before = (double)session.getAttribute("weight");
+			int e_exp_before = (int)session.getAttribute("e_exp");
+			double wei_after = Double.parseDouble(request.getParameter("wei_after"));
+			int e_exp_after = Integer.parseInt(request.getParameter("e_exp_after"));
+			
+			e_exp_after += e_exp_before;
+			Member_DTO m_dto = new Member_DTO();
+			Level_DTO l_dto = new Level_DTO();
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			Connect_DAO dao = new Connect_DAO();
+			Cal_Level cal = new Cal_Level();
+			
+			boolean cal_b_check = cal.cal_B_level(l_dto);
+			boolean cal_e_check = cal.cal_E_rate(l_dto);
+			
+			if (!cal_b_check && !cal_e_check){
+				session.invalidate();
+				response.sendRedirect("Fail.html");
+			}
+			
+			session.setMaxInactiveInterval(60 * 60 * 2);
+			// 세선 유지시간 : 2시간
+
+			response.sendRedirect("mypage.jsp");
+
+
 		}else if(command.trim().equals("uqdate")){
 			
 		}
