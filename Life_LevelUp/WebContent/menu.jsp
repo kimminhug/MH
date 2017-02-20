@@ -65,7 +65,7 @@
 					</div>
 				</div>
 				<div id="con-mid">
-					<input class="button-con-exp" type="button" value="경험치획득" onClick="input_exp();" />
+					<input class="button-con-exp" type="button" value="경험치획득" onClick="location.href='exp_input.jsp'" />
 				</div>
             </li>
             <li><a href="#">친구목록</a></li>

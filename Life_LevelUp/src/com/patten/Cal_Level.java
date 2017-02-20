@@ -143,17 +143,13 @@ public class Cal_Level {
 		return true;
 	}
 	
-	public boolean cal_E_rate (Level_DTO dto){
-		// 역할 : [운동레벨]정보를 받아서 [베이스 경험치], [요구 경험치], [경험치 비율]을 계산
+	public boolean cal_E_level (Level_DTO dto){
+		// 역할 : [운동 경험치]정보를 받아서 [운동 레벨], [베이스 경험치], [요구 경험치], [경험치 비율]을 계산
 		
-		int level = dto.getE_level();
 		int exp = dto.getE_exp();
-		int bas_exp, req_exp;
-		double rate;
-		
-		if (level < 1 && level > 30){
-			return false;
-		}
+		int level = 0;
+		int bas_exp = 0, req_exp = 0;
+		double rate = 0;
 		
 		int[] base = new int[30];
 		int[] base2 = new int[30];
@@ -172,26 +168,33 @@ public class Cal_Level {
 			total[i] = total[i-1] + req[i]; 
 		}
 		
-		bas_exp = total[level - 1];
-		req_exp = total[level];
-		rate = ((double)exp - (double)bas_exp) / ((double)req_exp - (double)bas_exp) * 100;
-		
-		if (level != 30){
-			dto.setE_bas_exp(bas_exp);
-			dto.setE_req_exp(req_exp);
-			dto.setE_rate(rate);	
+		for (int i=1; i<=30; i++){
+			bas_exp = total[i - 1];
+			req_exp = total[i];
 			
-			/*
-			System.out.println("로그인된 내 운동경험치 bas : "+dto.getE_bas_exp());
-			System.out.println("로그인된 내 운동경험치 req : "+dto.getE_req_exp());
-			System.out.println("로그인된 내 운동경험치 비율 : "+dto.getE_rate());
-			System.out.println("로그인된 내 운동경험치: "+dto.getE_exp());
-			*/
-		}else{
-			dto.setE_bas_exp(bas_exp);
-			dto.setE_req_exp(bas_exp);
-			dto.setE_rate(100);
+			if (exp >= bas_exp && exp < req_exp){
+				level = i;
+				rate = ((double)exp - (double)bas_exp) / ((double)req_exp - (double)bas_exp) * 100;
+				break;
+			}else if (i == 30){
+				level = 30;
+				rate = 100;
+				bas_exp = req_exp;
+			}
 		}
+		
+		dto.setE_level(level);
+		dto.setE_bas_exp(bas_exp);
+		dto.setE_req_exp(req_exp);
+		dto.setE_rate(rate);	
+			
+		
+		 //	< 경험치 계산 테스트 >
+		System.out.println("로그인된 내 운동경험치 bas : "+dto.getE_bas_exp());
+		System.out.println("로그인된 내 운동경험치 req : "+dto.getE_req_exp());
+		System.out.println("로그인된 내 운동경험치 비율 : "+dto.getE_rate());
+		System.out.println("로그인된 내 운동경험치: "+dto.getE_exp());
+		System.out.println("로그인된 내 운동레벨: "+dto.getE_level());
 		
 		return true;
 	}

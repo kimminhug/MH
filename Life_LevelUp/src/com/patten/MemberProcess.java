@@ -212,7 +212,6 @@ public class MemberProcess	extends HttpServlet {
 					session.setAttribute("wei_vis", m_dto.getWei_vis());
 					
 					session.setAttribute("level", l_dto.getLevel());
-					session.setAttribute("e_level", l_dto.getE_level());
 					session.setAttribute("e_exp", l_dto.getE_exp());
 					session.setAttribute("BMI", l_dto.getBMI());
 					session.setAttribute("BMR", l_dto.getBMR());
@@ -222,7 +221,7 @@ public class MemberProcess	extends HttpServlet {
 					Cal_Level cal = new Cal_Level();
 					
 					boolean cal_b_check = cal.cal_B_level(l_dto);
-					boolean cal_e_check = cal.cal_E_rate(l_dto);
+					boolean cal_e_check = cal.cal_E_level(l_dto);
 					
 					if (!cal_b_check && !cal_e_check){
 						session.invalidate();
@@ -232,6 +231,7 @@ public class MemberProcess	extends HttpServlet {
 					session.setAttribute("b_level", l_dto.getB_level());
 					session.setAttribute("b_exp", l_dto.getB_exp());
 					session.setAttribute("e_req_exp", l_dto.getE_req_exp());
+					session.setAttribute("e_level", l_dto.getE_level());
 					session.setAttribute("e_rate", l_dto.getE_rate());
 					
 					session.setMaxInactiveInterval(60 * 60 * 2);
@@ -245,52 +245,93 @@ public class MemberProcess	extends HttpServlet {
 				response.sendRedirect("Fail.html");
 			}
 			
-		/************************* < 경험치 입력 폼 > ***************************/
-		}else if (command.trim().equals("exp_Input")){	
-			/* < 경험치 입력 과정 >
-			 * 1) 입력된 몸무게(경험치)와 이전 몸무게(경험치)를 받는다.
-			 * 2) 비만도 및 경험치 변동 후 레벨 변동을 계산한다.
-			 * 3) 계산된 모든 정보를 DAO를 통해 DB에 저장한다.
-			 * 4) 필요한 정보를 경험치획득 이벤트 페이지로 넘긴다.
-			 */
-			
+		/************************* < 경험치 입력 폼  > ***************************/
+		}else if (command.trim().equals("exp_input")){	
+			// < 경험치 입력 과정 >
+			// ------------1) 이전 레벨,경험치와 입력된 몸무게(경험치)를 받는다.-----------
 			HttpSession session = request.getSession();
-			
-			double wei_before = (double)session.getAttribute("weight");
+			int b_level_before = (int)session.getAttribute("b_level");
+			double b_exp_before = (double)session.getAttribute("b_exp");
+			int e_level_before = (int)session.getAttribute("e_level");
 			int e_exp_before = (int)session.getAttribute("e_exp");
-			double wei_after = Double.parseDouble(request.getParameter("wei_after"));
-			int e_exp_after = Integer.parseInt(request.getParameter("e_exp_after"));
 			
-			e_exp_after += e_exp_before;
+			double weight = Double.parseDouble(request.getParameter("weight"));
+			int e_exp = Integer.parseInt(request.getParameter("e_exp"));
+			e_exp += e_exp_before;
+			
+			// ------------2) DB와 경험치 증감처리에 필요한 변수들을 정리한다.--------------------
 			Member_DTO m_dto = new Member_DTO();
 			Level_DTO l_dto = new Level_DTO();
 			
+			String ID = (String)session.getAttribute("ID");
+			int age = (int)session.getAttribute("age");
+			int sex = (int)session.getAttribute("sex");
+			int height = (int)session.getAttribute("height");
 			
+			// DAO 갱신에 필요한 정보(ID 제외) : 신체 - 1건 / 레벨 - 9건
+			m_dto.setID(ID);
+			m_dto.setWeight(weight);
 			
+			l_dto.setID(ID);
+			l_dto.setE_exp(e_exp);
+			l_dto.setBMI(height, weight);
+			l_dto.setBMR(sex, age, height, weight);
+			l_dto.setAverage(sex, height);
+			double average = l_dto.getAverage();
+			l_dto.setObesity(weight, average);
 			
-			
-			
-			
-			
-			
-			
-			
-			Connect_DAO dao = new Connect_DAO();
 			Cal_Level cal = new Cal_Level();
 			
+			// [setB_level], [setB_exp], [setE_level], setE_bas_exp, setE_req_exp, setE_rate 처리
 			boolean cal_b_check = cal.cal_B_level(l_dto);
-			boolean cal_e_check = cal.cal_E_rate(l_dto);
-			
+			boolean cal_e_check = cal.cal_E_level(l_dto);
 			if (!cal_b_check && !cal_e_check){
-				session.invalidate();
 				response.sendRedirect("Fail.html");
 			}
+			l_dto.setLevel(l_dto.getB_level() + l_dto.getE_level());
+			
+			// -----------3) 계산된 모든 정보를 DAO를 통해 DB에 저장한다.-----------------------
+			Connect_DAO dao = new Connect_DAO();
+			dao.updateEXP(m_dto, l_dto);
+			
+			// -----------4) 필요한 정보를 경험치획득 이벤트 페이지로 넘긴다.----------------------
+			if (l_dto.getB_level() >= b_level_before){
+				//1. B레벨이 전보다 올라간 경우
+				
+			}else{
+				//2. B레벨이 전보다 내려간 경우
+				
+			}
+			if (l_dto.getE_level() >= e_level_before){
+				//1. E레벨이 전보다 올라간 경우
+				
+			}else{
+				//2. E레벨이 전보다 내려간 경우
+				
+			}
+			
+			// 변경된 정보 다시 세션에 입력
+			session.setAttribute("weight", m_dto.getWeight());
+			
+			session.setAttribute("level", l_dto.getLevel());
+			session.setAttribute("b_level", l_dto.getB_level());
+			session.setAttribute("b_exp", l_dto.getB_exp());
+			session.setAttribute("e_level", l_dto.getE_level());
+			session.setAttribute("e_exp", l_dto.getE_exp());
+			session.setAttribute("BMI", l_dto.getBMI());
+			session.setAttribute("BMR", l_dto.getBMR());
+			session.setAttribute("obesity", l_dto.getObesity());
+			session.setAttribute("average", l_dto.getAverage());
+			
+			// 마이페이지 그래프에 필요한 정보 다시 세션에 입력
+			session.setAttribute("e_bas_exp", l_dto.getE_req_exp());
+			session.setAttribute("e_req_exp", l_dto.getE_req_exp());
+			session.setAttribute("e_rate", l_dto.getE_rate());			
 			
 			session.setMaxInactiveInterval(60 * 60 * 2);
 			// 세선 유지시간 : 2시간
 
 			response.sendRedirect("mypage.jsp");
-
 
 		}else if(command.trim().equals("uqdate")){
 			

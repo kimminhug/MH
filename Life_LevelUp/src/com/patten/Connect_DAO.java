@@ -156,56 +156,90 @@ public class Connect_DAO {
 		
 		return true;
 	}
-	public boolean updateWeight(Member_DTO dto){
-		String query = "UPDATE levelup.member SET weight = ?";
-		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(query);
-			pstmt.setDouble(1, dto.getWeight());
-			
-			int x = pstmt.executeUpdate();
-			
-			pstmt.close();
-			
-			if (x < 1){
-				System.out.println("DB전송 실패!");
-				return false;
-			}
-			
-		}catch(SQLException ex){
-			System.out.println("SQL insert error : "+ex.getLocalizedMessage());
-		}
-		
-		return true;
-	}
-	public boolean updateExp(Level_DTO dto){
-		String query = "UPDATE levelup.level SET b_level = ?, b_exp = ?, e_level = ?, e_exp = ?";
-		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, dto.getB_level());
-			pstmt.setDouble(2, dto.getB_exp());
-			pstmt.setInt(3, dto.getE_level());
-			pstmt.setDouble(4, dto.getE_exp());
-			
-			int x = pstmt.executeUpdate();
-			
-			pstmt.close();
-			
-			if (x < 1){
-				System.out.println("DB전송 실패!");
-				return false;
-			}
-			
-		}catch(SQLException ex){
-			System.out.println("SQL insert error : "+ex.getLocalizedMessage());
-		}
-		
-		return true;
-	}
 	
+	public boolean updateEXP(Member_DTO m_dto, Level_DTO l_dto){
+		
+		String b_query = "UPDATE levelup.member "
+					+ "SET weight"
+					+ "= ?"
+					+ "WHERE ID = ?";
+			
+		String e_query = "UPDATE levelup.level "
+					+ "SET (level, b_level, b_exp, e_level, e_exp, average, BMI, BMR, obesity)"
+					+ "= (?, ?, ?, ?, ?, ?, ?, ?, ?)"
+					+ "WHERE ID = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(b_query);
+			pstmt.setDouble(1, m_dto.getWeight());
+			pstmt.setString(2, m_dto.getID());
+			
+			int x = pstmt.executeUpdate();
+			pstmt.close();
+			
+			pstmt = conn.prepareStatement(e_query);
+			pstmt.setInt(1, l_dto.getLevel());
+			pstmt.setInt(2, l_dto.getB_level());
+			pstmt.setDouble(3, l_dto.getB_exp());
+			pstmt.setInt(4, l_dto.getE_level());
+			pstmt.setInt(5, l_dto.getE_exp());
+			pstmt.setDouble(6, l_dto.getAverage());
+			pstmt.setDouble(7, l_dto.getBMI());
+			pstmt.setDouble(8, l_dto.getBMR());
+			pstmt.setDouble(9, l_dto.getObesity());
+			pstmt.setString(10, l_dto.getID());
+			
+			int y = pstmt.executeUpdate();
+			pstmt.close();
+			
+			if (x * y < 1){
+				System.out.println("DB전송 실패!");
+				return false;
+			}
+			
+		}catch(SQLException ex){
+			System.out.println("SQL 오류 : "+ex.getLocalizedMessage());
+		}
+		
+		return true;
+	}
 	
 	public boolean updateMember(Member_DTO dto){
+		String query = "UPDATE levelup.member "
+						+ "SET (salt, hash, name, sex, age, height, weight, job, area, intro, "
+						+ "sex_vis, age_vis, hei_vis, wei_vis)"
+						+ "= (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+						+ "WHERE ID = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, dto.getSalt());
+			pstmt.setString(2, dto.getHash());
+			pstmt.setString(3, dto.getName());
+			pstmt.setInt(4, dto.getSex());
+			pstmt.setInt(5, dto.getAge());
+			pstmt.setInt(6, dto.getHeight());
+			pstmt.setDouble(7, dto.getWeight());
+			pstmt.setString(8, dto.getJob());
+			pstmt.setString(9, dto.getArea());
+			pstmt.setString(10, dto.getIntro());
+			pstmt.setInt(11, dto.getSex_vis());
+			pstmt.setInt(12, dto.getAge_vis());
+			pstmt.setInt(13, dto.getHei_vis());
+			pstmt.setInt(14, dto.getWei_vis());
+			pstmt.setString(15, dto.getID());
+			
+			int x = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			if (x < 1){
+				System.out.println("DB전송 실패!");
+				return false;
+			}
+		}catch(SQLException ex){
+			System.out.println("SQL insert error : "+ex.getLocalizedMessage());
+		}
 		
 		return true;
 	}

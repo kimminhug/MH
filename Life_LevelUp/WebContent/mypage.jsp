@@ -80,7 +80,7 @@
 		</div>
 		
 		<div id="my-menu">
-			<input class="button-con-exp" type="button" value="경험치획득" onClick="input_exp();" />
+			<input class="button-con-exp" type="button" value="경험치획득" onClick="location.href='exp_input.jsp'" />
 			<input class="button-con-exp" type="button" value="  통계정보  " onClick="location.href='#'"  />
 		</div>
 		

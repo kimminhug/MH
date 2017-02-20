@@ -106,8 +106,7 @@ jQuery("#my-circle").ready(function () {
 	
 });
 
-
-/* ----------로그아웃 스크립트 -----------*/
+/* ---------- 로그아웃  -----------*/
 function logout(){
 	var con = confirm("로그아웃 하시겠습니까?");
 
