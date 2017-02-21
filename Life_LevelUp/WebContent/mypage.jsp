@@ -21,7 +21,7 @@
 
     <div id="contentLayer"></div> <%-- 여기서부터 메뉴바깥 '내용' 부분 --%>
     <div id="content">
-		<div id="my-menu"><h1>안녕하세요, <%= (String)session.getAttribute("name") %>님!</h1></div>
+		<div id="my-menu"><h1>안녕하세요, <%=session.getAttribute("name") %>님!</h1></div>
             
         <div id="my-menu">
            	<div id="my-left-box">
@@ -64,6 +64,7 @@
 					<%=session.getAttribute("e_level")%></span>
 				</div>
 			</div>
+			<div class="clear"></div>
 		</div>
 		</div>
 		
@@ -83,9 +84,6 @@
 			<input class="button-con-exp" type="button" value="경험치획득" onClick="location.href='exp_input.jsp'" />
 			<input class="button-con-exp" type="button" value="  통계정보  " onClick="location.href='#'"  />
 		</div>
-		
-		
-		
 	</div>
 </div>
 </body>

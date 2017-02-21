@@ -119,7 +119,7 @@ public class MemberProcess	extends HttpServlet {
 			int wei_vis = (int)session.getAttribute("wei_vis");
 			
 			int b_level = (int)session.getAttribute("b_level");
-			double b_exp = (double)session.getAttribute("b_exp");
+			int b_exp = (int)session.getAttribute("b_exp");
 			
 			Member_DTO m_dto = new Member_DTO();
 			m_dto.setID(ID);
@@ -251,7 +251,7 @@ public class MemberProcess	extends HttpServlet {
 			// ------------1) 이전 레벨,경험치와 입력된 몸무게(경험치)를 받는다.-----------
 			HttpSession session = request.getSession();
 			int b_level_before = (int)session.getAttribute("b_level");
-			double b_exp_before = (double)session.getAttribute("b_exp");
+			int b_exp_before = (int)session.getAttribute("b_exp");
 			int e_level_before = (int)session.getAttribute("e_level");
 			int e_exp_before = (int)session.getAttribute("e_exp");
 			
@@ -292,7 +292,8 @@ public class MemberProcess	extends HttpServlet {
 			
 			// -----------3) 계산된 모든 정보를 DAO를 통해 DB에 저장한다.-----------------------
 			Connect_DAO dao = new Connect_DAO();
-			dao.updateEXP(m_dto, l_dto);
+			dao.updateWeight(m_dto);
+			dao.updateEXP(l_dto);
 			
 			// -----------4) 필요한 정보를 경험치획득 이벤트 페이지로 넘긴다.----------------------
 			if (l_dto.getB_level() >= b_level_before){

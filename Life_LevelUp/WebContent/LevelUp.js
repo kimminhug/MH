@@ -1,7 +1,6 @@
 
 /* <모바일 메뉴바 열고닫는 J쿼리 >*/
 jQuery(document).ready(function () {
-
 	//Open the menu
 	jQuery("#user-menu").click(function () {
 		var b_exp = jQuery('#left-label').find('strong').text() * 0.01;
@@ -9,7 +8,7 @@ jQuery(document).ready(function () {
 		
 		jQuery('#content').css('min-height', jQuery(window).height());
 		jQuery('#content').css('overflow', 'hidden')
-		jQuery('nav').css('opacity', 1);
+		jQuery('#left-nav').css('opacity', 1);
 		
 		//set the width of primary content container -> content should not scale while animating
 		//var contentWidth = jQuery('#content').width();
@@ -67,7 +66,7 @@ jQuery(document).ready(function () {
 				jQuery('#content').css('overflow','hidden');
 				jQuery('#content').css('width', 'auto');
 				jQuery('#contentLayer').css('display', 'none');
-				jQuery('nav').css('opacity', 0);
+				jQuery('left-nav').css('opacity', 0);
 				jQuery('#content').css('min-height', 'auto');
 
 			}

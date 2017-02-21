@@ -26,6 +26,9 @@ a {
 	text-decoration: none;
 }
 
+.clear {clear:both; height:0; overflow:hidden;}
+
+
 /* < Circle and parameter styling >--------------------------------------*/
 
 .progress-label {
@@ -34,6 +37,7 @@ a {
 }
 
 #cir-warp {
+	display: block;
    	text-align: center;
    	width: 100%;
 }
@@ -146,18 +150,21 @@ header {
     width: 30px;
     padding: 3px;
     display: inline-block;
+    color: #ffffff;
+    text-decoration: none;
 }
 
-#user-menu {
+#comu-menu {
 	background-color: #FFFFFF;
     border-radius: 3px;
     height: 30px;
     width: 30px;
     padding: 3px;
     display: inline-block;
+    color: #F1C40F;
 }
 
-#comu-menu {
+#user-menu {
 	background-color: #FFFFFF;
     border-radius: 3px;
     height: 30px;
@@ -182,6 +189,34 @@ header {
 	width: 30px;
 	height: 30px;
 	font-size: 30px;
+	text-decoration: none;
+	text-transform: none;
+	word-wrap: normal;
+	white-space: nowrap;
+	color: #F1C40F;
+}
+
+.material-icons {
+	color: #F1C40F;
+  	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 30px; /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+	/* Support for IE. */
+	font-feature-settings: 'liga';
 }
 
 nav {
@@ -190,7 +225,6 @@ nav {
     top: 0px;
     position: fixed;
     z-index: 0;
-    width: 85%;
     height: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -271,6 +305,7 @@ nav li a {
 #con-mid {
 	width: 100%;
 	text-align: center;
+	display: block;
 }
 
 #avarta {
@@ -281,8 +316,10 @@ nav li a {
 
 #my-menu {
 	width: 100%;
+	height: 20%;
 	text-align: center;
 	margin-top: 20px;
+	overflow: hidden;
 }
 
 #avarta-my {

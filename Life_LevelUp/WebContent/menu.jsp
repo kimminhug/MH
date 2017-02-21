@@ -7,7 +7,7 @@
 			<a id="not-login" href="login.html"><img id="logo-img" src="image/logo.png"></a>
 		</div>
 		<div id="right-box">
-			<div id="comu-menu"><i id="logo-img" class="material-icons">&#xE8FE;</i></div>
+			<a id="not-login" href="login.html"><i id="logo-img" class="material-icons" >&#xE8FE;</i></a>
 		</div>
         <div id="center-box">
 			<a href="main.jsp"><div id="main-banner">Life LevelUp!</div></a>
@@ -23,9 +23,9 @@
 			<a href="main.jsp"><div id="main-banner">Life LevelUp!</div></a>
 		</div>
     <%} %>
-    </header>
+</header>
     
-    <nav>
+    <nav id="left-nav">
         <ul>
             <li id="my">
             <div id="my-cha">
@@ -71,3 +71,12 @@
             <li><a href="#">친구목록</a></li>
         </ul>
     </nav>
+    
+    <nav id="right-nav">
+		<ul>
+			<li><a href="#">게시판1</a></li>
+			<li><a href="#">게시판2</a></li>
+			<li><a href="#">게시판3</a></li>
+		</ul>
+	</nav>
+	

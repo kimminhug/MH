@@ -5,13 +5,13 @@ import java.io.Serializable;
 public class Level_DTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String ID;
-	private int level, b_level, e_level, e_exp, e_bas_exp, e_req_exp;
-	private double b_exp, average, BMI, BMR, obesity, e_rate;
+	private int level, b_level, b_exp, e_level, e_exp, e_bas_exp, e_req_exp, e_rate;
+	private double average, BMI, BMR, obesity;
 	
-	public double getE_rate() {
+	public int getE_rate() {
 		return e_rate;
 	}
-	public void setE_rate(double e_rate) {
+	public void setE_rate(int e_rate) {
 		this.e_rate = e_rate;
 	}
 	public int getE_bas_exp() {
@@ -51,11 +51,11 @@ public class Level_DTO implements Serializable {
 	public void setE_level(int e_level) {
 		this.e_level = e_level;
 	}
-	public double getB_exp() {
+	public int getB_exp() {
 		return b_exp;
 	}
-	public void setB_exp(double b_exp) {
-		this.b_exp = Double.parseDouble(String.format("%.2f", b_exp));
+	public void setB_exp(int b_exp) {
+		this.b_exp = b_exp;
 	}
 	public int getE_exp() {
 		return e_exp;
