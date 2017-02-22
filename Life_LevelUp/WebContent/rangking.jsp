@@ -20,8 +20,8 @@
 	<%@include file="menu.jsp"%>
 
     <div id="contentLayer"></div> <%-- 여기서부터 메뉴바깥 '내용' 부분 --%>
-    
     <div id="content">
+    	
     	
     </div>
 </div>
