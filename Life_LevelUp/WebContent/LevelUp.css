@@ -196,35 +196,14 @@ header {
 	color: #F1C40F;
 }
 
-.material-icons {
-	color: #F1C40F;
-  	font-family: 'Material Icons';
-	font-weight: normal;
-	font-style: normal;
-	font-size: 30px; /* Preferred icon size */
-	display: inline-block;
-	line-height: 1;
-	text-transform: none;
-	letter-spacing: normal;
-	word-wrap: normal;
-	white-space: nowrap;
-	direction: ltr;
-	/* Support for all WebKit browsers. */
-	-webkit-font-smoothing: antialiased;
-	/* Support for Safari and Chrome. */
-	text-rendering: optimizeLegibility;
-	/* Support for Firefox. */
-	-moz-osx-font-smoothing: grayscale;
-	/* Support for IE. */
-	font-feature-settings: 'liga';
-}
 
-nav {
+#left-nav {
     opacity: 0;
     left: 0px;
     top: 0px;
     position: fixed;
     z-index: 0;
+    width: 85%;
     height: 100%;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -233,6 +212,7 @@ nav {
     overflow-y: auto;
     background: #3e3c3d;
 }
+
 
 nav ul {
     list-style: none;

@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
 		var e_exp = jQuery('#right-label').find('strong').text() * 0.01;
 		
 		jQuery('#content').css('min-height', jQuery(window).height());
-		jQuery('#content').css('overflow', 'hidden')
+		jQuery('#content').css('overflow', 'hidden');
 		jQuery('#left-nav').css('opacity', 1);
 		
 		//set the width of primary content container -> content should not scale while animating
@@ -21,7 +21,7 @@ jQuery(document).ready(function () {
 
 		//disable all scrolling on mobile devices while menu is shown
 		jQuery('#container').bind('touchmove', function (e) {
-			e.preventDefault()
+			e.preventDefault();
 		});
 
 		//set margin for the whole container with a jquery UI animation
@@ -66,12 +66,14 @@ jQuery(document).ready(function () {
 				jQuery('#content').css('overflow','hidden');
 				jQuery('#content').css('width', 'auto');
 				jQuery('#contentLayer').css('display', 'none');
-				jQuery('left-nav').css('opacity', 0);
+				jQuery('#left-nav').css('opacity', 0);
 				jQuery('#content').css('min-height', 'auto');
 
 			}
 		});
 	});
+	
+	
 	
 });	
 

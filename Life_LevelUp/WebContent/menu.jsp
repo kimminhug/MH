@@ -71,12 +71,13 @@
             <li><a href="#">친구목록</a></li>
         </ul>
     </nav>
-    
+<!--     
     <nav id="right-nav">
-		<ul>
-			<li><a href="#">게시판1</a></li>
-			<li><a href="#">게시판2</a></li>
-			<li><a href="#">게시판3</a></li>
-		</ul>
-	</nav>
+        <ul>
+            <li><a href="#">게시판1</a></li>
+            <li><a href="#">게시판2</a></li>
+            <li><a href="#">게시판3</a></li>
+        </ul>
+    </nav>
+-->
 	
