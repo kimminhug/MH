@@ -17,13 +17,30 @@
 </head>
 <body>
 <div id="container">
+	
 	<%@include file="menu.jsp"%>
-
-    <div id="contentLayer"></div> <%-- 여기서부터 메뉴바깥 '내용' 부분 --%>
+	
+	<div id="contentLayer"></div> <%-- 여기서부터 메뉴바깥 '내용' 부분 --%>
     <div id="content">
-    	
-    	
-    </div>
+    
+	<%@include file="rank_menu.jsp"%>
+
+    	<div class="card-rank">
+    		<div class="card-header-rank">
+				<h2>내 순위</h2>
+			</div>
+			<div id="con-mid">
+				<span id="rank-warp">
+					<div id="rank-mid"><span id="rank-warp">??위</span></div>
+					<span id="rank-warp"><img id="avarta-rank" src="image/avarta.jpg"></span>
+				</span>
+           		
+           		<span id="rank-warp"><div id="rank-mid">Lv.?? 내 닉네임</div><div id="rank-mid">등록한 내 한마디</div></span>           	
+           		<span id="rank-warp"><div id="rank-mid">? ↑</div></span>			
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 </html>
+	

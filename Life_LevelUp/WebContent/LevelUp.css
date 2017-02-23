@@ -16,8 +16,10 @@
 }
 
 body {
+	overflow-x: hidden;
 	background-color: #ECF0F1;
-	margin: 0;
+	margin: 0%;
+	padding: 0;
 	font-family: 'Jeju Gothic', serif;
 	color: #454545;
 }
@@ -26,8 +28,68 @@ a {
 	text-decoration: none;
 }
 
+#con-mid {
+	width: 100%;
+	text-align: center;
+	display: block;
+	overflow: hidden;
+}
+
+h1 {
+	font-size: 20px;
+	font-weight: 300;
+}
+
+h2 {
+	font-size: 17px;
+	font-weight: 300;
+	margin-left: 0;
+	margin-right: 0;
+}
+
 .clear {clear:both; height:0; overflow:hidden;}
 
+/* < Ranking styling >---------------------------------------------------*/
+
+
+#avarta-rank {
+	height: 80px;
+	width: 80px;
+}
+#rank-warp {
+	height: 130px;
+	padding: 5px;
+	margin: 0;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	background: #87cefa;
+	overflow: visible;
+}
+#rank-mid {
+	width: 100%;
+	text-align: center;
+	display: inline-block;
+	background: #1e90ff;
+	overflow: visible;
+}
+
+.card-rank {
+	border-radius: 4px;
+	margin: 10px auto;
+	background: #fff;
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px
+		rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+	width: 90%;
+	vertical-align: middle;
+}
+.card-header-rank {
+	background-color: #F1C40F;
+	background-size: 100%;
+	color: #fff;
+	padding: 0 5px;
+	overflow: hidden;
+}
 
 /* < Circle and parameter styling >--------------------------------------*/
 
@@ -214,28 +276,57 @@ header {
 }
 
 
-nav ul {
+#left-nav ul {
     list-style: none;
     margin: 0;
     width: 100%;
     padding: 0;
 }
 
-nav li {
+#left-nav li {
     position: relative;
     font-size: 1em;
     font-weight: bold;
-    border-bottom: 1px solid #222222;
-    border-top: 1px solid #444444;
     padding: 15px;
     padding-right: 25px;
     overflow:auto;
 }
 
-nav li a {
+
+#left-nav li a {
     color: #fff;
     text-decoration: none;
     display: inline-block;
+}
+
+#top-nav ul li {
+	display:inline-block;
+	font-size: 1.5em;
+    padding: 4%;
+    margin: 0;
+    width: 38%;
+    font-family: 'Nanum Pen Script', serif;
+    -webkit-box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.4);
+}
+#top-nav ul {
+	list-style-type:none;
+	margin: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+}
+#top-nav li a {
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#top-nav #top-a {
+	background: #ff4500;
+}
+#top-nav #top-b {
+	background: #cd853f;
 }
 
 #my {
@@ -282,17 +373,6 @@ nav li a {
 	margin: 5px;
 }
 
-#con-mid {
-	width: 100%;
-	text-align: center;
-	display: block;
-}
-
-#avarta {
-	height: 100px;
-	width: 100px;
-	margin-top: -10px;
-}
 
 #my-menu {
 	width: 100%;
@@ -307,6 +387,13 @@ nav li a {
 	height: 120px;
 	width: 120px;
 }
+
+#avarta {
+	margin-top: 2px;
+	height: 120px;
+	width: 120px;
+}
+
 
 #my-left-box {
 	float: left;
@@ -356,7 +443,9 @@ nav li a {
 #content {
 	overflow: hidden;
     background-color: #FFFFFF;
-    padding: 52px 10px 10px 10px;
+    padding-top: 52px;
+    padding-bottom: 10px;
+    margin: 0;
     position: relative;
     width: 100%;
     height: 100%;
@@ -378,7 +467,7 @@ nav li a {
 }
 
 
-/* < Card form styling >--------------------------------------------------- */
+/* < Common-Card form styling >--------------------------------------------------- */
 
 .card {
 	border-radius: 4px;
@@ -401,18 +490,6 @@ nav li a {
 	color: #fff;
 	padding: 10px 15px;
 	overflow: hidden;
-}
-
-h1 {
-	font-size: 20px;
-	font-weight: 300;
-}
-
-h2 {
-	font-size: 17px;
-	font-weight: 300;
-	margin-left: 0;
-	margin-right: 0;
 }
 
 .card-header h3 {
