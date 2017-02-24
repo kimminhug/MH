@@ -30,13 +30,16 @@
 				<h2>내 순위</h2>
 			</div>
 			<div id="con-mid">
-				<span id="rank-warp">
-					<div id="rank-mid"><span id="rank-warp">??위</span></div>
-					<span id="rank-warp"><img id="avarta-rank" src="image/avarta.jpg"></span>
-				</span>
-           		
-           		<span id="rank-warp"><div id="rank-mid">Lv.?? 내 닉네임</div><div id="rank-mid">등록한 내 한마디</div></span>           	
-           		<span id="rank-warp"><div id="rank-mid">? ↑</div></span>			
+				<div id="left-box">
+					<div id="rank-line-avarta">??위</div>
+					<div id="rank-line-avarta"><img id="avarta-rank" src="image/avarta.jpg"></div>
+				</div>
+           		<div id="center-box">
+           			<div id="rank-line-name">Lv.?? 내 닉네임</div>
+           			<div id="rank-line-word">등록한 내 한마디</div></div>           	
+           		<div id="right-box">
+           			<div id="rank-line-score">??↑</div>
+           		</div>			
 			</div>
 		</div>
 	</div>

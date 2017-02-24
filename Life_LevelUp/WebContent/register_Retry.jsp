@@ -22,7 +22,7 @@
 			<br>
 		</div>
 		<div id="con-mid">
-			<h2>표준체중 : <%= (double)session.getAttribute("average") %><br></h2>
+			<h2>표준체중 : <%= (double)session.getAttribute("average") %>kg<br></h2>
 			<h2>BMI : <%= (double)session.getAttribute("BMI") %><br></h2>
 			<h2>비만도 : <%= (double)session.getAttribute("obesity") %>%<br></h2>
 			<h2>기초대사량 : <%= (double)session.getAttribute("BMR") %>cal<br></h2>

@@ -31,6 +31,7 @@ a {
 #con-mid {
 	width: 100%;
 	text-align: center;
+	vertical-align: middle;
 	display: block;
 	overflow: hidden;
 }
@@ -53,27 +54,67 @@ h2 {
 
 
 #avarta-rank {
-	height: 80px;
-	width: 80px;
-}
-#rank-warp {
-	height: 130px;
-	padding: 5px;
-	margin: 0;
-	text-align: center;
-	vertical-align: middle;
-	display: inline-block;
-	background: #87cefa;
-	overflow: visible;
-}
-#rank-mid {
+	height: 100%;
 	width: 100%;
-	text-align: center;
-	display: inline-block;
-	background: #1e90ff;
-	overflow: visible;
 }
 
+#rank-line-avarta {
+	text-align: center;
+	width: 100%;
+	font-size: 20px;
+	margin-top: 5%;
+	line-height: 30px;
+	display: inline-block;
+}
+#rank-line-name {
+	text-align: left;
+	width: 100%;
+	display: inline-block;
+	font-size: 18px;
+	line-height: 40px;
+}
+#rank-line-word {
+	text-align: left;
+	width: 100%;
+	display: inline-block;
+	font-size: 16px;
+	font-family: 'Nanum Pen Script', serif;
+}
+#rank-line-score {
+	text-align: center;
+	width: 100%;
+	margin-top: 20%;
+	font-size: 30px;
+	line-height: 80px;
+	display: inline-block;
+}
+
+.card-rank #left-box{
+	width: 20%;
+    float: left;
+    text-align: left;
+    padding: 5px;
+    overflow: hidden;
+    display: inline-block;
+}
+.card-rank #center-box{
+    width: 48%;
+	text-align: left;
+	vertical-align: middle;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 5px;
+    display: inline-block;
+}
+.card-rank #right-box{
+	width: 20%;
+    float: right;
+    vertical-align: middle;
+    text-align: right;
+    padding: 5px;
+    overflow: hidden;
+    display: inline-block;
+}
 .card-rank {
 	border-radius: 4px;
 	margin: 10px auto;
@@ -87,8 +128,8 @@ h2 {
 	background-color: #F1C40F;
 	background-size: 100%;
 	color: #fff;
-	padding: 0 5px;
 	overflow: hidden;
+	padding-left: 5px;
 }
 
 /* < Circle and parameter styling >--------------------------------------*/
