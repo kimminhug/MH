@@ -20,14 +20,9 @@
 	<%@include file="menu.jsp"%>
 
     <div id="contentLayer"></div> <%-- 여기서부터 메뉴바깥 '내용' 부분 --%>
-    
     <div id="content">
-    <%@include file="main_ranking.jsp"%>
-    <div id="con-mid">
-    	<a href="board.jsp"><img src="image/dummy-main.jpg"></a>
-    </div>
-    	
-    </div>
+    	<div class="card">야<img src="image/dummy-board.jpg"></div>
+	</div>
 </div>
 </body>
 </html>

@@ -333,6 +333,14 @@ public class MemberProcess	extends HttpServlet {
 			// 세선 유지시간 : 2시간
 
 			response.sendRedirect("mypage.jsp");
+			
+		/************************* < 랭킹 폼  > ***************************/
+		}else if (command.trim().equals("ranking")){
+			// < 랭킹 출력 과정 >
+			// 1. DAO를 통해 member 테이블을 레벨순으로 가져온다(정렬 안될시, 가져온 후 정렬한다)
+			// 2. ResultSet을 받아 랭킹 jsp로 전달한다
+			
+			response.sendRedirect("ranking_best.jsp");
 
 		}else if(command.trim().equals("uqdate")){
 			

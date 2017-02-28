@@ -36,7 +36,7 @@
 				</div>
            		<div id="center-box">
            			<div id="rank-line-name">Lv.?? 내 닉네임</div>
-           			<div id="rank-line-word">등록한 내 한마디</div></div>           	
+           			<div id="rank-line-word">등록한 내 한마디</div></div>
            		<div id="right-box">
            			<div id="rank-line-score">??↑</div>
            		</div>			

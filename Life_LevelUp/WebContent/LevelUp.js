@@ -8,6 +8,8 @@ jQuery(document).ready(function () {
 		
 		jQuery('#content').css('min-height', jQuery(window).height());
 		jQuery('#content').css('overflow', 'hidden');
+		jQuery('#content').css('position', 'absolute');
+		
 		jQuery('#left-nav').css('opacity', 1);
 		
 		//set the width of primary content container -> content should not scale while animating
@@ -63,6 +65,7 @@ jQuery(document).ready(function () {
 		jQuery("#container").animate({"marginLeft": ["-1", 'easeOutExpo']}, {
 			duration: 700,
 			complete: function () {
+				jQuery('#content').css('position', 'static');
 				jQuery('#content').css('overflow','hidden');
 				jQuery('#content').css('width', 'auto');
 				jQuery('#contentLayer').css('display', 'none');
