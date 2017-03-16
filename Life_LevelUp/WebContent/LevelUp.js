@@ -57,7 +57,7 @@ jQuery(document).ready(function () {
 
 	//close the menu
 	jQuery("#contentLayer").click(function () {
-
+		
 		//enable all scrolling on mobile devices when menu is closed
 		jQuery('#container').unbind('touchmove');
 
@@ -71,7 +71,6 @@ jQuery(document).ready(function () {
 				jQuery('#contentLayer').css('display', 'none');
 				jQuery('#left-nav').css('opacity', 0);
 				jQuery('#content').css('min-height', 'auto');
-
 			}
 		});
 	});

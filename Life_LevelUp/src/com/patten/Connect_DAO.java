@@ -1,6 +1,8 @@
 package com.patten;
 
 import java.sql.*;
+import java.util.ArrayList;
+import com.beans.*;
 
 public class Connect_DAO {
 	private static Connection conn;
@@ -17,6 +19,39 @@ public class Connect_DAO {
 		}catch(SQLException ex){
 			System.out.println("SQL 오류! "+ex.getLocalizedMessage());
 		}
+	}
+	
+	public ArrayList<Ranking> select_Ranking(){
+		// 멤버 테이블과 레벨 테이블의 자연 조인 수행!
+		String query = "SELECT * FROM LevelUp.member NATURAL JOIN LevelUp.level ORDER BY level DESC";
+		ArrayList<Ranking> list = new ArrayList<Ranking>();
+		
+		try {
+			Statement stmt = conn.createStatement();
+			
+			ResultSet rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				Ranking obj = new Ranking();
+				
+				obj.setID(rs.getString("ID"));
+				obj.setLevel(rs.getInt("level"));
+				obj.setName(rs.getString("name"));
+				obj.setIntro(rs.getString("Intro"));
+				
+				list.add(obj);
+			}
+			
+			stmt.close();
+			rs.close();
+			
+			return list;
+			
+		}catch(SQLException ex){
+			System.out.println("SQL ranking error : "+ex.getLocalizedMessage());
+		}
+		
+		return null;
 	}
 	
 	public boolean login_LevelUp(Member_DTO m_dto, Level_DTO l_dto, String ID){

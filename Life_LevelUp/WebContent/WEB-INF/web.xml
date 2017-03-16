@@ -10,7 +10,7 @@
   
   <servlet-mapping>
   	<servlet-name>myController</servlet-name>
-  	<url-pattern>*.kim</url-pattern><!-- .kim으로 끝나는 주소는 모두 이리로 불러오라! -->
+  	<url-pattern>*.kim</url-pattern><!-- .kim 으로 끝나는 주소는 모두 이리로 불러오라! -->
   </servlet-mapping>
   <!--  서블릿 맵핑 : 어떤 action 주소를 불러올때, 해당 서블릿 파일'이름'으로 연결함 -->
   

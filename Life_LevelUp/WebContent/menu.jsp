@@ -10,7 +10,7 @@
 			<a id="not-login" href="login.html"><i id="logo-img" class="material-icons" >&#xE8FE;</i></a>
 		</div>
         <div id="center-box">
-			<a href="main.jsp"><div id="main-banner">Life LevelUp!</div></a>
+			<a href="main.kim"><div id="main-banner">Life LevelUp!</div></a>
 		</div>
 	<%}else{ %>
         <div id="left-box">
@@ -20,7 +20,7 @@
 			<div id="comu-menu"><i id="logo-img" class="material-icons">&#xE8FE;</i></div>
 		</div>
         <div id="center-box">
-			<a href="main.jsp"><div id="main-banner">Life LevelUp!</div></a>
+			<a href="main.kim"><div id="main-banner">Life LevelUp!</div></a>
 		</div>
     <%} %>
 </header>

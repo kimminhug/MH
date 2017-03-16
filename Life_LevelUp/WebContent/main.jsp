@@ -24,7 +24,7 @@
     <div id="content">
     <%@include file="main_ranking.jsp"%>
     <div id="con-mid">
-    	<a href="board.jsp"><img src="image/dummy-main.jpg"></a>
+    	<a href="board.kim"><img src="image/dummy-main.jpg"></a>
     </div>
     	
     </div>

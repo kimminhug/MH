@@ -72,6 +72,7 @@ h2 {
 	width: 100%;
 	display: inline-block;
 	font-size: 18px;
+	color: black;
 	line-height: 40px;
 }
 #rank-line-word {
@@ -79,6 +80,7 @@ h2 {
 	width: 100%;
 	display: inline-block;
 	font-size: 16px;
+	color: black;
 	font-family: 'Nanum Pen Script', serif;
 }
 #rank-line-score {
@@ -128,6 +130,13 @@ h2 {
 }
 .card-header-rank {
 	background-color: #F1C40F;
+	background-size: 100%;
+	color: #fff;
+	overflow: hidden;
+	padding-left: 5px;
+}
+.card-header-rank-my {
+	background-color: #ff7f50;
 	background-size: 100%;
 	color: #fff;
 	overflow: hidden;

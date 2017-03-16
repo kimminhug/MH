@@ -1,14 +1,16 @@
 package com.patten;
 /* [MVC 패턴] 중, Controller를 맡고 있는 객체 - MemberProcess */
 
+import com.beans.*;
+
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.ServletContext;
+import javax.servlet.http.*;
 
 public class MemberProcess	extends HttpServlet {
 	
@@ -22,58 +24,52 @@ public class MemberProcess	extends HttpServlet {
 		
 		/************************* < 회원가입 -> 가입 확인 폼 > ***************************/
 		if (command != null && command.trim().equals("register")){
-			String[] member = new String[15];
-			member[0] = request.getParameter("ID");
-			member[1] = "temp";
-			member[2] = request.getParameter("hash");
-			member[3] = request.getParameter("name");
-			member[4] = request.getParameter("sex");
-			member[5] = request.getParameter("age");
-			member[6] = request.getParameter("height");
-			member[7] = request.getParameter("weight");
-			member[8] = request.getParameter("job");			
-			member[9] = request.getParameter("area");
-			member[10] = request.getParameter("intro");
-			member[11] = request.getParameter("sex_vis");
-			member[12] = request.getParameter("age_vis");
-			member[13] = request.getParameter("hei_vis");
-			member[14] = request.getParameter("wei_vis");
+			String ID = request.getParameter("ID");
+			String hash = request.getParameter("hash");
+			String name = request.getParameter("name");
+			int sex = Integer.parseInt(request.getParameter("sex"));
+			int age = Integer.parseInt(request.getParameter("age"));
+			int height = Integer.parseInt(request.getParameter("height"));
+			double weight = Double.parseDouble(request.getParameter("weight"));
+			String job = request.getParameter("job");			
+			String area = request.getParameter("area");
+			String intro = request.getParameter("intro");
+			String[] vis = new String[4];
+			vis[0] = request.getParameter("sex_vis");
+			vis[1] = request.getParameter("age_vis");
+			vis[2] = request.getParameter("hei_vis");
+			vis[3] = request.getParameter("wei_vis");
 			
-			for (int i=11; i<=14; i++){
-				if (member[i] == null)
-					member[i] = "0";
+			for (int i=0; i<=3; i++){
+				if (vis[i] == null)
+					vis[i] = "0";
 			}
 			
-			int sex = Integer.parseInt(member[4]);
-			int age = Integer.parseInt(member[5]);
-			int height = Integer.parseInt(member[6]);
-			double weight = Double.parseDouble(member[7]);
-			int sex_vis = Integer.parseInt(member[11]);
-			int age_vis = Integer.parseInt(member[12]);
-			int hei_vis = Integer.parseInt(member[13]);
-			int wei_vis = Integer.parseInt(member[14]);
+			int sex_vis = Integer.parseInt(vis[0]);
+			int age_vis = Integer.parseInt(vis[1]);
+			int hei_vis = Integer.parseInt(vis[2]);
+			int wei_vis = Integer.parseInt(vis[3]);
 			
-			if (member[0].length() != 0){
-				/* 회원가입 정보확인 폼을 위해 일단 세션에 모든 정보를 담음 */
+			if (ID.length() != 0){
+				/* 회원가입 정보확인 편의를 위해 세션에 정보 저장 */
 				HttpSession session = request.getSession();
-				session.setAttribute("ID", member[0]);
-				session.setAttribute("salt", member[1]);
-				session.setAttribute("hash", member[2]);
-				session.setAttribute("name", member[3]);
+				session.setAttribute("ID", ID);
+				session.setAttribute("hash", hash);
+				session.setAttribute("name", name);
 				session.setAttribute("sex", sex);
 				session.setAttribute("age", age);
 				session.setAttribute("height", height);
 				session.setAttribute("weight", weight);
-				session.setAttribute("job", member[8]);
-				session.setAttribute("area", member[9]);
-				session.setAttribute("intro", member[10]);
+				session.setAttribute("job", job);
+				session.setAttribute("area", area);
+				session.setAttribute("intro", intro);
 				session.setAttribute("sex_vis", sex_vis);
 				session.setAttribute("age_vis", age_vis);
 				session.setAttribute("hei_vis", hei_vis);
 				session.setAttribute("wei_vis", wei_vis);
 				
 				Level_DTO l_dto = new Level_DTO();
-				l_dto.setID(member[0]);
+				l_dto.setID(ID);
 				l_dto.setBMI(height, weight);
 				l_dto.setBMR(sex, age, height, weight);
 				l_dto.setAverage(sex, height);
@@ -237,7 +233,7 @@ public class MemberProcess	extends HttpServlet {
 					session.setMaxInactiveInterval(60 * 60 * 2);
 					// 세선 유지시간 : 2시간
 					
-					response.sendRedirect("main.jsp");
+					response.sendRedirect("main.html");
 				}else{
 					response.sendRedirect("Fail.html");
 				}
@@ -333,17 +329,61 @@ public class MemberProcess	extends HttpServlet {
 			// 세선 유지시간 : 2시간
 
 			response.sendRedirect("mypage.jsp");
-			
-		/************************* < 랭킹 폼  > ***************************/
-		}else if (command.trim().equals("ranking")){
-			// < 랭킹 출력 과정 >
-			// 1. DAO를 통해 member 테이블을 레벨순으로 가져온다(정렬 안될시, 가져온 후 정렬한다)
-			// 2. ResultSet을 받아 랭킹 jsp로 전달한다
-			
-			response.sendRedirect("ranking_best.jsp");
 
 		}else if(command.trim().equals("uqdate")){
 			
 		}
+	}
+	
+	public void doGet(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
+		String uri = request.getRequestURI();
+		// System.out.println("uri = "+uri);
+
+		String command = uri.substring(uri.lastIndexOf("/") + 1, uri.lastIndexOf(".kim"));
+		
+		/************************* < 메인 폼  > ***************************/
+		if (command.trim().equals("main")){
+			Connect_DAO dao = new Connect_DAO();
+			ArrayList<Ranking> rank_list = dao.select_Ranking();
+			
+			if (rank_list != null){
+				request.getServletContext().setAttribute("rank_list", rank_list);
+			}else{
+				System.out.println("서블릿 : 리스트가 널입니다");
+			}
+			response.sendRedirect("main.jsp");
+		}
+		/************************* < 랭킹 폼  > ***************************/
+		if (command.trim().equals("ranking")){
+			// < 랭킹 출력 과정 >
+			// 1. DAO를 통해 member 테이블을 레벨순으로 가져온다
+			// 2. ResultSet을 받아 랭킹 jsp로 전달한다
+			Connect_DAO dao = new Connect_DAO();
+			ArrayList<Ranking> rank_list = dao.select_Ranking();
+
+			if (rank_list != null){
+				request.setAttribute("rank_list", rank_list);
+				response.sendRedirect("ranking_best.jsp");
+			}else{
+				response.sendRedirect("Fail.html");
+			}
+		}
+		/*if (command.trim().equals("board")){
+			// < 랭킹 출력 과정 >
+			// 1. DAO를 통해 member 테이블을 레벨순으로 가져온다
+			// 2. ResultSet을 받아 랭킹 jsp로 전달한다
+			Connect_DAO dao = new Connect_DAO();
+			ArrayList<Board> board_list = dao.select_Board();
+
+			if (board_list != null){
+				request.setAttribute("board_list", board_list);
+				response.sendRedirect("Board.jsp");
+			}else{
+				response.sendRedirect("Fail.html");
+			}
+		}*/
 	}
 }
