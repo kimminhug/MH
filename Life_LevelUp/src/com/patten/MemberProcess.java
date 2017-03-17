@@ -365,25 +365,23 @@ public class MemberProcess	extends HttpServlet {
 			ArrayList<Ranking> rank_list = dao.select_Ranking();
 
 			if (rank_list != null){
-				request.setAttribute("rank_list", rank_list);
+				request.getServletContext().setAttribute("rank_list", rank_list);
 				response.sendRedirect("ranking_best.jsp");
 			}else{
 				response.sendRedirect("Fail.html");
 			}
 		}
-		/*if (command.trim().equals("board")){
-			// < 랭킹 출력 과정 >
-			// 1. DAO를 통해 member 테이블을 레벨순으로 가져온다
-			// 2. ResultSet을 받아 랭킹 jsp로 전달한다
+		/************************* < 게시판 폼  > ***************************/
+		if (command.trim().equals("board")){
 			Connect_DAO dao = new Connect_DAO();
 			ArrayList<Board> board_list = dao.select_Board();
 
 			if (board_list != null){
-				request.setAttribute("board_list", board_list);
-				response.sendRedirect("Board.jsp");
+				request.getServletContext().setAttribute("board_list", board_list);
+				response.sendRedirect("board.jsp");
 			}else{
 				response.sendRedirect("Fail.html");
 			}
-		}*/
+		}
 	}
 }

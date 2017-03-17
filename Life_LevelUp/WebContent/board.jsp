@@ -24,24 +24,22 @@
     <div id="content">
     
 <% 
-	ArrayList<Board> list = (ArrayList<Board>) application.getAttribute("list");
+	ArrayList<Board> b_list = (ArrayList<Board>) application.getAttribute("board_list");
 	int count = 0;
 	
-	if (session.getAttribute("ID") != null){
+	for(Board board : b_list) {
+		count++;
 		
-		for(Board board : list) {
-			count++;
-			if (board.getName().equals(session.getAttribute("ID"))){
-				list = (ArrayList<Board>)application.getAttribute("list");
-				count = 0;
-		
-				if (list == null){
-					return;
-				}
+		if (b_list == null){
+			return;
+		}
 %>	
     	<div class="card-rank">
     		<div class="card-header-rank">
     			<%-- 이미지 들어갈 칸 --%>
+			</div>
+			<div id="con-mid">
+				<div id="left-box"></div>
 			</div>
 			<div id="con-mid">
 				<div id="left-box">
@@ -53,8 +51,6 @@
 			</div>
 		</div>
 <% 
-			}
-		}
 	}
 %>
 	</div>

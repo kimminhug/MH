@@ -24,7 +24,7 @@ public class Connect_DAO {
 	public ArrayList<Ranking> select_Ranking(){
 		// 멤버 테이블과 레벨 테이블의 자연 조인 수행!
 		String query = "SELECT * FROM LevelUp.member NATURAL JOIN LevelUp.level ORDER BY level DESC";
-		ArrayList<Ranking> list = new ArrayList<Ranking>();
+		ArrayList<Ranking> r_list = new ArrayList<Ranking>();
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -32,20 +32,56 @@ public class Connect_DAO {
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()){
-				Ranking obj = new Ranking();
+				Ranking r_obj = new Ranking();
 				
-				obj.setID(rs.getString("ID"));
-				obj.setLevel(rs.getInt("level"));
-				obj.setName(rs.getString("name"));
-				obj.setIntro(rs.getString("Intro"));
+				r_obj.setID(rs.getString("ID"));
+				r_obj.setLevel(rs.getInt("level"));
+				r_obj.setName(rs.getString("name"));
+				r_obj.setIntro(rs.getString("Intro"));
 				
-				list.add(obj);
+				r_list.add(r_obj);
 			}
 			
 			stmt.close();
 			rs.close();
 			
-			return list;
+			return r_list;
+			
+		}catch(SQLException ex){
+			System.out.println("SQL ranking error : "+ex.getLocalizedMessage());
+		}
+		
+		return null;
+	}
+	public ArrayList<Board> select_Board(){
+		// 멤버 테이블과 레벨 테이블의 자연 조인 수행!
+		String query = "SELECT * FROM LevelUp.board ORDER BY level ASC";
+		ArrayList<Board> b_list = new ArrayList<Board>();
+		
+		try {
+			Statement stmt = conn.createStatement();
+			
+			ResultSet rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				Board b_obj = new Board();
+				
+				b_obj.setDay(rs.getString("day"));
+				b_obj.setSubject(rs.getString("subject"));
+				b_obj.setLevel(rs.getInt("level"));
+				b_obj.setName(rs.getString("name"));
+				b_obj.setContents(rs.getString("contents"));
+				b_obj.setGood(rs.getInt("good"));
+				b_obj.setBad(rs.getInt("Bad"));
+				b_obj.setReple(rs.getInt("Reple"));
+				
+				b_list.add(b_obj);
+			}
+			
+			stmt.close();
+			rs.close();
+			
+			return b_list;
 			
 		}catch(SQLException ex){
 			System.out.println("SQL ranking error : "+ex.getLocalizedMessage());

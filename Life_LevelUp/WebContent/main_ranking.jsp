@@ -5,7 +5,7 @@
 	ArrayList<Ranking> list = (ArrayList<Ranking>) application.getAttribute("rank_list");
 		
 	if (list != null){
-		Ranking rank = list.get(0);
+		Ranking rank = list.get(0); // 0번째 리스트 = 첫째 순위의 리스트만 가져옴
 %>
 <a href="ranking.kim">
 <div class="card-rank">
