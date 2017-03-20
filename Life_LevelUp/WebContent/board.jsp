@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import ="java.util.ArrayList, com.beans.*" %>
+    pageEncoding="UTF-8" import ="java.util.ArrayList, java.util.Date, java.text.*, com.beans.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,21 +34,24 @@
 			return;
 		}
 %>	
-    	<div class="card-rank">
+    	<div class="card-board">
     		<div class="card-header-rank">
     			<%-- 이미지 들어갈 칸 --%>
 			</div>
-			<div id="con-mid">
-				<div id="left-box"></div>
-			</div>
+			<div id="board-line-subject"><%= board.getSubject() %></div>
 			<div id="con-mid">
 				<div id="left-box">
-           			<div id="rank-line-name">Lv.<%= board.getLevel() %> <%= board.getName() %></div>
+           			<div id="board-line-left">Lv.<%= board.getLevel() %> <%= board.getName() %></div>
 				</div>
            		<div id="right-box">
-           			<div id="rank-line-score"><%= board.getDay() %></div>
+           			<div id="board-line-right"><%= board.getDay().substring(2, 16) %></div>
            		</div>			
 			</div>
+           	<div id="con-right">
+           		<i id="board-icon" class="material-icons">&#xE0B9;</i>&nbsp;<%= board.getReple() %>&nbsp;&nbsp;
+           		<i id="board-icon" class="material-icons">&#xE815;</i>&nbsp;<%= board.getGood() %>&nbsp;&nbsp;
+           		<i id="board-icon" class="material-icons">&#xE814;</i>&nbsp;<%= board.getBad() %>
+           	</div>		 
 		</div>
 <% 
 	}

@@ -55,7 +55,7 @@ public class Connect_DAO {
 	}
 	public ArrayList<Board> select_Board(){
 		// 멤버 테이블과 레벨 테이블의 자연 조인 수행!
-		String query = "SELECT * FROM LevelUp.board ORDER BY level ASC";
+		String query = "SELECT * FROM LevelUp.board ORDER BY level DESC";	// 날짜는 내림차순이 최신부터 나온다
 		ArrayList<Board> b_list = new ArrayList<Board>();
 		
 		try {

@@ -36,6 +36,23 @@ a {
 	overflow: hidden;
 }
 
+#con-left {
+	padding-left: 5px;
+	width: 100%;
+	text-align: left;
+	vertical-align: middle;
+	display: block;
+	overflow: hidden;
+}
+#con-right {
+	margin-right: 5px;
+	width: 100%;
+	text-align: right;
+	vertical-align: middle;
+	display: block;
+	overflow: hidden;
+}
+
 h1 {
 	font-size: 20px;
 	font-weight: 300;
@@ -49,6 +66,80 @@ h2 {
 }
 
 .clear {clear:both; height:0; overflow:hidden;}
+
+/* < Board styling >----------------------------------------------------*/
+#board-icon {
+	width: 15px;
+	height: 15px;
+	font-size: 15px;
+	text-decoration: none;
+	text-transform: none;
+	word-wrap: normal;
+	white-space: nowrap;
+	color: #F1C40F;
+}
+#board-line-subject {
+	display: block;
+	font-weight: bold;
+	font-size: 20px;
+	line-height: 40px;
+	vertical-align: middle;
+	width: 100%;
+	border-bottom: 1px solid #9C9C9C;
+}
+
+#board-line-left {
+	text-align: left;
+	width: 100%;
+	display: inline-block;
+	font-size: 16px;
+	color: black;
+	line-height: 17px;
+}
+#board-line-right {
+	text-align: right;
+	width: 100%;
+	display: inline-block;
+	font-size: 16px;
+	color: #ff4500;
+	line-height: 17px;
+}
+
+.card-board #left-box{
+	width: 40%;
+    float: left;
+    text-align: left;
+    padding: 5px;
+    overflow: hidden;
+    display: inline-block;
+}
+.card-board #right-box{
+	width: 50%;
+    float: right;
+    vertical-align: middle;
+    text-align: right;
+    padding: 5px;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.card-board {
+	border-radius: 8px;
+	margin: 10px auto;
+	background: #fff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px
+		rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+	width: 85%;
+	padding: 8px;
+	vertical-align: middle;
+}
+.card-header-board {
+	background-color: #F1C40F;
+	background-size: 100%;
+	color: #fff;
+	overflow: hidden;
+}
+
 
 /* < Ranking styling >---------------------------------------------------*/
 
