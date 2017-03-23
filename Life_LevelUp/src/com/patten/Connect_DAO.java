@@ -67,13 +67,13 @@ public class Connect_DAO {
 				Board b_obj = new Board();
 				
 				b_obj.setDay(rs.getString("day"));
-				b_obj.setSubject(rs.getString("subject"));
 				b_obj.setLevel(rs.getInt("level"));
 				b_obj.setName(rs.getString("name"));
 				b_obj.setContents(rs.getString("contents"));
 				b_obj.setGood(rs.getInt("good"));
 				b_obj.setBad(rs.getInt("Bad"));
 				b_obj.setReple(rs.getInt("Reple"));
+				b_obj.setViews(rs.getInt("Views"));
 				
 				b_list.add(b_obj);
 			}

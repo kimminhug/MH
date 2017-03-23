@@ -17,11 +17,11 @@
 
 body {
 	overflow-x: hidden;
-	background-color: #ECF0F1;
 	margin: 0%;
 	padding: 0;
 	font-family: 'Jeju Gothic', serif;
-	color: #454545;
+	background: #fff8dc;
+	color: #333333;
 }
 
 a {
@@ -32,24 +32,22 @@ a {
 	width: 100%;
 	text-align: center;
 	vertical-align: middle;
-	display: block;
+	display: inline-block;
 	overflow: hidden;
 }
 
 #con-left {
-	padding-left: 5px;
 	width: 100%;
 	text-align: left;
 	vertical-align: middle;
-	display: block;
+	display: inline-block;
 	overflow: hidden;
 }
 #con-right {
-	margin-right: 5px;
 	width: 100%;
 	text-align: right;
 	vertical-align: middle;
-	display: block;
+	display: inline-block;
 	overflow: hidden;
 }
 
@@ -67,21 +65,121 @@ h2 {
 
 .clear {clear:both; height:0; overflow:hidden;}
 
+
+
+/* < Common-Card form styling >--------------------------------------------------- */
+
+
+
+.card {
+	border-radius: 4px;
+	margin: 20px auto;
+	background: #fff;
+	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px
+		rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+	width: 85%;
+	vertical-align: middle;
+	overflow: hidden;
+}
+
+.login .card {
+	margin: 20% auto;
+}
+
+.card-header {
+	background-color: #F1C40F;
+	background-size: 100%;
+	color: #fff;
+	padding: 10px 15px;
+	overflow: hidden;
+}
+
+.card-header h3 {
+	font-size: 26px;
+	font-weight: 300;
+	margin: 4px;
+	text-align: center;
+}
+
+.card h1 {
+	font-size: 22px;
+	text-align: center;
+}
+
+.logo {
+	text-align: center;
+	display:inline-block;
+	width: 100%;
+	position: relative;
+}
+
+
+
 /* < Board styling >----------------------------------------------------*/
-#board-icon {
-	width: 15px;
-	height: 15px;
-	font-size: 15px;
+
+#flip-write {
+	margin: 5px 0 10px 0;
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.14);
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 35px;
+	font-size: 20px;
+	color: #a52a2a;
+}
+#con-write {
+	display: none;
+	padding: 15px;
+	width: 100%;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+	overflow: hidden;
+}
+#con-write #left-box {
+	padding-left: 10%;
+	width: 65%;
+    float: left;
+    text-align: center;
+    padding: 5px;
+    overflow: hidden;
+    display: inline-block;
+}
+#con-write #right-box {
+	padding-right: 10px;
+	width: 25%;
+    float: right;
+    text-align: center;
+    padding: 5px;
+    overflow: hidden;
+    display: inline-block;
+}
+#icon-write {
+	width: 30px;
+	height: 30px;
+	font-size: 30px;
 	text-decoration: none;
 	text-transform: none;
 	word-wrap: normal;
 	white-space: nowrap;
 	color: #F1C40F;
 }
+#icon-board {
+	width: 18px;
+	height: 18px;
+	font-size: 18px;
+	text-decoration: none;
+	text-transform: none;
+	word-wrap: normal;
+	white-space: nowrap;
+	color: #F1C40F;
+	vertical-align: middle;
+}
 #board-line-subject {
-	display: block;
+	display: inline-block;
 	font-weight: bold;
-	font-size: 20px;
+	font-size: 17px;
 	line-height: 40px;
 	vertical-align: middle;
 	width: 100%;
@@ -101,7 +199,7 @@ h2 {
 	width: 100%;
 	display: inline-block;
 	font-size: 16px;
-	color: #ff4500;
+	color: #ff6347;
 	line-height: 17px;
 }
 
@@ -585,7 +683,7 @@ header {
 
 #content {
 	overflow: hidden;
-    background-color: #FFFFFF;
+    background-color: #fafad2;
     padding-top: 52px;
     padding-bottom: 10px;
     margin: 0;
@@ -609,50 +707,6 @@ header {
     z-index: 5;
 }
 
-
-/* < Common-Card form styling >--------------------------------------------------- */
-
-.card {
-	border-radius: 4px;
-	margin: 20px auto;
-	background: #fff;
-	box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px
-		rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-	width: 85%;
-	vertical-align: middle;
-	overflow: hidden;
-}
-
-.login .card {
-	margin: 20% auto;
-}
-
-.card-header {
-	background-color: #F1C40F;
-	background-size: 100%;
-	color: #fff;
-	padding: 10px 15px;
-	overflow: hidden;
-}
-
-.card-header h3 {
-	font-size: 26px;
-	font-weight: 300;
-	margin: 4px;
-	text-align: center;
-}
-
-.card h1 {
-	font-size: 22px;
-	text-align: center;
-}
-
-.logo {
-	text-align: center;
-	display:inline-block;
-	width: 100%;
-	position: relative;
-}
 
 /* Input form styling */
 
@@ -683,10 +737,29 @@ header {
 	display:inline-block;
 	position: absolute;
 	text-align: right;
+	font-family: 'Nanum Pen Script', serif;
 	left: 0;
 	top: 0;
 	width: 100%;
-	font-size: 20px;
+	font-size: 22px;
+}
+
+.button-write {
+	-moz-box-shadow:inset 0px 1px 6px 0px #ffffff;
+	-webkit-box-shadow:inset 0px 1px 6px 0px #ffffff;
+	box-shadow:inset 0px 1px 6px 0px #ffffff;
+	background-color:#ffffff;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	border-radius:7px;
+	display:inline-block;
+	cursor:pointer;
+	color:#F1C40F;
+	font-family:Arial;
+	font-size:18px;
+	font-weight:bold;
+	padding:22px 20%;
+	text-decoration:none;
 }
 
 .button-white {

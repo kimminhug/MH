@@ -7,13 +7,22 @@
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="LevelUp.js?ver=1" ></script>
     <script type="text/javascript" src="circle-progress.js?ver=1" ></script>
+    <script type="text/javascript" >
+    jQuery(document).ready(function () {
+  	  	// 글쓰기 토글키
+  		$("#con-write").css('display', 'none');
     
+  		$("#flip-write").click(function(){
+	  		$("#con-write").slideToggle("500");			
+    	});
+    });
+  	</script>
 	<link href="LevelUp.css?ver=1" media="screen and (min-width: 1px) and (max-width: 1024px)" rel="stylesheet">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<meta name="viewport" content="width=device-width">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	
-	<title>Ranking</title>
+	<title>Free board</title>
 </head>
 <body>
 <div id="container">
@@ -23,6 +32,26 @@
 	<div id="contentLayer"></div> <%-- 여기서부터 메뉴바깥 '내용' 부분 --%>
     <div id="content">
     
+    <div id="con-write">
+    	<div id="left-box">
+    		<textarea name="contents" cols=80% rows=5 class="input"></textarea>
+    	</div>
+    	<div id="right-box">
+    		<div id="board-line-left">
+    			<label for="file-input">
+        			<i id="icon-write" class="material-icons">&#xE3B6;</i>
+   				</label>
+    			<input id="file-input" type="file" accept="image/*"/>
+    		</div>
+    		<div id="board-line-left">
+    			<button class="button-write" type="submit" name="write"><i class="material-icons">&#xE255;</i></button>
+    		</div>
+    	</div>
+    </div>
+    <div id="flip-write">
+    	<i class="material-icons">&#xE3C9;</i>&nbsp;글 작성
+    </div>
+        
 <% 
 	ArrayList<Board> b_list = (ArrayList<Board>) application.getAttribute("board_list");
 	int count = 0;
@@ -38,7 +67,7 @@
     		<div class="card-header-rank">
     			<%-- 이미지 들어갈 칸 --%>
 			</div>
-			<div id="board-line-subject"><%= board.getSubject() %></div>
+			<div id="board-line-subject"><%= board.getContents() %></div>
 			<div id="con-mid">
 				<div id="left-box">
            			<div id="board-line-left">Lv.<%= board.getLevel() %> <%= board.getName() %></div>
@@ -48,9 +77,10 @@
            		</div>			
 			</div>
            	<div id="con-right">
-           		<i id="board-icon" class="material-icons">&#xE0B9;</i>&nbsp;<%= board.getReple() %>&nbsp;&nbsp;
-           		<i id="board-icon" class="material-icons">&#xE815;</i>&nbsp;<%= board.getGood() %>&nbsp;&nbsp;
-           		<i id="board-icon" class="material-icons">&#xE814;</i>&nbsp;<%= board.getBad() %>
+           		<i id="icon-board" class="material-icons">&#xE8F4;</i>&nbsp;<%= board.getViews() %>&nbsp;&nbsp;
+           		<i id="icon-board" class="material-icons">&#xE0B9;</i>&nbsp;<%= board.getReple() %>&nbsp;&nbsp;
+           		<i id="icon-board" class="material-icons">&#xE8DC;</i>&nbsp;<%= board.getGood() %>&nbsp;&nbsp;
+           		<i id="icon-board" class="material-icons">&#xE8DB;</i>&nbsp;<%= board.getBad() %>
            	</div>		 
 		</div>
 <% 

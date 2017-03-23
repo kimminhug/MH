@@ -19,7 +19,7 @@ jQuery(document).ready(function () {
 		jQuery('#content').css('width', '100%');
 
 		//display a layer to disable clicking and scrolling on the content while menu is shown
-		jQuery('#contentLayer').css('display', 'block');
+		jQuery('#contentLayer').css('display', 'inline-block');
 
 		//disable all scrolling on mobile devices while menu is shown
 		jQuery('#container').bind('touchmove', function (e) {
@@ -74,7 +74,6 @@ jQuery(document).ready(function () {
 			}
 		});
 	});
-	
 	
 	
 });	

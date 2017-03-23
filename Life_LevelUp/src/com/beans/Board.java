@@ -4,20 +4,14 @@ import java.io.Serializable;
 
 public class Board implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private String day, subject, name, contents;
-	private int level, good, bad, reple;
+	private String day, name, contents;
+	private int level, good, bad, reple, views;
 	
 	public String getDay() {
 		return day;
 	}
 	public void setDay(String day) {
 		this.day = day;
-	}
-	public String getSubject() {
-		return subject;
-	}
-	public void setSubject(String subject) {
-		this.subject = subject;
 	}
 	public String getName() {
 		return name;
@@ -54,5 +48,11 @@ public class Board implements Serializable {
 	}
 	public void setReple(int reple) {
 		this.reple = reple;
+	}
+	public int getViews() {
+		return views;
+	}
+	public void setViews(int views) {
+		this.views = views;
 	}
 }
