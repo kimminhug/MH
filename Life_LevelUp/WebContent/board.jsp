@@ -7,9 +7,10 @@
     <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
     <script type="text/javascript" src="LevelUp.js?ver=1" ></script>
     <script type="text/javascript" src="circle-progress.js?ver=1" ></script>
+    <script type="text/javascript" src="FileButton.js?ver=1" ></script>
     <script type="text/javascript" >
     jQuery(document).ready(function () {
-  	  	// 글쓰기 토글키
+    	// 글쓰기 토글키
   		$("#con-write").css('display', 'none');
     
   		$("#flip-write").click(function(){
@@ -38,10 +39,9 @@
     	</div>
     	<div id="right-box">
     		<div id="board-line-left">
-    			<label for="file-input">
-        			<i id="icon-write" class="material-icons">&#xE3B6;</i>
-   				</label>
-    			<input id="file-input" type="file" accept="image/*"/>
+    			<input id="file-input" type="file" name="file-input" accept="image/*"/>	
+    			<%-- 디폴트 인풋 파일폼 대신, 오버랩된 아이콘으로 동작 --%>
+        		<i id="icon-write" class="material-icons">&#xE3B6;</i>
     		</div>
     		<div id="board-line-left">
     			<button class="button-write" type="submit" name="write"><i class="material-icons">&#xE255;</i></button>

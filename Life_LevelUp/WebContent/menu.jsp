@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<header>
+<header id="header">
 	<% if ((String)session.getAttribute("ID") == null){%>
 		<div id="left-box">
 			<a id="not-login" href="login.html"><img id="logo-img" src="image/logo.png"></a>

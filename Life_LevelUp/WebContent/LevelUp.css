@@ -117,6 +117,22 @@ h2 {
 
 /* < Board styling >----------------------------------------------------*/
 
+#file-input { 
+	float: left;
+	position: relative;
+	z-index: 2;
+	opacity: 0.1;
+	width: 35px; height: 35px;
+	overflow: hidden;
+	background-color: blue;
+} 
+
+#icon-write {
+	float: left;
+	position: relative;
+	z-index: 1;
+}
+
 #flip-write {
 	margin: 5px 0 10px 0;
 	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.14);
