@@ -15,6 +15,11 @@
   <!--  서블릿 맵핑 : 어떤 action 주소를 불러올때, 해당 서블릿 파일'이름'으로 연결함 -->
   
   <welcome-file-list>
+	<welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <!--  웰컴 파일 : 서버 접속 시 바로 인덱스로 연결되도록 맵핑 -->
+  
+  <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
