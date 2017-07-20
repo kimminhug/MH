@@ -15,7 +15,7 @@ public class Connect_DAO {
 		} 
 		
 		try{
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/LevelUp", "root", "1111");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/LevelUp", "root", "flash21");
 		}catch(SQLException ex){
 			System.out.println("SQL 오류! "+ex.getLocalizedMessage());
 		}

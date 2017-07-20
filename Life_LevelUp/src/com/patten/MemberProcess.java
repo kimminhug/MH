@@ -233,7 +233,7 @@ public class MemberProcess	extends HttpServlet {
 					session.setMaxInactiveInterval(60 * 60 * 2);
 					// 세선 유지시간 : 2시간
 					
-					response.sendRedirect("main.html");
+					response.sendRedirect("index.html");
 				}else{
 					response.sendRedirect("Fail.html");
 				}
