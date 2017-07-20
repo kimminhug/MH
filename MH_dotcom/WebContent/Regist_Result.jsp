@@ -32,11 +32,11 @@
 	
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Simple_Regist", "root", "1111");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "flash21");
 		stmt = conn.createStatement();
 		
 		String query = 
-			"insert into info(ID, pass, name, phone, email, gender) "+	// <- 모든 값을 입력할때엔 멤버변수는 생략 가능!
+			"insert into mh_dotcom.member(ID, pass, name, phone, email, gender) "+	// <- 모든 값을 입력할때엔 멤버변수는 생략 가능!
 			"values('"+ID+"', '"+pass+"', '"+name+"', '"+phone+"', '"+email+"', '"+gender+"')";
 		// INSERT INTO info(ID, pass, name, phone, email, gender) 
 		// VALUES('ID', 'pass', 'name', 'phone', 'email', 'gender')
@@ -48,7 +48,7 @@
 <h1 align="center"><%=name %>님, 환영합니다!</h1>
 
 <table border="1" align="center">
-<form name="info" method="post" action="Main_Login.html" >
+<form name="info" method="post" action="index.html" >
 	<tr>
 		<td align="center" width="100" >ID</td>
 		<td width="150"><%=ID %></td>

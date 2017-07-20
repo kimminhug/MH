@@ -34,18 +34,18 @@
 	}
 	
 	try {
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Simple_regist", "root", "1111");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "flash21");
 		// Connetion 생성!
 		
 		stmt = conn.createStatement();
 		// Statement 생성!
 		
-		up = stmt.executeUpdate("UPDATE info "+
+		up = stmt.executeUpdate("UPDATE mh_dotcom.member "+
 		"SET pass = '"+pass+"', name = '"+name+"', phone = '"+phone+"', email = '"+email+"', gender = '"+gender+
 		"' WHERE ID = '"+ID+"' ");
 		// 해당하는 ID의 DB값을 넘어온 값으로 수정함.
 		
-		rs = stmt.executeQuery("select * from info where ID = '"+ID+"' ");
+		rs = stmt.executeQuery("select * from mh_dotcom.member where ID = '"+ID+"' ");
 		// 해당 ID의 변경된 값을 확인하기 위해 결과를 저장.
 		
 		if (rs.next()){

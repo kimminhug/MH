@@ -6,7 +6,7 @@ function login_submit(index) {
 		document.login.action='Login_Result.jsp';
 	}
 	if (index == 3){
-		document.login.action='Main_Login.html';
+		document.login.action='index.html';
 	}
 	if (index == 4){
 		document.login.action='Modify.jsp';

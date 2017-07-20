@@ -4,12 +4,29 @@
 
 <html>
 <script type="text/javascript" src="login_script.js" ></script>
+<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.cycle2.js"></script>
+<script type="text/javascript" src="js/jquery.cycle2.carousel.js"></script>
+
+<script type="text/javascript">
+	jQuery('.viewport').cycle({
+		fx : 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+		speed : 1000,
+		timeout : 5000,
+		pager : "#mpop_control",
+		pagerActiveClass : 'on',
+		pagerTemplate : "<a href='#' class='point cb hidden'>{{slideNum}}</a>",
+		slides : '> li'
+	});
+</script>
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인 결과</title>
 </head>
 <body>
+
+<div id="middle" align="center"> 
 <form name="login" method="post">
 <% 
 	Class.forName("com.mysql.jdbc.Driver");
@@ -25,13 +42,13 @@
 	String name = "", phone = "", email = "", gender = "";
 	
 	try {
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Simple_regist", "root", "1111");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "flash21");
 		// Connetion 생성!
 		
 		stmt = conn.createStatement();
 		// Statement 생성!
 		
-		rs = stmt.executeQuery("select * from info where ID = '"+ID+"' AND pass = '"+pass+"' ");
+		rs = stmt.executeQuery("select * from MH_dotcom.member where ID = '"+ID+"' AND pass = '"+pass+"' ");
 		// ID, 패스워드가 일치하는 결과값만을 ResultSet에 저장.
 		
 		if (rs.next()){
@@ -65,27 +82,43 @@
 	</tr>
 </table>
 <br>
+			<ul class="viewport">
+				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr01.png" class="img_re" alt=" 관련 이미지"></a></li>
+				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr02.png" class="img_re" alt=" 관련 이미지"></a></li>
+				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr03.png" class="img_re" alt=" 관련 이미지"></a></li>
+				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr04.png" class="img_re" alt=" 관련 이미지"></a></li>
+				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr05.png" class="img_re" alt=" 관련 이미지"></a></li>
+			</ul>
 
-<%
-	} catch (SQLException ex){
-		System.out.println("SQL Exception!" + ex);
-	} catch (Exception ex){
-		System.out.println("Exception : " + ex);
-	} finally {
-		if (rs != null)
-			try { rs.close(); } catch (SQLException ex) {}
-		if (stmt != null)
-			try { stmt.close(); } catch (SQLException ex) {}
-		if (conn != null)
-			try { conn.close(); } catch (Exception ex) {}
-	}
-
-%>
+			<%
+				} catch (SQLException ex) {
+					System.out.println("SQL Exception!" + ex);
+				} catch (Exception ex) {
+					System.out.println("Exception : " + ex);
+				} finally {
+					if (rs != null)
+						try {
+							rs.close();
+						} catch (SQLException ex) {
+						}
+					if (stmt != null)
+						try {
+							stmt.close();
+						} catch (SQLException ex) {
+						}
+					if (conn != null)
+						try {
+							conn.close();
+						} catch (Exception ex) {
+						}
+				}
+			%>
 <br>
 <input type="button" value="로그아웃" onClick='login_submit(3)'>   
 <input type="button" value="정보 수정" onClick='login_submit(4)'>  
 <input type="button" value="회원목록" onClick='login_submit(5)'>
 </form>
+</div>
 
 </body>
 </html>

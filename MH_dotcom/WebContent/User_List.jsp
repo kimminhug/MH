@@ -11,13 +11,13 @@
 	int counter = 0;
 	
 	try {
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Simple_regist", "root", "1111");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "flash21");
 		// Connetion 생성! - DB 드라이버를 연결함
 		
 		stmt = conn.createStatement();
 		// Statement 생성! - 연결된 DB에 쿼리를 실행하기 위해 statement 객체를 생성.
 		
-		rs = stmt.executeQuery("select * from info");
+		rs = stmt.executeQuery("select * from MH_dotcom.member");
 		// 쿼리가 실행된 결과를 ResultSet에 담는다.(테이블의 모든 정보를 담음)
 %>
     
