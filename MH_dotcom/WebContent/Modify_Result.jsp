@@ -99,8 +99,8 @@
 %>
 <br>
 <input type="button" value="로그아웃" onClick='login_submit(3)'> 
-<input type="button" value="뒤로가기" onClick='history.back()'>  
-<input type="button" value="회원목록" onClick='login_submit(5)'>
+<input type="button" value="다시수정" onClick='history.back()'>  
+<input type="button" value="메인으로" onClick='login_submit(2)'>
 </form>
 
 </body>

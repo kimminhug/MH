@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="MH_dotcom">
+    <wb-module deploy-name="Emerald_Tahiti">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/MH_dotcom/build/classes"/>
-        <property name="context-root" value="MH_dotcom"/>
+        <property name="java-output-path" value="/Emerald_Tahiti/build/classes"/>
+        <property name="context-root" value="Emerald_Tahiti"/>
     </wb-module>
 </project-modules>

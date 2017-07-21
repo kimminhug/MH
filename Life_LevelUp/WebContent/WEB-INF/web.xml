@@ -17,7 +17,7 @@
   <welcome-file-list>
 	<welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  <!--  웰컴 파일 : 서버 접속 시 바로 인덱스로 연결되도록 맵핑 -->
+  <!--  웰컴 파일 : 서버 접속 시 바로 인덱스로 연결되도록 맵핑 => 아직 안됨....-->
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

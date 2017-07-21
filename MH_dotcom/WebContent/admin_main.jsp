@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.sql.*" %>
+<%@ page import="java.io.*" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="login_script.js" ></script>
-<script type="text/javascript" src="js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" src="js/jquery.cycle2.js"></script>
-<script type="text/javascript" src="js/jquery.cycle2.carousel.js"></script>
 
 <script type="text/javascript">
 	jQuery('.viewport').cycle({
@@ -22,11 +23,11 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>로그인 결과</title>
+<title>관리자 메인</title>
 </head>
 <body>
 
-<div id="middle" align="center"> 
+<div align="center"> 
 <form name="login" method="post">
 <% 
 	Class.forName("com.mysql.jdbc.Driver");
@@ -38,7 +39,18 @@
 	String ID = request.getParameter("ID");
 	String pass = request.getParameter("pass");
 	
-	session.setAttribute("Login_ID", ID);
+	try{
+		if (session.getAttribute("Login_ID") != null){
+			ID = (String)session.getAttribute("Login_ID");
+			pass = (String)session.getAttribute("Login_pass");
+		}else{
+			session.setAttribute("Login_ID", ID);
+			session.setAttribute("Login_pass", pass);
+		}
+	}catch(NullPointerException ex){
+		session.setAttribute("Login_ID", ID);
+		session.setAttribute("Login_pass", pass);
+	}
 	String name = "", phone = "", email = "", gender = "";
 	
 	try {
@@ -58,12 +70,16 @@
 			gender = rs.getString("gender");
 		}
 		if (name.equals("")){
+			System.out.println("세션에 저장된 ID: "+ID);
+			System.out.println("세션에 저장된 ID: "+pass);
+			session.invalidate();
 %>
 			<script> login_alert();</script>		<!-- 아이디/비밀번호를 잘못 입력했을시, 경고후 뒤로가기처리 -->
 <%		return;
 		}
 %>	
-<h3><%=name %>님 안녕하세요?</h3>
+<div class="main" align="center"><%=name %> 관리자님 안녕하세요?</div>
+<br>
 
 <table cellpadding="6" bordercolor="lightblue" border="1">
 	<tr>
@@ -81,15 +97,7 @@
 			<td><%=gender %></td>
 	</tr>
 </table>
-<br>
-			<ul class="viewport">
-				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr01.png" class="img_re" alt=" 관련 이미지"></a></li>
-				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr02.png" class="img_re" alt=" 관련 이미지"></a></li>
-				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr03.png" class="img_re" alt=" 관련 이미지"></a></li>
-				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr04.png" class="img_re" alt=" 관련 이미지"></a></li>
-				<li><a href="#" alt=" 상세보기"> <img src="img/mbnr05.png" class="img_re" alt=" 관련 이미지"></a></li>
-			</ul>
-
+		
 			<%
 				} catch (SQLException ex) {
 					System.out.println("SQL Exception!" + ex);
@@ -114,8 +122,10 @@
 				}
 			%>
 <br>
-<input type="button" value="로그아웃" onClick='login_submit(3)'>   
-<input type="button" value="정보 수정" onClick='login_submit(4)'>  
+<input type="button" value="로그아웃" onClick='login_submit(3)'>
+<input type="button" value="관리자 정보 수정" onClick='login_submit(4)'>
+<input type="button" value="배너 수정" onClick='login_submit(7)'>
+<input type="button" value="메뉴 수정" onClick='login_submit(8)'>
 <input type="button" value="회원목록" onClick='login_submit(5)'>
 </form>
 </div>

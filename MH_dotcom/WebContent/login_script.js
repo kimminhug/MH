@@ -3,10 +3,10 @@ function login_submit(index) {
 		document.login.action='Regist.html';
 	}
 	if (index == 2){
-		document.login.action='Login_Result.jsp';
+		document.login.action='admin_main.jsp';
 	}
 	if (index == 3){
-		document.login.action='index.html';
+		document.login.action='admin.html';
 	}
 	if (index == 4){
 		document.login.action='Modify.jsp';
@@ -16,6 +16,12 @@ function login_submit(index) {
 	}
 	if (index == 6){
 		document.login.action='Modify_Result.jsp';
+	}
+	if (index == 7){
+		document.login.action='banner_Modify.jsp';
+	}
+	if (index == 8){
+		document.login.action='menu_Modify.jsp';
 	}
 	document.login.submit();
 }
