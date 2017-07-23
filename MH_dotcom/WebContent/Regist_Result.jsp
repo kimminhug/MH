@@ -32,7 +32,7 @@
 	
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "flash21");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "1111");
 		stmt = conn.createStatement();
 		
 		String query = 
@@ -48,7 +48,7 @@
 <h1 align="center"><%=name %>님, 환영합니다!</h1>
 
 <table border="1" align="center">
-<form name="info" method="post" action="index.html" >
+<form name="info" method="post" action="/admin" >
 	<tr>
 		<td align="center" width="100" >ID</td>
 		<td width="150"><%=ID %></td>

@@ -9,18 +9,6 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script type="text/javascript" src="login_script.js" ></script>
 
-<script type="text/javascript">
-	jQuery('.viewport').cycle({
-		fx : 'fade', // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-		speed : 1000,
-		timeout : 5000,
-		pager : "#mpop_control",
-		pagerActiveClass : 'on',
-		pagerTemplate : "<a href='#' class='point cb hidden'>{{slideNum}}</a>",
-		slides : '> li'
-	});
-</script>
-
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>관리자 메인</title>
@@ -54,7 +42,7 @@
 	String name = "", phone = "", email = "", gender = "";
 	
 	try {
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "flash21");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "1111");
 		// Connetion 생성!
 		
 		stmt = conn.createStatement();
