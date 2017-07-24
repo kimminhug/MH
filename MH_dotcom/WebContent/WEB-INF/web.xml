@@ -19,49 +19,13 @@
   	<url-pattern>/admin</url-pattern>
   </servlet-mapping>
   
-  <!-- <servlet>
-    <servlet-name>test1 Servlet</servlet-name>
-    <servlet-class>com.test.Test1</servlet-class>
-    <init-param>
-      <param-name>name</param-name>
-      <param-value>김민횩</param-value>
-    </init-param>
-    <init-param>
-      <param-name>age</param-name>
-      <param-value>27</param-value>
-    </init-param>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>test1 Servlet</servlet-name>
-    <url-pattern>/test1</url-pattern>
-  </servlet-mapping>
-  
   <servlet>
-    <servlet-name>test2 Servlet</servlet-name>
-    <servlet-class>com.test.Test2</servlet-class>
+  	<servlet-name>board_page</servlet-name>
+  	<servlet-class>com.board_Servlet</servlet-class>
   </servlet>
-  
   <servlet-mapping>
-    <servlet-name>test2 Servlet</servlet-name>
-    <url-pattern>/test2</url-pattern>
+  	<servlet-name>board_page</servlet-name>
+  	<url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  
-  <resource-ref>
-    <description>MySQL DataSource</description>
-    <res-ref-name>jdbc/mysql</res-ref-name>
-    <res-type>javax.sql.DataSource</res-type>
-    <res-auth>Container</res-auth>
-  </resource-ref>
-  
-  <servlet>
-    <servlet-name>boardServlet</servlet-name>
-    <servlet-class>com.board.BoardServlet</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-    <servlet-name>boardServlet</servlet-name>
-    <url-pattern>*.do</url-pattern>
-  </servlet-mapping> -->
   
 </web-app>

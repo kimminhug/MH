@@ -1,6 +1,13 @@
     body { padding-left: 70px; padding-right: 70px; background-color: azure; }
     #copyright { position: absolute; right: 80px; top: 105px; color: darkslateblue; font-family: "Trebuchet MS", Dotum;}
-        
+    
+    
+    select[multiple]{
+    	width: 200px;
+     	height: 400px;
+   }
+    
+    
     /* <<< 메뉴바 - 상하위 공통 >>> */
     #topMenu { height: 30px;  width: 100%; background-color: aquamarine; }
         

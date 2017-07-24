@@ -32,7 +32,7 @@
 	
 	try {
 		Class.forName("com.mysql.jdbc.Driver");
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "1111");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "flash21");
 		stmt = conn.createStatement();
 		
 		String query = 

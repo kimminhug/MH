@@ -1,6 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
+    
+    <% 
+ 	   String key = request.getParameter("key")==null ? "" : request.getParameter("key").toString(); 
+    %>
+ <SELECT id="List_2" multiple>
+	<OPTION value="a">Afghanistan</OPTION>
+	<OPTION value="b">Bahamas</OPTION>
+	<OPTION value="c">Barbados</OPTION>
+	<OPTION value="d">Belgium</OPTION>
+	<OPTION value="e">Bhutan</OPTION>
+	<OPTION value="f">China</OPTION>
+	<OPTION value="g">Croatia</OPTION>
+	<OPTION value="h">Denmark</OPTION>
+	<OPTION value="i">France</OPTION>
+</SELECT>
+    
+    
+<%-- 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <link rel="stylesheet" type="text/css" href="css/common.css">
@@ -74,21 +92,12 @@
     	alert("메뉴 변경 완료!");
     	document.menu_upload.submit();
     }
-    
-    
-    
-    
-    $(document).ready(function(){
-    	$('#List_1').click(function(){
-    		var key = $(this).val();
-    		var atr = $(this).attr('atr');
-    		if(atr=='top'){
-        		$.get('./sub_menuList.jsp?key='+key,function(data){
-        			$('#sub').html(data);	
-        		});
-        	}
-    	});
-    });
+    function menuClick(type){
+    	if(type=='top'){
+    		$('#sub').html()
+    	}
+    	
+    }
 </script>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -101,7 +110,7 @@
 <form name="menu_upload" method="post" enctype="multipart/form-data" action="banner_Mod_Result.jsp">
 	<%@include file="menu.jsp"%>
 	<br>
-	<SELECT id="List_1" multiple atr="top">
+	<SELECT id="List_1" multiple onclick="menuClick('top');">
 		<OPTION value="a">Afghanistan</OPTION>
 		<OPTION value="b">Bahamas</OPTION>
 		<OPTION value="c">Barbados</OPTION>
@@ -114,7 +123,17 @@
 	</SELECT>
 	&nbsp;&nbsp;&nbsp;
 	<div id="sub">
-		
+		<SELECT id="List_2" multiple>
+			<OPTION value="a">Afghanistan</OPTION>
+			<OPTION value="b">Bahamas</OPTION>
+			<OPTION value="c">Barbados</OPTION>
+			<OPTION value="d">Belgium</OPTION>
+			<OPTION value="e">Bhutan</OPTION>
+			<OPTION value="f">China</OPTION>
+			<OPTION value="g">Croatia</OPTION>
+			<OPTION value="h">Denmark</OPTION>
+			<OPTION value="i">France</OPTION>
+		</SELECT>
 	</div>
 	
 	
@@ -129,4 +148,4 @@
 </div>
 
 </body>
-</html>
+</html> --%>

@@ -42,7 +42,7 @@
 	String name = "", phone = "", email = "", gender = "";
 	
 	try {
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "1111");
+		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "flash21");
 		// Connetion 생성!
 		
 		stmt = conn.createStatement();
