@@ -7,7 +7,7 @@
                 <a class="menuLink" href="index.jsp">MAIN</a>
             </li>
             <li id="m2" class="topMenuLi">
-                <a class="menuLink" href="intro.html">Intro</a>
+                <a class="menuLink" href="intro.jsp">Intro</a>
             </li>
             <li id="m3" class="topMenuLi">
                 <a class="menuLink longLink" href="#">Fall in Emerald..</a>
@@ -20,14 +20,7 @@
             <li id="m4" class="topMenuLi">
                 <a class="menuLink" href="#">Forum</a>
                 <ul class="submenu">
-                    <li id="sub2_1" class="topMenuLi">
-                    	<a class="submenuLink" href="#">Free</a>
-                    	<ul class="submenu">
-                    		<li id="sub3_1"><a class="submenuLink" href="#">Free1</a></li>
-                    		<li id="sub3_2"><a class="submenuLink" href="#">Free2</a></li>
-                    		<li id="sub3_3"><a class="submenuLink" href="#">Free3</a></li>
-                    	</ul>
-                    </li>
+                    <li id="sub2_1"><a class="submenuLink" href="board_list.do">Free board</a></li>
                     <li id="sub2_2"><a class="submenuLink" href="#">Contact</a></li>
                 </ul>
             </li>

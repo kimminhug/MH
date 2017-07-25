@@ -1,4 +1,16 @@
 @CHARSET "UTF-8";
 
+@import url(https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
+table		{ background-color: beige; border: 0; border-collapse:collapse; border-spacing:0; font-famliy: 'NanumMyeongjo'; color: #8b5864; }
+table caption	{position:absolute;width:0;height:0;font-size:0;line-height:0;overflow:hidden;visibility:hidden;}
+table td	{vertical-align:middle;}
+
 dl, dt, dd { margin:0; display:inline; }
 #center { text-align: center; }
+#left { text-align: left; }
+
+#bbs_title { font-family: "Trebuchet MS"; font-weight: bold; font-size: 30px; color: #21ebd1;}
+#bbs_List { width: 800px; margin: auto;}
+#bbs_subject { font-famliy: 'NanumMyeongjo'; font-weight: 400; text-decoration:none; color:#8b5864;}
+#bbs_pager { text-align:center; text-decoration:none; color:#454545;}

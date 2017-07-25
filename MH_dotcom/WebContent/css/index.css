@@ -1,4 +1,6 @@
-    body { padding-left: 70px; padding-right: 70px; background-color: azure; }
+@import url(https://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+    
+    body { padding-left: 70px; padding-right: 70px; background-color: azure; font-family:"Trebuchet MS", 'NanumGothic'}
     #copyright { position: absolute; right: 80px; top: 105px; color: darkslateblue; font-family: "Trebuchet MS", Dotum;}
     
     
@@ -31,7 +33,7 @@
         width: 100px;                        /* 기본 넓이를 100px로 설정 */
         font-size: 14px;                     /* 폰트 사이즈를 14px로 설정 */
         font-weight: bold;                   /* 폰트를 굵게 설정 */
-        font-family: "Trebuchet MS", Dotum;  /* 기본 폰트를 영어/한글 순서대로 설정 */
+        font-family: "Trebuchet MS", 'NanumGothic';  /* 기본 폰트를 영어/한글 순서대로 설정 */
     }
     .longLink {                     /* <좀 더 긴 메뉴일때 스타일 설정> */
         width: 150px;                       /* 긴 메뉴 길이는 150px로 설정 */
@@ -112,7 +114,7 @@
         width: 460px; height: 108px; border:2px solid aquamarine; 
     }
     .news_a {
-        text-decoration: none; font-family: 맑은 고딕, Dotum; font-size: 13px; color: cornflowerblue;
+        text-decoration: none; font-family: 맑은 고딕; font-size: 13px; color: cornflowerblue;
     }
     
     /* < 스폰서 > */

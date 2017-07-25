@@ -1,96 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-<%-- 코어 사용을 위한 taglib 디렉티브 지정 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	request.setCharacterEncoding("UTF-8");
-	String cp = request.getContextPath();
-%>
+    pageEncoding="UTF-8" import="com.*"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="commong/common.css" type="text/css"/>
-<link rel="stylesheet" href="css/style.css" type="text/css"/>
-<link rel="stylesheet" href="css/BoardContent.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="css/index.css">
+<link rel="stylesheet" type="text/css" href="css/board.css"/>
 
-<c:if test=${!empty sesstionScope.login }">
 <script>
-	function adminDelete(num) {
-		if (confirm("정말로 삭제할까요? 잘 생각해보셈.")){
-			location.href="adminDelete.do?num="+num;
+	function Delete(num) {
+		if (confirm("정말로 삭제하시겠습니까?")){
+			location.href="board_delete.do?num="+num;
 		}
 	}
 </script>
-</c:if>
-<title>MH.com 자유게시판</title>
+<title>Content</title>
 </head>
-
 <body>
-	<div id="bbs">
-		<div id="bbs_title">Powerful MH.com Board</div>
-		<div id="bbsArticle">
-			<div id="bbsArticle_header">
-				<%-- 제목 수신 및 출력 코드 지정 --%>
-				${dto.subject}
-			</div>
-			<div class="bbsArticle_bottomLine">
-				<dl>
-					<dt>작성자</dt>
-					<dd>${dto.name}</dd>
-					<dt>줄수</dt>
-					<dd>10</dd>
-				</dl>
-			</div>
-			<div class="bbsArticle_bottonLine">
-				<dl>
-					<dt>등록일</dt>
-					<%-- 글쓴 날짜 수신 및 출력 --%>
-					<dd>${dto.created}</dd>
-					<dt>조회수</dt>
-					<%-- 조회수 수신 및 출력 --%>
-					<dd>${dto.hitcount}</dd>
-				</dl>
-			</div>
-			<div id="bbsArticle_content">
-				<table width="600" border="0">
-				<tr>
-					<td style="padding: 20px 80px 20px 62px;" valign="top" height="150">
-					<%-- 내용 수신 및 출력 --%>
-					${dto.content}
-					</td>
-				</tr>
-				</table>
-			</div>
-			<div class="bbsArticle_bottomLine">
-				이전글 : 작업중
-			</div>
-			<div class="bbsArticle_noLine">
-				다음글 : 작업중
-			</div>
-		</div>
-		<div class="bbsArticle_noLine" style="text-align:right">
-			From : 127.0.0.1
-		</div>
-		<div id="bbsArticle_footer">
-			<div id="leftFooter">
-				<input type="button" value=" 수정 " class="btn2" onclick="location.href='update.do?num=?{dto.num}'"/>
-				<c:choose>
-				<c:when test="${empty sessionScope.login}">
-					<input type="button" value=" 수정 " class="btn2" onclick="location.href='delete.do?num=?{dto.num}'"/>
-				</c:when><c:otherwise>
-					<input type="button" value=" 수정 " class="btn2" onclick="javascript:adminDelete('$dto.num')"/>
-				</c:otherwise>
-				</c:choose>
-			</div>
-			<div id="rightFooter">
-				<input type="botton" value=" List " class="btn2" onclick="location.href="list.do'"/>
-			</div>
-		</div>
+	<header>
+   		<span><a href="index.jsp"><img src="img/Tahiti_banner.png" width="300px" height="120px"></a></span>
+    	<span id=copyright>Copyright © Air Tahiti Nui 2016</span>
+	</header>
+    
+	<%@include file="menu.jsp"%>
+	<br>
+	<br>
+	<br>
+	<% 
+	board_DTO b_obj = (board_DTO)request.getAttribute("b_obj");
+	
+	if (b_obj == null){
+		response.sendRedirect("Fail.html");
+	}
+	%>
+
+	<div id="bbs_content">
+	<table bgcolor="beige" width="800" cellpadding="5" align="center" border="1">
+		<tr>
+			<td width="200" class="num" align="center"><b>번       호</b></td>
+			<td width="600"><%=b_obj.getNum() %></td>
+		</tr>
+		<tr>
+			<td width="200" class="subject" align="center"><b>제       목</b></td>
+			<td width="600"><%=b_obj.getSubject() %></td>
+		</tr>
+		<tr>
+			<td width="200" class="name" align="center"><b>작  성  자</b></td>
+			<td width="600"><%=b_obj.getName() %></td>
+		</tr>
+		<tr>
+			<td width="200" class="date" align="center"><b>작  성  일</b></td>
+			<td width="600"><%=b_obj.getDate() %></td>
+		</tr>
+		
+		<tr>
+			<td width="50" class="num" align="center"><b>내 용</b></td>
+			<td width="750" height="500"><%=b_obj.getContent() %></td>
+		</tr>
+	</table>
 	</div>
-<br>&nbsp;<br>
+	<br>
+	<div id="bbs_footer" align="center">
+		<input type="reset" value=" 글 수정" class="btn2" onclick="location.href='board_modify.do?num=<%=b_obj.getNum()%>'"/>
+		<input type="button" value=" 글 삭제 " class="btn2" onclick="Delete(<%=b_obj.getNum()%>)"/>
+		<input type="button" value=" 목록으로 " class="btn2" onclick="location.href='board_list.do'"/>
+	</div>
 
 </body>
 </html>

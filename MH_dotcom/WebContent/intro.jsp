@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,35 +24,11 @@
 
 <body>
     <header>
-        <span><a href="main.html"><img src="img/Tahiti_banner.png" width="300px" height="120px"></a></span>
+        <span><a href="index.jsp"><img src="img/Tahiti_banner.png" width="300px" height="120px"></a></span>
         <span id=copyright>Copyright © Air Tahiti Nui 2016</span>
     </header>
     
-    <nav id="topMenu">  
-        <ul>
-            <li id="m1" class="topMenuLi">
-                <a class="menuLink" href="index.jsp">MAIN</a>
-            </li>
-            <li id="m2" class="topMenuLi">
-                <a class="menuLink" href="intro.html">Intro</a>
-            </li>
-            <li id="m3" class="topMenuLi">
-                <a class="menuLink longLink" href="#">Fall in Emerald..</a>
-                <ul class="submenu">
-                    <li><a class="submenuLink longLink" href="#">Tahiti</a></li>
-                    <li><a class="submenuLink longLink" href="#">Bora bora</a></li>
-                    <li><a class="submenuLink longLink" href="#">Moorea</a></li>
-                </ul>
-            </li>
-            <li id="m4" class="topMenuLi">
-                <a class="menuLink" href="#">Forum</a>
-                <ul class="submenu">
-                    <li><a class="submenuLink" href="#">Free</a></li>
-                    <li><a class="submenuLink" href="#">Contact</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+   	<%@include file="menu.jsp"%>
     
     <section>
         <p class="p_title"> Welcome To Emerald Paradise!</p>

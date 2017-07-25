@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.*"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -46,8 +46,16 @@ function sendlt(){
 }
 </script>
 
-<title>Writing...</title>
+<title>Modifing..</title>
 </head>
+
+<% 
+	board_DTO b_obj = (board_DTO)request.getAttribute("b_obj");
+	
+	if (b_obj == null){
+		response.sendRedirect("Fail.html");
+	}
+%>
 
 <body>
 	<header>
@@ -59,27 +67,35 @@ function sendlt(){
 	<br>
 	<br>
 	<br>
-	<div id="bbs_title" align="center">Writing...</div>
-	<br>
-	<form name="write" method="post" action="board_creat_comp.do">
-	<table width="800" cellpadding="10" align="center" border="1">
+	
+	<form name="write" method="post" action="board_modify_comp.do?num=<%=b_obj.getNum() %>">
+	<table width="800" cellpadding="5" align="center" border="1">
 		<tr>
-			<td width="200" class="subject" align="center"><b>제     목</b></td>
-			<td width="600"><input type="text" size="60" name="subject"></td>
+			<td width="200" class="num" align="center"><b>번       호</b></td>
+			<td width="600"><%=b_obj.getNum() %></td>
 		</tr>
 		<tr>
-			<td width="200" class="name" align="center"><b>작성자</b></td>
-			<td width="600"><input type="text" size="20" name="name"></td>
+			<td width="200" class="subject" align="center"><b>제       목</b></td>
+			<td width="600"><input type="text" size="60" name="subject" value='<%=b_obj.getSubject() %>'></td>
 		</tr>
 		<tr>
-			<td width="200" class="date" align="center"><b>내   용</b></td>
-			<td width="600"><textarea rows="30" cols="75" name="content"></textarea></td>
+			<td width="200" class="name" align="center"><b>작  성  자</b></td>
+			<td width="600"><input type="text" size="20" name="name" value='<%=b_obj.getName() %>'></td>
+		</tr>
+		<tr>
+			<td width="200" class="date" align="center"><b>작  성  일</b></td>
+			<td width="600"><%=b_obj.getDate() %></td>
+		</tr>
+		<tr>
+			<td width="50" class="num" align="center"><b>내 용</b></td>
+			<td><textarea rows="30" cols="75" name="content"><%=b_obj.getContent() %></textarea></td>
 		</tr>
 	</table>
 		<br>
 		<div id="bbs_footer" align="center">
-			<input type="button" value=" 등록하기 " class="btn2" onclick="sendlt()"/>
+			<input type="button" value=" 수정하기 " class="btn2" onclick="sendlt()"/>
 			<input type="reset" value=" 다시입력 " class="btn2" onclick="document.write.subject.focus();"/>
+			<input type="reset" value=" 뒤로가기 " class="btn2" onclick="history.back();"/>
 			<input type="button" value=" 목록으로 " class="btn2" onclick="location.href='board_list.do'"/>
 		</div>
 	</form>
