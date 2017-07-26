@@ -30,15 +30,15 @@
 	<table width="800" cellpadding="5" align="center" border="1">
 		<tr>
 			<td width="20" class="num" align="center"><b>번호</b></td>
-			<td width="250" class="subject" align="center"><b>제            목</b></td>
+			<td width="250" class="subject" align="center"><b>제   목</b></td>
 			<td width="100" class="name" align="center"><b>작  성  자</b></td>
 			<td width="30" class="date" align="center"><b>작  성  일</b></td>
 		</tr>
 	
 	<% 
-	ArrayList<board_DTO> b_list = (ArrayList<board_DTO>)application.getAttribute("board_List");
+	ArrayList<board_VO> b_list = (ArrayList<board_VO>)application.getAttribute("board_List");
 	
-	for(board_DTO b_obj : b_list) {
+	for(board_VO b_obj : b_list) {
 	%>
 		 <tr>
 	 		<%-- 출력 항목은 해당 클래스의 멤버변수명과 통일! --%>
@@ -57,10 +57,28 @@
 	<div id="left">
 		<input type="button" value="글 작성" onclick="location.href='board_creat.do'"/>
 	</div>
-	<div id="center">
-		<a id="bbs_pager" href="#">[1]</a>
-		<a id="bbs_pager" href="#">[2]</a>
+	
+	<% paging_VO paging = (paging_VO)request.getAttribute("paging"); %>
+	
+	<div class="center">
+    <a href="javascript:goPage(<%=paging.getFirstPageNo() %>)" class="first">처음 페이지</a>
+    <a href="javascript:goPage(<%=paging.getPrevPageNo() %>)" class="prev">이전 페이지</a>
+    <span>
+        <%for (int i=paging.getStartPageNo(); i<paging.getEndPageNo(); i++){
+        	if (i == paging.getPageNo()){
+       	%>
+        		<a href="javascript:goPage(<%=i %>)" class="choice"><%=i %></a>
+        <%}else{%>
+				<a href="javascript:goPage(<%=i %>)"><%=i %></a>
+		<%	
+        	}
+        }
+        %>	
+    </span>
+    <a href="javascript:goPage(<%=paging.getNextPageNo() %>)" class="next">다음 페이지</a>
+    <a href="javascript:goPage(<%=paging.getFinalPageNo() %>)" class="last">마지막 페이지</a>
 	</div>
+	
 	</div>
 </div>
 

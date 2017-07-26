@@ -22,9 +22,9 @@ public class board_DAO {
 		// DAO의 공통적인 부분(JDBC 드라이버 연결)은 생성자로 해결
 	}
 	
-	public ArrayList<board_DTO> select_Board(){
-		String query = "SELECT * FROM MH_dotcom.board ORDER BY num DESC";	// (참고)순번은 내림차순이 최신부터 나온다
-		ArrayList<board_DTO> b_list = new ArrayList<board_DTO>();
+	public ArrayList<board_VO> select_Board(int limit_start, int limit_end){
+		String query = "SELECT * FROM MH_dotcom.board ORDER BY num DESC LIMIT "+limit_start+", "+limit_end ;	// (참고)순번은 내림차순이 최신부터 나온다
+		ArrayList<board_VO> b_list = new ArrayList<board_VO>();
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -32,7 +32,7 @@ public class board_DAO {
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()){
-				board_DTO b_obj = new board_DTO();
+				board_VO b_obj = new board_VO();
 				
 				b_obj.setNum(rs.getInt("num"));
 				b_obj.setSubject(rs.getString("subject"));
@@ -56,9 +56,32 @@ public class board_DAO {
 		return null;
 	}
 	
-	public board_DTO view_Board(int num){
+	public int select_Board_cnt(){
+		String query = "SELECT count(*) as cnt FROM MH_dotcom.board";	// (참고)순번은 내림차순이 최신부터 나온다
+		int cnt = 0;
+		
+		try {
+			Statement stmt = conn.createStatement();
+			
+			ResultSet rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				cnt = rs.getInt("cnt");
+			}
+			
+			stmt.close();
+			rs.close();
+			
+		}catch(SQLException ex){
+			System.out.println("SQL 게시판 리스트 에러 : "+ex.getLocalizedMessage());
+		}
+		
+		return cnt;
+	}
+	
+	public board_VO view_Board(int num){
 		String query = "SELECT * FROM MH_dotcom.board WHERE num = "+num;
-		board_DTO b_obj = new board_DTO();
+		board_VO b_obj = new board_VO();
 		
 		try {
 			Statement stmt = conn.createStatement();
@@ -85,7 +108,7 @@ public class board_DAO {
 		return null;
 	}
 	
-	public boolean insert_Board(board_DTO b_obj){
+	public boolean insert_Board(board_VO b_obj){
 		String query = "INSERT INTO MH_dotcom.board(subject, name, content) values (?, ?, ?)";
 		
 		try {
@@ -110,7 +133,7 @@ public class board_DAO {
 		return true;
 	}
 	
-	public boolean modify_Board(board_DTO b_obj,int num){
+	public boolean modify_Board(board_VO b_obj,int num){
 		String query = "UPDATE MH_dotcom.board SET subject=?, name=?, content=? WHERE num="+num;
 		
 		try {

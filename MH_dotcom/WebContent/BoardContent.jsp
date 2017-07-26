@@ -28,7 +28,7 @@
 	<br>
 	<br>
 	<% 
-	board_DTO b_obj = (board_DTO)request.getAttribute("b_obj");
+	board_VO b_obj = (board_VO)request.getAttribute("b_obj");
 	
 	if (b_obj == null){
 		response.sendRedirect("Fail.html");

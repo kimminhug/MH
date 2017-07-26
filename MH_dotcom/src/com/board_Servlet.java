@@ -9,19 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class board_Servlet extends HttpServlet {
-	public void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		process(request, response);
-	}
-	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		process(request, response);
+		doPost(request, response);
+		// doPost와 같은 과정 수행
 	}
-	// get이던 post던 같은 과정 수행
 	
-	void process(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
+	public void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String uri = request.getRequestURI();
 		
@@ -31,10 +26,22 @@ public class board_Servlet extends HttpServlet {
 		//************** 게시판 리스트 *****************************************************
 		if (uri.indexOf("board_list.do") != -1){
 			board_DAO dao = new board_DAO();
-			ArrayList<board_DTO> board_List = dao.select_Board();
 			
+			ArrayList<board_VO> board_List = new ArrayList<>();
+			paging_VO paging = new paging_VO();
+			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+			
+			// 페이징을 위해 컨트롤에서 정해줘야 할 것 : 현재 페이지 번호, 페이지당 글 수(디폴트 :10), 글 수 총합
+			paging.setPageNo(pageNo);
+	        paging.setPageSize(4);
+	        paging.setTotalCount(dao.select_Board_cnt());
+	        
+	        board_List = dao.select_Board(paging.getLimit_start(), paging.getLimit_end());
+	        // limit로 페이징된 쿼리로 리스트 받음.
+	        
 			if (board_List != null){
 				request.getServletContext().setAttribute("board_List", board_List);
+				request.getServletContext().setAttribute("paging", paging);
 				request.getRequestDispatcher("BoardList.jsp").forward(request, response);
 			}else{
 				response.sendRedirect("Fail.jsp");
@@ -49,7 +56,7 @@ public class board_Servlet extends HttpServlet {
 		//************** 게시판 작성완료 *****************************************************
 		if (uri.indexOf("board_creat_comp.do") != -1){
 			board_DAO dao = new board_DAO();
-			board_DTO b_obj = new board_DTO();
+			board_VO b_obj = new board_VO();
 			
 			b_obj.setSubject((String)request.getParameter("subject"));
 			b_obj.setName((String)request.getParameter("name"));
@@ -69,7 +76,7 @@ public class board_Servlet extends HttpServlet {
 		if (uri.indexOf("board_content.do") != -1){
 			board_DAO dao = new board_DAO();
 			int num = Integer.parseInt(request.getParameter("num"));
-			board_DTO b_obj = dao.view_Board(num);
+			board_VO b_obj = dao.view_Board(num);
 			
 			if (b_obj != null){
 				request.setAttribute("b_obj", b_obj);
@@ -82,7 +89,7 @@ public class board_Servlet extends HttpServlet {
 		if (uri.indexOf("board_modify.do") != -1){
 			board_DAO dao = new board_DAO();
 			int num = Integer.parseInt(request.getParameter("num"));
-			board_DTO b_obj = dao.view_Board(num);
+			board_VO b_obj = dao.view_Board(num);
 			
 			if (b_obj != null){
 				b_obj.setContent(b_obj.getContent().replace("<br>", "\r\n").replace("&nbsp;", " "));
@@ -98,7 +105,7 @@ public class board_Servlet extends HttpServlet {
 		if (uri.indexOf("board_modify_comp.do") != -1){
 			board_DAO dao = new board_DAO();
 			int num = Integer.parseInt(request.getParameter("num"));
-			board_DTO b_obj = new board_DTO();
+			board_VO b_obj = new board_VO();
 			
 			b_obj.setSubject((String)request.getParameter("subject"));
 			b_obj.setName((String)request.getParameter("name"));
