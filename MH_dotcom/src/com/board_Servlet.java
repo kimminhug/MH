@@ -29,23 +29,25 @@ public class board_Servlet extends HttpServlet {
 			
 			ArrayList<board_VO> board_List = new ArrayList<>();
 			paging_VO paging = new paging_VO();
-			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
+			int pageNo = 0;
+			
+			try{
+				pageNo = Integer.parseInt(request.getParameter("page").toString());
+			}catch(Exception ex){}
+			
+			System.out.println("현재 페이지 : "+pageNo);
 			
 			// 페이징을 위해 컨트롤에서 정해줘야 할 것 : 현재 페이지 번호, 페이지당 글 수(디폴트 :10), 글 수 총합
 			paging.setPageNo(pageNo);
-	        paging.setPageSize(4);
+	        paging.setPageSize(10);
 	        paging.setTotalCount(dao.select_Board_cnt());
 	        
 	        board_List = dao.select_Board(paging.getLimit_start(), paging.getLimit_end());
 	        // limit로 페이징된 쿼리로 리스트 받음.
 	        
-			if (board_List != null){
-				request.getServletContext().setAttribute("board_List", board_List);
-				request.getServletContext().setAttribute("paging", paging);
-				request.getRequestDispatcher("BoardList.jsp").forward(request, response);
-			}else{
-				response.sendRedirect("Fail.jsp");
-			}
+			request.getServletContext().setAttribute("board_List", board_List);
+			request.getServletContext().setAttribute("paging", paging);
+			request.getRequestDispatcher("BoardList.jsp").forward(request, response);
 		}
 		
 		//************** 게시판 작성이동 *****************************************************

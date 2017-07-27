@@ -8,6 +8,12 @@
 <title>Emerald Tahiti 자유게시판</title>
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/board.css"/>
+<script type="text/javascript">
+	function goPage(num) {
+		location.href = "board_list.do?page="+num;
+	}
+
+</script>
 
 </head>
 
@@ -58,25 +64,25 @@
 		<input type="button" value="글 작성" onclick="location.href='board_creat.do'"/>
 	</div>
 	
-	<% paging_VO paging = (paging_VO)request.getAttribute("paging"); %>
+	<% paging_VO paging = (paging_VO)application.getAttribute("paging"); %>
 	
 	<div class="center">
-    <a href="javascript:goPage(<%=paging.getFirstPageNo() %>)" class="first">처음 페이지</a>
-    <a href="javascript:goPage(<%=paging.getPrevPageNo() %>)" class="prev">이전 페이지</a>
+    <a href="javascript:goPage(<%=paging.getFirstPageNo() %>)" class="first" id="bbs_pager">|◀</a>&nbsp;
+    <a href="javascript:goPage(<%=paging.getPrevPageNo() %>)" class="prev" id="bbs_pager">◀</a>&nbsp;&nbsp;
     <span>
-        <%for (int i=paging.getStartPageNo(); i<paging.getEndPageNo(); i++){
+        <%for (int i=paging.getStartPageNo(); i<=paging.getEndPageNo(); i++){
         	if (i == paging.getPageNo()){
        	%>
-        		<a href="javascript:goPage(<%=i %>)" class="choice"><%=i %></a>
-        <%}else{%>
-				<a href="javascript:goPage(<%=i %>)"><%=i %></a>
+        		<a href="javascript:goPage(<%=i %>)" class="choice" id="bbs_pager"><%=i %></a>&nbsp;
+        <%	}else{ %>
+				<a href="javascript:goPage(<%=i %>)" id="bbs_pager"><%=i %></a>&nbsp;
 		<%	
         	}
         }
         %>	
-    </span>
-    <a href="javascript:goPage(<%=paging.getNextPageNo() %>)" class="next">다음 페이지</a>
-    <a href="javascript:goPage(<%=paging.getFinalPageNo() %>)" class="last">마지막 페이지</a>
+    </span>&nbsp;
+    <a href="javascript:goPage(<%=paging.getNextPageNo() %>)" class="next" id="bbs_pager">▶</a>&nbsp;
+    <a href="javascript:goPage(<%=paging.getFinalPageNo() %>)" class="last" id="bbs_pager">▶|</a>
 	</div>
 	
 	</div>
