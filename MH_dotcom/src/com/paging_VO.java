@@ -12,7 +12,6 @@ public class paging_VO {
     private int totalCount; // 게시 글 전체 수
     
     private int limit_start; // 리미트 쿼리 시작 번호
-    private int limit_end; // 리미트 쿼리 끝 번호
     
     
     public int getLimit_start() {
@@ -21,14 +20,6 @@ public class paging_VO {
 
 	public void setLimit_start(int limit_start) {
 		this.limit_start = limit_start;
-	}
-
-	public int getLimit_end() {
-		return limit_end;
-	}
-
-	public void setLimit_end(int limit_end) {
-		this.limit_end = limit_end;
 	}
 
 	public int getPageSize() {
@@ -148,7 +139,6 @@ public class paging_VO {
         this.setFinalPageNo(finalPage); // 마지막 페이지 번호
         
         this.limit_start = (this.pageNo - 1) * this.pageSize; // SELECT시에 분기되는 limit 시작 지점
-        this.limit_end = this.pageNo * this.pageSize; // SELECT시에 분기되는 limit 끝 지점
     }
 
 }

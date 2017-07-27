@@ -33,14 +33,20 @@
 	if (b_obj == null){
 		response.sendRedirect("Fail.html");
 	}
+	
+	if (b_obj.getNotice() == 1){
 	%>
-
+	<div id="bbs_title" align="center">Notice</div>
+	<%} %>
+	<br>
 	<div id="bbs_content">
 	<table bgcolor="beige" width="800" cellpadding="5" align="center" border="1">
+		<% if(b_obj.getNotice() == 0){ %>
 		<tr>
 			<td width="200" class="num" align="center"><b>번       호</b></td>
 			<td width="600"><%=b_obj.getNum() %></td>
 		</tr>
+		<%} %>
 		<tr>
 			<td width="200" class="subject" align="center"><b>제       목</b></td>
 			<td width="600"><%=b_obj.getSubject() %></td>
@@ -62,6 +68,7 @@
 	</div>
 	<br>
 	<div id="bbs_footer" align="center">
+		<input type="button" value=" 답글쓰기 " class="btn2" onclick="location.href='board_reply.do?num=<%=b_obj.getNum()%>'"/>
 		<input type="reset" value=" 글 수정" class="btn2" onclick="location.href='board_modify.do?num=<%=b_obj.getNum()%>'"/>
 		<input type="button" value=" 글 삭제 " class="btn2" onclick="Delete(<%=b_obj.getNum()%>)"/>
 		<input type="button" value=" 목록으로 " class="btn2" onclick="location.href='board_list.do'"/>

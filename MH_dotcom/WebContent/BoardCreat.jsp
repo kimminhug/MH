@@ -65,7 +65,8 @@ function sendlt(){
 	<table width="800" cellpadding="10" align="center" border="1">
 		<tr>
 			<td width="200" class="subject" align="center"><b>제     목</b></td>
-			<td width="600"><input type="text" size="60" name="subject"></td>
+			<td width="600"><input type="text" size="60" name="subject">&nbsp;&nbsp;
+			<span>공지여부 <input type="checkbox" name="notice" value="1"></span></td>
 		</tr>
 		<tr>
 			<td width="200" class="name" align="center"><b>작성자</b></td>

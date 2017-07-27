@@ -37,24 +37,55 @@
 		<tr>
 			<td width="20" class="num" align="center"><b>번호</b></td>
 			<td width="250" class="subject" align="center"><b>제   목</b></td>
-			<td width="100" class="name" align="center"><b>작  성  자</b></td>
+			<td width="100" class="name" align="center"><b>작  성  자</b></td> 
 			<td width="30" class="date" align="center"><b>작  성  일</b></td>
 		</tr>
 	
 	<% 
-	ArrayList<board_VO> b_list = (ArrayList<board_VO>)application.getAttribute("board_List");
+	try{
+		ArrayList<board_VO> n_list = (ArrayList<board_VO>)application.getAttribute("board_Notice");
+		
+		for(board_VO b_obj : n_list) {
 	
-	for(board_VO b_obj : b_list) {
 	%>
-		 <tr>
+		 <tr id="notice">
 	 		<%-- 출력 항목은 해당 클래스의 멤버변수명과 통일! --%>
-	 		<td class="num" align="center"><%=b_obj.getNum() %></td>
+	 		<td class="notice" align="center">공지</td>
 	 		<td class="subject"><a id="bbs_subject" href="board_content.do?num=<%=b_obj.getNum()%>"><%=b_obj.getSubject() %></a></td>
 	 		<td class="name" align="center"><%=b_obj.getName() %></td>
 	 		<td class="date" align="center"><%=b_obj.getDate() %></td>
 	 	</tr>
 	<% 
-	}
+		}
+	}catch(Exception ex){}
+	%>
+	
+	<% 
+	try{
+		ArrayList<board_VO> b_list = (ArrayList<board_VO>)application.getAttribute("board_List");
+	
+		for(board_VO b_obj : b_list) {
+	%>
+		 <tr>
+	 		<%-- 출력 항목은 해당 클래스의 멤버변수명과 통일! --%>
+	 		<td class="num" align="center"><%=b_obj.getNum() %></td>
+	 		<td class="subject">
+	 			<a id="bbs_subject" href="board_content.do?num=<%=b_obj.getNum()%>">
+	 			<% 	for (int i=0; i<b_obj.getStep(); i++){%>
+	 					&nbsp;&nbsp;&nbsp;
+	 			<% 	} 
+	 			   	if (b_obj.getStep() != 0){%>  
+	 			   		<img alt="reply" src="/img/board/reply.png">
+	 			<%	} %>
+	 				<%=b_obj.getSubject() %>
+	 			</a>
+	 		</td>
+	 		<td class="name" align="center"><%=b_obj.getName() %></td>
+	 		<td class="date" align="center"><%=b_obj.getDate() %></td>
+	 	</tr>
+	<% 
+		}
+	}catch(Exception ex){}
 	%>
 	
 	</table>

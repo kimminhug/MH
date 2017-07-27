@@ -5,8 +5,40 @@ import java.io.Serializable;
 public class board_VO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private int num;
+	private int num, notice, ref, step, ref_order;
 	private String subject, name, date, content;
+	
+	public int getRef() {
+		return ref;
+	}
+
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+
+	public int getStep() {
+		return step;
+	}
+
+	public void setStep(int step) {
+		this.step = step;
+	}
+
+	public int getRef_order() {
+		return ref_order;
+	}
+
+	public void setRef_order(int ref_order) {
+		this.ref_order = ref_order;
+	}
+
+	public int getNotice() {
+		return notice;
+	}
+
+	public void setNotice(int notice) {
+		this.notice = notice;
+	}
 
 	public int getNum() {
 		return num;

@@ -9,7 +9,10 @@ table td	{vertical-align:middle;}
 dl, dt, dd { margin:0; display:inline; }
 #center { text-align: center; }
 #left { text-align: left; }
+#right { text-align: right; }
 
+.notice { font-weight: bold; }
+#notice { background-color: #ffb62f;}
 #bbs_title { font-family: "Trebuchet MS"; font-weight: bold; font-size: 30px; color: #21ebd1;}
 #bbs_List { width: 800px; margin: auto;}
 #bbs_subject { font-famliy: 'NanumMyeongjo'; font-weight: 400; text-decoration:none; color:#8b5864;}

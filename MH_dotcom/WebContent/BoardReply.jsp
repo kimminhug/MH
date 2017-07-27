@@ -51,7 +51,8 @@ function sendlt(){
 
 <% 
 	board_VO b_obj = (board_VO)request.getAttribute("b_obj");
-	
+	String text_Add = "\r\n\r\n☞ "+b_obj.getName()+"님의 글\r\n==========================================================\r\n";
+
 	if (b_obj == null){
 		response.sendRedirect("Fail.html");
 	}
@@ -67,38 +68,24 @@ function sendlt(){
 	<br>
 	<br>
 	<br>
-	
-	<form name="write" method="post" action="board_modify_comp.do?num=<%=b_obj.getNum() %>">
+	<form name="write" method="post" action="board_reply_comp.do?num=<%=b_obj.getNum()%>&step=<%=b_obj.getStep()%>">
 	<table width="800" cellpadding="5" align="center" border="1">
 		<tr>
-			<td width="200" class="num" align="center"><b>번       호</b></td>
-			<td width="600"><%=b_obj.getNum() %></td>
-		</tr>
-		<tr>
 			<td width="200" class="subject" align="center"><b>제       목</b></td>
-			<td width="600"><input type="text" size="60" name="subject" value='<%=b_obj.getSubject() %>'>
-			<% if (b_obj.getStep() == 0){ %>
-			&nbsp;&nbsp;
-			<span>공지여부 <input type="checkbox" name="notice" value=1 <%if(b_obj.getNotice() == 1){%>checked="checked"<%} %>></span>
-			<% } %>
-			</td>
+			<td width="600"><input type="text" size="60" name="subject" value='Re: <%=b_obj.getSubject() %>'></td>
 		</tr>
 		<tr>
 			<td width="200" class="name" align="center"><b>작  성  자</b></td>
-			<td width="600"><input type="text" size="20" name="name" value='<%=b_obj.getName() %>'></td>
-		</tr>
-		<tr>
-			<td width="200" class="date" align="center"><b>작  성  일</b></td>
-			<td width="600"><%=b_obj.getDate() %></td>
+			<td width="600"><input type="text" size="20" name="name"></td>
 		</tr>
 		<tr>
 			<td width="50" class="num" align="center"><b>내 용</b></td>
-			<td><textarea rows="30" cols="75" name="content"><%=b_obj.getContent() %></textarea></td>
+			<td><textarea rows="30" cols="75" name="content"><%=b_obj.getContent() %><%=text_Add %></textarea></td>
 		</tr>
 	</table>
 		<br>
 		<div id="bbs_footer" align="center">
-			<input type="button" value=" 수정하기 " class="btn2" onclick="sendlt()"/>
+			<input type="button" value=" 답글작성 " class="btn2" onclick="sendlt()"/>
 			<input type="reset" value=" 다시입력 " class="btn2" onclick="document.write.subject.focus();"/>
 			<input type="reset" value=" 뒤로가기 " class="btn2" onclick="history.back();"/>
 			<input type="button" value=" 목록으로 " class="btn2" onclick="location.href='board_list.do'"/>
