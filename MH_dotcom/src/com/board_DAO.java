@@ -2,10 +2,11 @@ package com;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class board_DAO {
 	private static Connection conn;
-	private static String whereTxt= "where notice=1";
+	
 	public board_DAO() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -16,7 +17,7 @@ public class board_DAO {
 		try{
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/MH_dotcom", "root", "flash21");
 		}catch(SQLException ex){
-			System.out.println("SQL 오류! "+ex.getLocalizedMessage());
+			System.out.println("DB 테이블 메인 진입 실패! "+ex.getLocalizedMessage());
 		}
 		
 		// DAO의 공통적인 부분(JDBC 드라이버 연결)은 생성자로 해결
@@ -178,11 +179,13 @@ public class board_DAO {
 				return false;
 			}
 			
+			return true;
+			
 		}catch(SQLException ex){
 			System.out.println("DB insert error! : "+ex.getLocalizedMessage());
 		}
 		
-		return true;
+		return false;
 	}
 	
 	public boolean modify_Board(board_VO b_obj,int num){
@@ -244,6 +247,10 @@ public class board_DAO {
 			if(rs.next()){
 				max = rs.getInt("max");
 			}
+			
+			stmt.close();
+			rs.close();
+			
 		}catch(SQLException ex){
 			System.out.println("DB cal_Max_ref error! : "+ex.getLocalizedMessage());
 		}
@@ -262,6 +269,10 @@ public class board_DAO {
 			if(rs.next()){
 				max = rs.getInt("max");
 			}
+			
+			stmt.close();
+			rs.close();
+			
 		}catch(SQLException ex){
 			System.out.println("DB cal_Max_num error! : "+ex.getLocalizedMessage());
 		}
@@ -269,7 +280,68 @@ public class board_DAO {
 		return max+1;	// 답글그룹 중, 제일 높은 번호보다 +1하여 다음 번호로 반환
 	}
 	
-	public void close(){
+	public int get_RowNum(int num){
+		String query = "SELECT num FROM board ORDER BY ref DESC, ref_order";
+		int rowNum = 0;
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				rowNum++;
+				
+				if (rs.getInt("num") == num){
+					break;
+				}
+			}
+			
+			stmt.close();
+			rs.close();
+			
+			return rowNum;
+			
+		}catch(SQLException ex){
+			System.out.println("SQL rowNum error! : "+ex.getLocalizedMessage());
+		}
+		
+		return -1;
+	}
+	
+	public int[] get_Prev_Next(int rowNum){
+		String query = "SELECT num FROM board ORDER BY ref DESC, ref_order";
+		int[] numSet = {-1, -1};
+		int cnt = 0;
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			
+			while (rs.next()){
+				cnt++;
+				
+				if (cnt == (rowNum-1)){
+					numSet[0] = rs.getInt("num");
+				}
+				if (cnt == (rowNum+1)){
+					numSet[1] = rs.getInt("num");
+				}
+			}
+			
+			stmt.close();
+			rs.close();
+			
+			return numSet;
+			
+		}catch(SQLException ex){
+			System.out.println("SQL rowNum error! : "+ex.getLocalizedMessage());
+		}
+		
+		return null;
+	}
+	
+	
+	public void conn_close(){
 		try {
 			if (conn != null){
 				conn.close();

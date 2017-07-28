@@ -68,7 +68,7 @@ function sendlt(){
 	<br>
 	<br>
 	<br>
-	<form name="write" method="post" action="board_reply_comp.do?num=<%=b_obj.getNum()%>&step=<%=b_obj.getStep()%>">
+	<form name="write" method="post" action="board_reply_comp.do?ref=<%=b_obj.getRef()%>&step=<%=b_obj.getStep()%>">
 	<table width="800" cellpadding="5" align="center" border="1">
 		<tr>
 			<td width="200" class="subject" align="center"><b>제       목</b></td>
@@ -80,7 +80,7 @@ function sendlt(){
 		</tr>
 		<tr>
 			<td width="50" class="num" align="center"><b>내 용</b></td>
-			<td><textarea rows="30" cols="75" name="content"><%=b_obj.getContent() %><%=text_Add %></textarea></td>
+			<td><textarea rows="25" cols="75" name="content"><%=b_obj.getContent() %><%=text_Add %></textarea></td>
 		</tr>
 	</table>
 		<br>

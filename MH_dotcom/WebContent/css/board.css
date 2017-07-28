@@ -2,9 +2,10 @@
 
 @import url(https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
 
-table		{ background-color: beige; border: 0; border-collapse:collapse; border-spacing:0; font-famliy: 'NanumMyeongjo'; color: #8b5864; }
-table caption	{position:absolute;width:0;height:0;font-size:0;line-height:0;overflow:hidden;visibility:hidden;}
-table td	{vertical-align:middle;}
+table		{ background-color: beige; border: 0; border-collapse:collapse; border-spacing:0; font-famliy: 'NanumMyeongjo'; color: #8b5864;}
+table caption	{ position:absolute;width:0;height:0;font-size:0;line-height:0;overflow:hidden;visibility:hidden;}
+table td	{ vertical-align:middle;}
+#prv_next { background: #f3fb91;}
 
 dl, dt, dd { margin:0; display:inline; }
 #center { text-align: center; }
@@ -17,3 +18,5 @@ dl, dt, dd { margin:0; display:inline; }
 #bbs_List { width: 800px; margin: auto;}
 #bbs_subject { font-famliy: 'NanumMyeongjo'; font-weight: 400; text-decoration:none; color:#8b5864;}
 #bbs_pager { text-align:center; text-decoration:none; color:#454545;}
+#bbs_prev { text-align:center; background-color:#46f0f4; color:#ffffff;}
+#bbs_next { text-align:center; background-color:#5ae99a; color:#ffffff;}

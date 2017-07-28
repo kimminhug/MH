@@ -6,8 +6,16 @@ public class board_VO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private int num, notice, ref, step, ref_order;
-	private String subject, name, date, content;
+	private String subject, name, date, content, file;
 	
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
 	public int getRef() {
 		return ref;
 	}

@@ -75,7 +75,7 @@
 	 					&nbsp;&nbsp;&nbsp;
 	 			<% 	} 
 	 			   	if (b_obj.getStep() != 0){%>  
-	 			   		<img alt="reply" src="/img/board/reply.png">
+	 			   		<img alt="reply" src="<%=request.getContextPath()%>/img/board/reply_front.png">
 	 			<%	} %>
 	 				<%=b_obj.getSubject() %>
 	 			</a>

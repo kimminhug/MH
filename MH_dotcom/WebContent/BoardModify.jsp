@@ -77,10 +77,8 @@ function sendlt(){
 		<tr>
 			<td width="200" class="subject" align="center"><b>제       목</b></td>
 			<td width="600"><input type="text" size="60" name="subject" value='<%=b_obj.getSubject() %>'>
-			<% if (b_obj.getStep() == 0){ %>
 			&nbsp;&nbsp;
 			<span>공지여부 <input type="checkbox" name="notice" value=1 <%if(b_obj.getNotice() == 1){%>checked="checked"<%} %>></span>
-			<% } %>
 			</td>
 		</tr>
 		<tr>
@@ -93,7 +91,7 @@ function sendlt(){
 		</tr>
 		<tr>
 			<td width="50" class="num" align="center"><b>내 용</b></td>
-			<td><textarea rows="30" cols="75" name="content"><%=b_obj.getContent() %></textarea></td>
+			<td><textarea rows="25" cols="75" name="content"><%=b_obj.getContent() %></textarea></td>
 		</tr>
 	</table>
 		<br>

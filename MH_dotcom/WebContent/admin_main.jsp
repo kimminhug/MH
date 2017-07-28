@@ -25,19 +25,19 @@
 	
 	request.setCharacterEncoding("UTF-8");
 	String ID = request.getParameter("ID");
-	String pass = request.getParameter("pass");
+	String hash = request.getParameter("hash");
 	
 	try{
 		if (session.getAttribute("Login_ID") != null){
 			ID = (String)session.getAttribute("Login_ID");
-			pass = (String)session.getAttribute("Login_pass");
+			hash = (String)session.getAttribute("Login_hash");
 		}else{
 			session.setAttribute("Login_ID", ID);
-			session.setAttribute("Login_pass", pass);
+			session.setAttribute("Login_hash", hash);
 		}
 	}catch(NullPointerException ex){
 		session.setAttribute("Login_ID", ID);
-		session.setAttribute("Login_pass", pass);
+		session.setAttribute("Login_hash", hash);
 	}
 	String name = "", phone = "", email = "", gender = "";
 	
@@ -48,7 +48,7 @@
 		stmt = conn.createStatement();
 		// Statement 생성!
 		
-		rs = stmt.executeQuery("select * from MH_dotcom.member where ID = '"+ID+"' AND pass = '"+pass+"' ");
+		rs = stmt.executeQuery("select * from MH_dotcom.member where ID = '"+ID+"' AND hash = '"+hash+"' ");
 		// ID, 패스워드가 일치하는 결과값만을 ResultSet에 저장.
 		
 		if (rs.next()){
@@ -59,7 +59,7 @@
 		}
 		if (name.equals("")){
 			System.out.println("세션에 저장된 ID: "+ID);
-			System.out.println("세션에 저장된 ID: "+pass);
+			System.out.println("세션에 저장된 hash: "+hash);
 			session.invalidate();
 %>
 			<script> login_alert();</script>		<!-- 아이디/비밀번호를 잘못 입력했을시, 경고후 뒤로가기처리 -->

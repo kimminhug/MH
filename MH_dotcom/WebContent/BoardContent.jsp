@@ -40,7 +40,7 @@
 	<%} %>
 	<br>
 	<div id="bbs_content">
-	<table bgcolor="beige" width="800" cellpadding="5" align="center" border="1">
+	<table width="800" cellpadding="5" align="center">
 		<% if(b_obj.getNotice() == 0){ %>
 		<tr>
 			<td width="200" class="num" align="center"><b>번       호</b></td>
@@ -49,21 +49,40 @@
 		<%} %>
 		<tr>
 			<td width="200" class="subject" align="center"><b>제       목</b></td>
-			<td width="600"><%=b_obj.getSubject() %></td>
+			<td><%=b_obj.getSubject() %></td>
 		</tr>
 		<tr>
-			<td width="200" class="name" align="center"><b>작  성  자</b></td>
-			<td width="600"><%=b_obj.getName() %></td>
+			<td class="name" align="center"><b>작  성  자</b></td>
+			<td><%=b_obj.getName() %></td>
 		</tr>
 		<tr>
-			<td width="200" class="date" align="center"><b>작  성  일</b></td>
-			<td width="600"><%=b_obj.getDate() %></td>
+			<td class="date" align="center"><b>작  성  일</b></td>
+			<td><%=b_obj.getDate() %></td>
 		</tr>
 		
 		<tr>
-			<td width="50" class="num" align="center"><b>내 용</b></td>
-			<td width="750" height="500"><%=b_obj.getContent() %></td>
+			<td class="content" align="center"><b>내 용</b></td>
+			<td height="300"><%=b_obj.getContent() %></td>
 		</tr>
+	</table>
+	<br>
+	<table id="prv_next" width="800" cellpadding="5" align="center">
+		<% 	if ((int)request.getAttribute("prevNum") != -1){ %>
+		<tr>
+			<td width="150" id="bbs_prev">＜ Prev</a></td>	
+			<td width="650"><a id="bbs_subject" href="board_content.do?num=<%=(int)request.getAttribute("prevNum")%>">
+				&nbsp;<%=request.getAttribute("prevSubject") %>
+			</a></td>
+		</tr>	
+		<% } 
+			if ((int)request.getAttribute("nextNum") != -1){%>
+		<tr>
+			<td width="150" id="bbs_next">Next ＞</a></td>	
+			<td width="550"><a id="bbs_subject" href="board_content.do?num=<%=(int)request.getAttribute("nextNum")%>">
+				&nbsp;<%=request.getAttribute("nextSubject") %>
+			</a></td>
+		</tr>
+		<% } %>	
 	</table>
 	</div>
 	<br>

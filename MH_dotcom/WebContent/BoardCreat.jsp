@@ -73,8 +73,12 @@ function sendlt(){
 			<td width="600"><input type="text" size="20" name="name"></td>
 		</tr>
 		<tr>
+			<td width="200" class="name" align="center"><b>첨부파일</b></td>
+			<td width="600"><input type="file" size="20" id="bbs_upload" name="upload"></td>
+		</tr>
+		<tr>
 			<td width="200" class="date" align="center"><b>내   용</b></td>
-			<td width="600"><textarea rows="30" cols="75" name="content"></textarea></td>
+			<td width="600"><textarea rows="25" cols="75" name="content"></textarea></td>
 		</tr>
 	</table>
 		<br>
