@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="BoardMngt">
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap"/>
+	<typeAlias alias="HashMap" type="java.util.HashMap"/>
+	<typeAlias alias="boardMngtVO" type="com.mh.admin.board.vo.BoardMngtVO"/>
+	
+	<sql id="BoardMngt.selectBoardListBaseOrderby">
+		<dynamic prepend="ORDER BY">
+			<isEmpty property="sortName">
+				board_nm ASC
+			</isEmpty>
+			<isNotEmpty property="sortName">
+				$sortName$ $sortOrder$
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+	<sql id="BoardMngt.selectBoardListBaseWhere">
+	
+	</sql>
+	
+	<select id="BoardMngt.selectBoardList" parameterClass="boardMngtVO" resultClass="HashMap">
+		SELECT @rownum:=@rownum+1 AS RNUM
+			 , A.*
+		  FROM (
+				SELECT idx
+					 , board_nm
+					 , board_type
+					 , board_cn
+					 , app_stus
+					 , app_from_dt
+					 , app_to_dt
+					 , app_devlpr
+					 , app_designer
+					 , app_adm_url
+					 , app_adm_pwd
+					 , app_mobile_url
+					 , relat_homepage
+					 , dflt_menu
+					 , adit_func
+					 , dp_yn
+					 , app_rjct_resn
+					 , remk1
+					 , remk2
+					 , cnst_bb
+					 , cnst_bb_etc
+					 , cnst_tax
+					 , cnst_amt
+					 , cnst_dt
+					 , mntn_bb
+					 , mntn_bb_etc
+					 , mntn_tax
+					 , mntn_paymt
+					 , mntn_amt
+					 , mntn_dt
+					 , mntn_dedt
+				  FROM li_boardinfo
+				 WHERE 1=1
+				   AND del_yn = 'N'
+				 <include refid="BoardMngt.selectBoardListBaseWhere"/>
+				 <include refid="BoardMngt.selectBoardListBaseOrderby"/>
+			 ) A, (SELECT @rownum:=#startNum#) TMP
+	</select>
+	
+	<select id="BoardMngt.selectBoardCount" parameterClass="boardMngtVO" resultClass="java.lang.Integer">
+		SELECT COUNT(1) AS CNT
+		  FROM li_boardinfo
+		 WHERE 1=1
+		   AND del_yn = 'N'
+		 <include refid="BoardMngt.selectBoardListBaseWhere"/>
+	</select>
+	
+	<insert id="BoardMngt.insertBoard" parameterClass="HashMap">
+		INSERT INTO 
+			   li_boardinfo(
+				    board_nm
+				  , board_cn
+				  , board_type
+				  , andro_reg_dt
+				  , andro_reg_id
+				  , apple_reg_dt
+				  , apple_reg_id
+				  , app_knd
+				  , inflow_cours
+				  , inflow_cours_etc
+				  , inqry_dt
+				  , charger_nm
+				  , charger_rsp
+				  , charger_hp
+				  , charger_email
+				  , mail_attc
+				  , mail_attc_etc
+				  , adit_charger
+				  , paper_nmst
+				  , paper_nmst_etc
+				  , tot_mem_cnt
+				  , app_stus
+				  , app_from_dt
+				  , app_to_dt
+				  , app_devlpr
+				  , app_designer
+				  , app_adm_url
+				  , app_adm_pwd
+				  , app_mobile_url
+				  , relat_homepage
+				  , dflt_menu
+				  , adit_func
+				  , dp_yn
+				  , app_rjct_resn
+				  , remk1
+				  , remk2
+				  , atfile_conn_no1
+				  , atfile_conn_no2
+				  , atfile_conn_no3
+				  , atfile_conn_no4
+				  , atfile_conn_no5
+				  , atfile_conn_no6
+				  , atfile_conn_no7
+				  , atfile_conn_no8
+				  , atfile_conn_no9
+				  , atfile_conn_no10
+				  , atfile_conn_no11
+				  , atfile_conn_no12
+				  , atfile_conn_no13
+				  , atfile_conn_no14
+				  , atfile_conn_no15
+				  , atfile_conn_no16
+				  , cnst_bb
+				  , cnst_bb_etc
+				  , cnst_tax
+				  , cnst_amt
+				  , cnst_dt
+				  , mntn_bb
+				  , mntn_bb_etc
+				  , mntn_tax
+				  , mntn_paymt
+				  , mntn_amt
+				  , mntn_dt
+				  , mntn_dedt
+				  , del_yn
+				  , create_date
+				  , create_id
+				  , create_host
+				  , create_route
+  			 ) VALUES (
+  			 		#board_nm#
+				  , #board_cn#
+				  , #board_type#
+				  , #andro_reg_dt#
+				  , #andro_reg_id#
+				  , #apple_reg_dt#
+				  , #apple_reg_id#
+				  , #app_knd#
+				  , #inflow_cours#
+				  , #inflow_cours_etc#
+				  , #inqry_dt#
+				  , #charger_nm#
+				  , #charger_rsp#
+				  , #charger_hp#
+				  , #charger_email#
+				  , #mail_attc#
+				  , #mail_attc_etc#
+				  , #adit_charger#
+				  , #paper_nmst#
+				  , #paper_nmst_etc#
+				  , #tot_mem_cnt#
+				  , #app_stus#
+				  , #app_from_dt#
+				  , #app_to_dt#
+				  , #app_devlpr#
+				  , #app_designer#
+				  , #app_adm_url#
+				  , #app_adm_pwd#
+				  , #app_mobile_url#
+				  , #relat_homepage#
+				  , #dflt_menu#
+				  , #adit_func#
+				  , #dp_yn#
+				  , #app_rjct_resn#
+				  , #remk1#
+				  , #remk2#
+				  , #atfile_conn_no1#
+				  , #atfile_conn_no2#
+				  , #atfile_conn_no3#
+				  , #atfile_conn_no4#
+				  , #atfile_conn_no5#
+				  , #atfile_conn_no6#
+				  , #atfile_conn_no7#
+				  , #atfile_conn_no8#
+				  , #atfile_conn_no9#
+				  , #atfile_conn_no10#
+				  , #atfile_conn_no11#
+				  , #atfile_conn_no12#
+				  , #atfile_conn_no13#
+				  , #atfile_conn_no14#
+				  , #atfile_conn_no15#
+				  , #atfile_conn_no16#
+				  , #cnst_bb#
+				  , #cnst_bb_etc#
+				  , #cnst_tax#
+				  , #cnst_amt#
+				  , #cnst_dt#
+				  , #mntn_bb#
+				  , #mntn_bb_etc#
+				  , #mntn_tax#
+				  , #mntn_paymt#
+				  , #mntn_amt#
+				  , #mntn_dt#
+				  , #mntn_dedt#
+				  , 'N'
+  				  , NOW()
+				  , #create_id#
+  				  , #create_host#
+  				  , #create_route#
+  			 )
+	</insert>
+	
+	<update id="BoardMngt.updateBoard" parameterClass="HashMap">
+		UPDATE li_boardinfo
+		   SET board_nm 			 = #board_nm#  
+		   	 , board_cn            = #board_cn#
+			 , board_type          = #board_type#
+			 , andro_reg_dt      = #andro_reg_dt#
+			 , andro_reg_id      = #andro_reg_id#
+			 , apple_reg_dt      = #apple_reg_dt#
+			 , apple_reg_id      = #apple_reg_id#
+			 , app_knd           = #app_knd#
+			 , inflow_cours      = #inflow_cours#
+			 , inflow_cours_etc  = #inflow_cours_etc#
+			 , inqry_dt          = #inqry_dt#
+			 , charger_nm        = #charger_nm#
+			 , charger_rsp       = #charger_rsp#
+			 , charger_hp        = #charger_hp#
+			 , charger_email     = #charger_email#
+			 , mail_attc         = #mail_attc#
+			 , mail_attc_etc     = #mail_attc_etc#
+			 , adit_charger      = #adit_charger#
+			 , paper_nmst        = #paper_nmst#
+			 , paper_nmst_etc    = #paper_nmst_etc#
+			 , tot_mem_cnt       = #tot_mem_cnt#
+			 , app_stus          = #app_stus#
+			 , app_from_dt       = #app_from_dt#
+			 , app_to_dt         = #app_to_dt#
+			 , app_devlpr        = #app_devlpr#
+			 , app_designer      = #app_designer#
+			 , app_adm_url       = #app_adm_url#
+			 , app_adm_pwd       = #app_adm_pwd#
+			 , app_mobile_url    = #app_mobile_url#
+			 , relat_homepage    = #relat_homepage#
+			 , dflt_menu         = #dflt_menu#
+			 , adit_func         = #adit_func#
+		   	 , dp_yn 			 = #dp_yn#
+		   	 , app_rjct_resn 	 = #app_rjct_resn#
+		   	 , remk1 			 = #remk1#
+		   	 , remk2 			 = #remk2#
+			 , atfile_conn_no1  = #atfile_conn_no1#
+			 , atfile_conn_no2  = #atfile_conn_no2#
+			 , atfile_conn_no3  = #atfile_conn_no3#
+			 , atfile_conn_no4  = #atfile_conn_no4#
+			 , atfile_conn_no5  = #atfile_conn_no5#
+			 , atfile_conn_no6  = #atfile_conn_no6#
+			 , atfile_conn_no7  = #atfile_conn_no7#
+			 , atfile_conn_no8  = #atfile_conn_no8#
+			 , atfile_conn_no9  = #atfile_conn_no9#
+			 , atfile_conn_no10 = #atfile_conn_no10#
+			 , atfile_conn_no11 = #atfile_conn_no11#
+			 , atfile_conn_no12 = #atfile_conn_no12#
+			 , atfile_conn_no13 = #atfile_conn_no13#
+			 , atfile_conn_no14 = #atfile_conn_no14#
+			 , atfile_conn_no15 = #atfile_conn_no15#
+			 , atfile_conn_no16 = #atfile_conn_no16#
+			 , cnst_bb      = #cnst_bb#
+			 , cnst_bb_etc  = #cnst_bb_etc#
+			 , cnst_tax     = #cnst_tax#
+			 , cnst_amt     = #cnst_amt#
+			 , cnst_dt      = #cnst_dt#
+			 , mntn_bb      = #mntn_bb#
+			 , mntn_bb_etc  = #mntn_bb_etc#
+			 , mntn_tax     = #mntn_tax#
+			 , mntn_paymt   = #mntn_paymt#
+			 , mntn_amt     = #mntn_amt#
+			 , mntn_dt      = #mntn_dt#
+			 , mntn_dedt    = #mntn_dedt#
+		 WHERE idx = #idx#
+	</update>
+	
+	<update id="BoardMngt.deleteBoard" parameterClass="HashMap">
+		UPDATE li_boardinfo
+		   SET del_yn = 'Y'
+		 WHERE idx = #idx#
+	</update>
+	
+	<select id="BoardMngt.selectBoardInfo" parameterClass="HashMap" resultClass="LinkedHashMap">
+		SELECT idx
+			 , board_nm
+			 , board_type
+			 , board_cn
+			 , andro_reg_dt
+			 , andro_reg_id
+			 , apple_reg_dt
+			 , apple_reg_id
+			 , app_knd
+			 , inflow_cours
+			 , inflow_cours_etc
+			 , inqry_dt
+			 , charger_nm
+			 , charger_rsp
+			 , charger_hp
+			 , charger_email
+			 , mail_attc
+			 , mail_attc_etc
+			 , adit_charger
+			 , paper_nmst
+			 , paper_nmst_etc
+			 , tot_mem_cnt
+			 , app_stus
+			 , app_from_dt
+			 , app_to_dt
+			 , app_devlpr
+			 , app_designer
+			 , app_adm_url
+			 , app_adm_pwd
+			 , app_mobile_url
+			 , relat_homepage
+			 , dflt_menu
+			 , adit_func
+			 , dp_yn
+			 , app_rjct_resn
+			 , remk1
+			 , remk2
+			 , atfile_conn_no1   AS ATFILE_CONN_NO1 
+			 , atfile_conn_no2   AS ATFILE_CONN_NO2 
+			 , atfile_conn_no3   AS ATFILE_CONN_NO3 
+			 , atfile_conn_no4   AS ATFILE_CONN_NO4 
+			 , atfile_conn_no5   AS ATFILE_CONN_NO5 
+			 , atfile_conn_no6   AS ATFILE_CONN_NO6 
+			 , atfile_conn_no7   AS ATFILE_CONN_NO7 
+			 , atfile_conn_no8   AS ATFILE_CONN_NO8 
+			 , atfile_conn_no9   AS ATFILE_CONN_NO9 
+			 , atfile_conn_no10  AS ATFILE_CONN_NO10
+			 , atfile_conn_no11  AS ATFILE_CONN_NO11
+			 , atfile_conn_no12  AS ATFILE_CONN_NO12
+			 , atfile_conn_no13  AS ATFILE_CONN_NO13
+			 , atfile_conn_no14  AS ATFILE_CONN_NO14
+			 , atfile_conn_no15  AS ATFILE_CONN_NO15
+			 , atfile_conn_no16  AS ATFILE_CONN_NO16
+			 , cnst_bb
+			 , cnst_bb_etc
+			 , cnst_tax
+			 , cnst_amt
+			 , cnst_dt
+			 , mntn_bb
+			 , mntn_bb_etc
+			 , mntn_tax
+			 , mntn_paymt
+			 , mntn_amt
+			 , mntn_dt
+			 , mntn_dedt
+		  FROM li_boardinfo
+		 WHERE 1=1
+		   AND idx = #idx#
+		   AND del_yn = 'N'
+	</select>
+</sqlMap>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	
+	<!--공통 <head> -->
+	<definition name="common_head_tiles">
+		<put-attribute name="common_head" value="/WEB-INF/jsp/com/include/commonhead.jsp"/>
+	</definition>
+	
+	<!--관리자 <head> -->
+	<definition name="admin_common_head_tiles">
+		<put-attribute name="admin_common_head" value="/WEB-INF/jsp/com/include/admincommonhead.jsp"/>
+	</definition>
+	
+	<!--사용자 <head> -->
+	<definition name="user_common_head_tiles">
+		<put-attribute name="user_common_head" value="/WEB-INF/jsp/com/include/usercommonhead.jsp"/>
+	</definition>
+
+	<!-- 관리자 -->
+	<definition name="admin-tiles" template="/WEB-INF/jsp/com/layout/admin-layout.jsp" extends="admin_common_head_tiles">
+		<put-attribute name="top" value="/WEB-INF/jsp/com/frame/admin/top.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/jsp/com/frame/admin/nav.jsp" />
+		<put-attribute name="locnav" value="/WEB-INF/jsp/com/frame/admin/locnav.jsp" />
+		<put-attribute name="admin_content" value="" />
+		<put-attribute name="tail" value="/WEB-INF/jsp/com/frame/admin/tail.jsp" />
+	</definition>
+	<definition name="*/*.admin" extends="admin-tiles">
+		<put-attribute name="admin_content" value="/WEB-INF/jsp/com/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*/*/*.admin" extends="admin-tiles" >
+		<put-attribute name="admin_content" value="/WEB-INF/jsp/com/{1}/{2}/{3}.jsp" />
+	</definition>
+	<definition name="*/*/*/*.admin" extends="admin-tiles" >
+		<put-attribute name="admin_content" value="/WEB-INF/jsp/com/{1}/{2}/{3}/{4}.jsp" />
+	</definition>
+	<definition name="*/*/*/*/*.admin" extends="admin-tiles" >
+		<put-attribute name="admin_content" value="/WEB-INF/jsp/com/{1}/{2}/{3}/{4}/{5}.jsp" />
+	</definition>
+		
+	<!-- 사용자-->
+	<definition name="user-tiles" template="/WEB-INF/jsp/com/layout/user-layout.jsp" extends="user_common_head_tiles">
+		<put-attribute name="top" value="/WEB-INF/jsp/com/frame/user/topFrame.jsp" />
+		<put-attribute name="user_content" value="" />
+		<put-attribute name="tail" value="/WEB-INF/jsp/com/frame/user/tailFrame.jsp" />
+	</definition>
+	<definition name="*/*.user" extends="user-tiles">
+		<put-attribute name="user_content" value="/WEB-INF/jsp/com/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*/*/*.user" extends="user-tiles" >
+		<put-attribute name="user_content" value="/WEB-INF/jsp/com/{1}/{2}/{3}.jsp" />
+	</definition>
+	<definition name="*/*/*/*.user" extends="user-tiles" >
+		<put-attribute name="user_content" value="/WEB-INF/jsp/com/{1}/{2}/{3}/{4}.jsp" />
+	</definition>
+	<definition name="*/*/*/*/*.user" extends="user-tiles" >
+		<put-attribute name="user_content" value="/WEB-INF/jsp/com/{1}/{2}/{3}/{4}/{5}.jsp" />
+	</definition>
+
+	<!-- popup-layout -->
+	<definition name="*/*.pop" template="/WEB-INF/jsp/com/layout/popup-layout.jsp" extends="common_head_tiles">
+		<put-attribute name="content" value="/WEB-INF/jsp/com/{1}/{2}.jsp" />
+	</definition>
+	<definition name="*/*/*.pop" template="/WEB-INF/jsp/com/layout/popup-layout.jsp" extends="common_head_tiles">
+		<put-attribute name="content" value="/WEB-INF/jsp/com/{1}/{2}/{3}.jsp" />
+	</definition>
+	<definition name="*/*/*/*.pop" template="/WEB-INF/jsp/com/layout/popup-layout.jsp" extends="common_head_tiles">
+		<put-attribute name="content" value="/WEB-INF/jsp/com/{1}/{2}/{3}/{4}.jsp" />
+	</definition>
+	<definition name="*/*/*/*/*.pop" template="/WEB-INF/jsp/com/layout/popup-layout.jsp" extends="common_head_tiles">
+		<put-attribute name="content" value="/WEB-INF/jsp/com/{1}/{2}/{3}/{4}/{5}.jsp" />
+	</definition>
+	
+	<definition name="*/*.ajax" template="/WEB-INF/jsp/com/layout/ajax.jsp">
+		<put-attribute name="ajax_content" value="/WEB-INF/jsp/com/{1}/{2}.jsp" />
+	</definition> 
+	<definition name="*/*/*.ajax" template="/WEB-INF/jsp/com/layout/ajax.jsp">
+		<put-attribute name="ajax_content" value="/WEB-INF/jsp/com/{1}/{2}/{3}.jsp" />
+	</definition> 
+	<definition name="*/*/*/*.ajax" template="/WEB-INF/jsp/com/layout/ajax.jsp">
+		<put-attribute name="ajax_content" value="/WEB-INF/jsp/com/{1}/{2}/{3}/{4}.jsp" />
+	</definition>
+		
+</tiles-definitions>

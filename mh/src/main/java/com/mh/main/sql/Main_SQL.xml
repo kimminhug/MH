@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="MainManager">
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap"/>
+	
+	<select id="MainManager.mainvideo" resultClass="LinkedHashMap">
+		SELECT * FROM CSBTB_USERVIDEOMNGT
+		WHERE MAINYN = 'y'
+	</select>
+	<select id="MainManager.mainMenu1" resultClass="LinkedHashMap">
+		SELECT  A.*
+		          , B.*
+              , C.FILENAME
+		          , @rownum := @rownum + 1 AS RNUM
+		FROM CSBTB_ENTERPRISE_BM A
+		    LEFT OUTER JOIN CSBTB_ENTERPRISE B ON A.PTIDX = B.PTIDX
+        LEFT OUTER JOIN CSBTB_ENTERPRISE_FILE C ON A.PTIDX = C.PTIDX
+			JOIN (SELECT @rownum := 0) AS R
+      order by A.INPTDTTM desc
+			LIMIT 4;
+	</select>
+	<select id="MainManager.mainMenu2" resultClass="LinkedHashMap">
+		SELECT A.*,B.*, @rownum := @rownum + 1 AS RNUM FROM CSBTB_RESREVIEW A
+		LEFT OUTER JOIN CSBTB_RESREVIEW_FILE B ON A.FILEID = B.FILEID
+		JOIN (SELECT @rownum := 0) AS R
+		order by A.INPTDTTM desc
+		LIMIT 4;
+	</select>
+	<select id="MainManager.mainReview" resultClass="LinkedHashMap">
+		SELECT
+			A.*
+			, B.UNAME
+			, B.NICKNAME
+			, C.ENAME
+			, C.COMPANYNM
+			, C.PTAREA
+			, D.CLNM
+			, E.ANAME
+			, @rownum := @rownum + 1 AS RNUM
+		FROM
+		CSBTB_RESREVIEW A
+		LEFT OUTER JOIN CSBTB_USER B ON A.USIDX = B.USIDX
+		LEFT OUTER JOIN CSBTB_ENTERPRISE C ON A.PTIDX = C.PTIDX
+		LEFT OUTER JOIN CSBTB_RUBTYPE D ON A.CLCODE = D.CLCODE
+		LEFT OUTER JOIN CSBTB_ADMIN E ON A.ADIDX = E.ADIDX
+		JOIN (SELECT @rownum := 0) AS R
+		WHERE A.RESRVIDX = #resrvidx#
+	</select>
+	<select id="MainManager.mainReviewFile" resultClass="LinkedHashMap">
+		SELECT
+			A.*
+			, @rownum := @rownum + 1 AS RNUM
+		FROM
+		CSBTB_RESREVIEW_FILE A
+		LEFT OUTER JOIN CSBTB_RESREVIEW B ON A.FILEID = B.FILEID
+		JOIN (SELECT @rownum := 0) AS R
+		WHERE A.FILEID = (SELECT FILEID FROM CSBTB_RESREVIEW WHERE RESRVIDX = #resrvidx#);
+	</select>
+	<select id="MainManager.mainMenu3" resultClass="LinkedHashMap">
+		SELECT  A.*
+          , B.NICKNAME
+          , C.COMPANYNM as COMPANYNM1
+          , D.COMPANYNM as COMPANYNM2
+          , E.COMPANYNM as COMPANYNM3
+          , I.COMPANYNM as COMPANYNM4
+          , J.COMPANYNM as COMPANYNM5
+          , F.CLNM
+          , G.ANAME
+          , G.PHONE1 as APHONE1
+          , G.PHONE2 as APHONE2
+          , G.PHONE3 as APHONE3
+          , G.AEMAIL
+          , H.GEMIDX
+          , H.COMPANYNM
+		FROM    CSBTB_GRPPURCHASE A
+          LEFT OUTER JOIN CSBTB_USER B ON A.USIDX = B.USIDX
+          LEFT OUTER JOIN CSBTB_ENTERPRISE C ON A.HPTNER1 = C.PTIDX
+          LEFT OUTER JOIN CSBTB_ENTERPRISE D ON A.HPTNER2 = D.PTIDX
+          LEFT OUTER JOIN CSBTB_ENTERPRISE E ON A.HPTNER3 = E.PTIDX
+          LEFT OUTER JOIN CSBTB_ENTERPRISE I ON A.HPTNER4 = I.PTIDX
+          LEFT OUTER JOIN CSBTB_ENTERPRISE J ON A.HPTNER5 = J.PTIDX
+          LEFT OUTER JOIN CSBTB_RUBTYPE F ON A.CLCODE = F.CLCODE
+          LEFT OUTER JOIN CSBTB_ADMIN G ON A.ADIDX = G.ADIDX
+          LEFT OUTER JOIN CSBTB_GRPENTMAPPING H ON A.GRPCHIDX = H.GRPCHIDX
+    WHERE
+        A.GRPSTATE = 1
+		ORDER BY A.INPTDTTM DESC
+		LIMIT 4;
+	</select>
+	<select id="MainManager.maineventList" resultClass="LinkedHashMap">
+		SELECT * FROM CSBTB_EVENT
+		WHERE
+		  NOTICEFN = 'y'
+		AND
+		  EVACTIVITY = 'y'
+		AND
+		  EVPUBSECTION = 'e'
+		ORDER BY INPTDTTM DESC
+		LIMIT 3;
+	</select>
+	<select id="MainManager.mainEvent" resultClass="LinkedHashMap">
+		SELECT
+			A.*, B.ANAME
+			<![CDATA[
+	      	, CASE
+	          WHEN A.EVSTDATE > DATE_FORMAT(NOW(), '%Y-%m-%d') THEN 'w'
+	          WHEN DATE_FORMAT(NOW(), '%Y-%m-%d') BETWEEN A.EVSTDATE AND A.EVETDATE THEN 'y'
+	          WHEN A.EVETDATE < DATE_FORMAT(NOW(), '%Y-%m-%d') THEN 'n'
+	        END AS NEVACTIVITY
+	        ]]>
+		FROM CSBTB_EVENT A
+		LEFT OUTER JOIN CSBTB_ADMIN B
+		ON A.ADIDX = B.ADIDX
+		WHERE A.EVIDX = #evidx#
+	</select>
+	
+	<select id="MainManager.ServiceView" resultClass="LinkedHashMap">
+		SELECT * FROM CSBTB_SERVICE
+		WHERE
+			DIVISON = #type#
+	</select>
+</sqlMap>

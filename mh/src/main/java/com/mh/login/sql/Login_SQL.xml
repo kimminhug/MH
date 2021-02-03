@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="LoginManager">
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap" />
+	<typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap" />
+
+	<select id="LoginManager.selectUserInfo" parameterClass="hashmap" resultClass="LinkedHashMap">
+		SELECT company_img
+			 , orgmem_no
+			 , orgmem_reg_no
+			 , orgmem_name
+			 , orgmem_gender
+			 , orgmem_age
+			 , orgmem_lunar
+			 , orgmem_birth_year
+			 , orgmem_birth_month
+			 , orgmem_birth_day
+			 , orgmem_division
+			 , area
+			 , remrk
+			 , orgmem_email
+			 , create_id
+			 , create_date
+			 , create_host
+			 , orgmem_sns
+			 , usid
+		  FROM orgmember
+		 WHERE 1=1 
+		   AND usid = #user#
+		   AND password = #pwd#
+	</select>
+
+	<select id="LoginManager.selectKeepLogInfo" parameterClass="hashmap" resultClass="LinkedHashMap">
+		SELECT company_img
+			 , orgmem_no
+			 , orgmem_reg_no
+			 , orgmem_name
+			 , orgmem_gender
+			 , orgmem_age
+			 , orgmem_lunar
+			 , orgmem_birth_year
+			 , orgmem_birth_month
+			 , orgmem_birth_day
+			 , orgmem_division
+			 , area
+			 , remrk
+			 , orgmem_email
+			 , create_id
+			 , create_date
+			 , create_host
+			 , orgmem_sns
+			 , usid
+		  FROM orgmember
+		 WHERE 1=1 
+		   AND sess_key = #SESSID#
+	</select>
+	
+	<update id="LoginManager.keepLogin" parameterClass="hashmap">
+		UPDATE orgmember
+		   SET sess_key = #SESSID#
+		     , sess_limit = #SESSLIMIT#
+		 WHERE usid = #USERID#
+	</update>
+</sqlMap>

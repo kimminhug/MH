@@ -223,5 +223,10 @@ public class board_Servlet extends HttpServlet {
 				response.sendRedirect("Fail.jsp");
 			}
 		}
+		
+		/************************* < 꼼이 폼  > ***************************/
+		if (uri.indexOf("ggomi.do") != -1){
+			request.getRequestDispatcher("ggomi.jsp").forward(request, response);
+		}
 	}
 }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="CmnCode">
+
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias	alias="CmnCodeVO" type="com.core.tlds.vo.CmnCodeVO"/>
+	<typeAlias	alias="LinkedHashMap" type="java.util.LinkedHashMap"/>
+	
+	<select id="CmnCode.selectList" parameterClass="CmnCodeVO" remapResults="true" resultClass="LinkedHashMap">
+		<isNotEmpty property="directQuery">
+			$directQuery$
+		</isNotEmpty>
+		<isEmpty property="directQuery">
+			<isNotEmpty property="prefixUnionSql">
+				SELECT * FROM 
+				($prefixUnionSql$) X
+				UNION ALL
+			</isNotEmpty>
+			SELECT * FROM
+			(
+				SELECT
+					  $codeCol$  AS CODE
+					, $nameCol$  AS NAME
+					<isNotEmpty property="keyCol">
+						, $keyCol$ AS KEYCOL
+					</isNotEmpty>
+					$addCol$
+				FROM $tableNm$
+				WHERE 1 = 1
+				<isNotEmpty property="whereCol1">
+					AND $whereCol1$
+				</isNotEmpty>
+				<isEmpty property="whereCol1">
+					<isNotEmpty property="whereORCol1">
+						OR $whereORCol1$
+					</isNotEmpty>
+				</isEmpty>
+				<isNotEmpty property="whereVal1">
+					<isEmpty property="whereCompare1">=</isEmpty>
+					<isNotEmpty property="whereCompare1">$whereCompare1$</isNotEmpty>
+					#whereVal1#
+				</isNotEmpty>
+
+				<isNotEmpty property="whereCol2">
+					AND $whereCol2$
+				</isNotEmpty>
+				<isEmpty property="whereCol2">
+					<isNotEmpty property="whereORCol2">
+						OR $whereORCol2$
+					</isNotEmpty>
+				</isEmpty>
+				<isNotEmpty property="whereVal2">
+					<isEmpty property="whereCompare2">=</isEmpty>
+					<isNotEmpty property="whereCompare2">$whereCompare2$</isNotEmpty>
+					#whereVal2#
+				</isNotEmpty>
+
+				<isNotEmpty property="whereCol3">
+					AND $whereCol3$
+				</isNotEmpty>
+				<isEmpty property="whereCol3">
+					<isNotEmpty property="whereORCol3">
+						OR $whereORCol3$
+					</isNotEmpty>
+				</isEmpty>
+				<isNotEmpty property="whereVal3">
+					<isEmpty property="whereCompare3">=</isEmpty>
+					<isNotEmpty property="whereCompare3">$whereCompare3$</isNotEmpty>
+					#whereVal3#
+				</isNotEmpty>
+
+				<isNotEmpty property="sortCol">
+					ORDER BY $sortCol$
+				</isNotEmpty>
+				<isNotEmpty property="sortType">
+					$sortType$
+				</isNotEmpty>
+			) A
+			<isNotEmpty prepend="UNION ALL" property="suffixUnionSql">
+				SELECT * FROM 
+				($suffixUnionSql$) Y
+			</isNotEmpty>
+		</isEmpty>
+	</select>
+	
+</sqlMap>

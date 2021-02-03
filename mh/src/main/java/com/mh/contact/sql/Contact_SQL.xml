@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="contactManager">
+	<typeAlias  alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap"/>
+	
+	<select id="contactManager.countContactMap" resultClass="LinkedHashMap">
+		SELECT COUNT(*) as cnt
+		 FROM contact
+		 WHERE 1=1
+		 <isNotEmpty prepend="AND" property="name">
+		 	name = #name#
+		 </isNotEmpty>
+		 <isNotEmpty prepend="AND" property="title">
+		 	title = #title#
+		 </isNotEmpty>
+	</select>
+	
+	<select id="contactManager.getContactList" resultClass="LinkedHashMap">
+	SELECT *
+	FROM (
+		SELECT *
+		 FROM contact
+		 WHERE 1=1
+		 <isNotEmpty prepend="AND" property="name">
+		 	name = #name#
+		 </isNotEmpty>
+		 <isNotEmpty prepend="AND" property="title">
+		 	title = #title#
+		 </isNotEmpty>
+		 ) A
+		 <!-- WHERE RN BETWEEN #start# AND #end# -->
+	</select>
+	
+	<select id="contactManager.getContactView" resultClass="LinkedHashMap">
+		SELECT *
+		 FROM contact
+		 WHERE idx = #idx#
+	</select>
+	
+	<insert id="contactManager.insertContact">
+		INSERT INTO contact (
+			name,
+			title,
+			email,
+			phone,
+			content,
+			inptdttm
+		) VALUE (
+			#name#,
+			#title#,
+			#email#,
+			#phone#,
+			#content#,
+			NOW()
+		)
+	</insert>
+	
+	<update id="contactManager.updateContact">
+      UPDATE contact
+      SET
+      	name,
+			title = #title#,
+			email = #email#,
+			phone = #phone#,
+			content = #content#,
+			updtdttm = NOW()
+		WHERE comidx = #comidx#
+   </update>
+   
+   <select id="contactManager.getComstateOne" resultClass="LinkedHashMap">
+		SELECT *
+		 FROM code
+		 WHERE code_group = "comstate" AND code_name = #contact_state# AND code_mode = "child"
+	</select>
+	
+</sqlMap>

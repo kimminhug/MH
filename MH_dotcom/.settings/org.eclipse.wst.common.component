@@ -3,6 +3,6 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="java-output-path" value="/Emerald_Tahiti/build/classes"/>
-        <property name="context-root" value="Emerald_Tahiti"/>
+        <property name="context-root" value="princess"/>
     </wb-module>
 </project-modules>
