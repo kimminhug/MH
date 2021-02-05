@@ -29,14 +29,24 @@
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 <link rel="stylesheet" href="/css/admin.css">
+<link rel="stylesheet" href="/css/layout.css">
 
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<!-- Bootstrap 4 -->
-<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Ag-Grid Plug-in -->
+<script type="text/javascript" src="/js/admin/jquery_ui_datepicker-ko.js"></script> <!-- 2020.01.17 agGrid의 datePicker에서 사용 -->
+<script type="text/javascript" src="/js/admin/jquery.mtz.monthpicker.js"></script>
+<script type="text/javascript" src="/js/admin/jquery.form.js"></script>
+
+<!-- User Custom -->
+<script type='text/javascript' src='/js/admin/common.popup.js'></script>
+<script type='text/javascript' src='/js/admin/common.freeform.js'></script>
+<script type='text/javascript' src='/js/admin/common.file.js'></script>
+
+
 <!-- ChartJS -->
 <script src="/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -55,15 +65,8 @@
 <script src="/plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
-<!-- Ag-Grid Plug-in -->
-<script type="text/javascript" src="/js/admin/jquery_ui_datepicker-ko.js"></script> <!-- 2020.01.17 agGrid의 datePicker에서 사용 -->
-<script type="text/javascript" src="/js/admin/jquery.mtz.monthpicker.js"></script>
-
-<!-- User Custom -->
-<script type='text/javascript' src='/js/admin/common.popup.js'></script>
-<script type='text/javascript' src='/js/admin/common.freeform.js'></script>
-<script type='text/javascript' src='/js/admin/common.file.js'></script>
+<!-- Bootstrap 4 -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script type='text/javascript' src='/js/admin/common.validate.js'></script>
 <script type='text/javascript' src='/js/admin/util.js'></script>
 <script type='text/javascript' src='/js/admin/main.js'></script>

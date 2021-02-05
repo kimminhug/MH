@@ -5,7 +5,141 @@
 	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap"/>
 	<typeAlias alias="HashMap" type="java.util.HashMap"/>
+	<typeAlias alias="String" type="java.lang.String"/>
 	<typeAlias alias="boardMngtVO" type="com.mh.admin.board.vo.BoardMngtVO"/>
+	
+	<sql id="BoardMngt.selectBoardInfoListBaseOrderby">
+		<dynamic prepend="ORDER BY">
+			<isEmpty property="sortName">
+				board_nm ASC
+			</isEmpty>
+			<isNotEmpty property="sortName">
+				$sortName$ $sortOrder$
+			</isNotEmpty>
+		</dynamic>
+	</sql>
+	<sql id="BoardMngt.selectBoardInfoListBaseWhere">
+	
+	</sql>
+	
+	<select id="BoardMngt.selectBoardInfoList" parameterClass="boardMngtVO" resultClass="HashMap">
+		SELECT @rownum:=@rownum+1 AS RNUM
+			 , A.*
+		  FROM (
+				SELECT 
+					 bbs_id
+					 , bbs_nm
+					 , bbs_intrcn
+					 , bbs_type
+					 , bbs_attr
+					 , reply_yn
+					 , file_yn
+					 , file_cnt
+					 , file_size
+					 , use_yn
+					 , tmplat_id
+					 , crt_dt
+					 , crt_id
+					 , crt_pgm_id
+					 , crt_ip_addr
+					 , upd_dt
+					 , upd_id
+					 , upd_pgm_id
+					 , upd_ip_addr
+				  FROM bbs_info
+				 WHERE del_yn != 'Y'
+				 <include refid="BoardMngt.selectBoardInfoListBaseWhere"/>
+				 <include refid="BoardMngt.selectBoardInfoListBaseOrderby"/>
+			 ) A, (SELECT @rownum:=#startNum#) TMP
+	</select>
+	
+	<select id="BoardMngt.selectBoardInfoCount" parameterClass="boardMngtVO" resultClass="java.lang.Integer">
+		SELECT COUNT(1) AS CNT
+		  FROM bbs_info
+		 WHERE 1=1
+		 <include refid="BoardMngt.selectBoardInfoListBaseWhere"/>
+	</select>
+	
+	<insert id="BoardMngt.insertBoardInfo" parameterClass="HashMap">
+		<!-- <selectKey resultType="String" keyProperty="bbs_id" order="BEFORE">
+			SELECT CONCAT('BBS', LPAD(IFNULL(MAX(substr(bbs_id, 4)+1),'1'), 4, '0')) AS brd_id FROM bbs_info
+		</selectKey> -->
+		INSERT INTO bbs_info
+			   (
+			   	 bbs_id
+				 , bbs_nm
+				 , bbs_intrcn
+				 , bbs_type
+				 , bbs_attr
+				 , reply_yn
+				 , file_yn
+				 , file_cnt
+				 , file_size
+				 , use_yn
+				 , tmplat_id
+				 , crt_dt
+				 , crt_id
+				 , crt_pgm_id
+				 , crt_ip_addr
+				 , upd_dt
+				 , upd_id
+				 , upd_pgm_id
+				 , upd_ip_addr
+  			  ) 
+  			  	VALUES 
+  			  (
+  			 	 #bbs_id#
+				 , #bbs_nm#
+				 , #bbs_intrcn#
+				 , #bbs_type#
+				 , #bbs_attr#
+				 , #reply_yn#
+				 , #file_yn#
+				 , #file_cnt#
+				 , #file_size#
+				 , #use_yn#
+				 , #tmplat_id#
+				 , now()
+				 , #crt_id#
+				 , #crt_pgm_id#
+				 , #crt_ip_addr#
+				 , now()
+				 , #upd_id#
+				 , #upd_pgm_id#
+				 , #upd_ip_addr#
+  			 )
+	</insert>
+	
+	<update id="BoardMngt.updateBoardInfo" parameterClass="HashMap">
+		UPDATE bbs_info
+		   SET bbs_nm			= #bbs_nm#
+		       , bbs_intrcn     = #bbs_intrcn#
+		       , bbs_type       = #bbs_type#
+		       , bbs_attr      = #bbs_attr#
+		       , reply_yn       = #reply_yn#
+		       , file_yn        = #file_yn#
+		       , file_cnt       = #file_cnt#
+		       , file_size      = #file_size#
+		       , use_yn         = #use_yn#
+		       , tmplat_id      = #tmplat_id#
+		       , crt_dt         = #crt_dt#
+		       , crt_id         = #crt_id#
+		       , crt_pgm_id     = #crt_pgm_id#
+		       , crt_ip_addr    = #crt_ip_addr#
+		       , upd_dt         = #upd_dt#
+		       , upd_id         = #upd_id#
+		       , upd_pgm_id     = #upd_pgm_id#
+		       , upd_ip_addr    = #upd_ip_addr#
+		 WHERE 
+		 	 bbs_id = #bbs_id#
+	</update>
+	
+	<update id="BoardMngt.deleteBoardInfo" parameterClass="HashMap">
+		UPDATE bbs_info
+		   SET del_yn = 'Y'
+		 WHERE bbs_id = #bbs_id#
+	</update>
+	
 	
 	<sql id="BoardMngt.selectBoardListBaseOrderby">
 		<dynamic prepend="ORDER BY">
@@ -292,75 +426,4 @@
 		 WHERE idx = #idx#
 	</update>
 	
-	<select id="BoardMngt.selectBoardInfo" parameterClass="HashMap" resultClass="LinkedHashMap">
-		SELECT idx
-			 , board_nm
-			 , board_type
-			 , board_cn
-			 , andro_reg_dt
-			 , andro_reg_id
-			 , apple_reg_dt
-			 , apple_reg_id
-			 , app_knd
-			 , inflow_cours
-			 , inflow_cours_etc
-			 , inqry_dt
-			 , charger_nm
-			 , charger_rsp
-			 , charger_hp
-			 , charger_email
-			 , mail_attc
-			 , mail_attc_etc
-			 , adit_charger
-			 , paper_nmst
-			 , paper_nmst_etc
-			 , tot_mem_cnt
-			 , app_stus
-			 , app_from_dt
-			 , app_to_dt
-			 , app_devlpr
-			 , app_designer
-			 , app_adm_url
-			 , app_adm_pwd
-			 , app_mobile_url
-			 , relat_homepage
-			 , dflt_menu
-			 , adit_func
-			 , dp_yn
-			 , app_rjct_resn
-			 , remk1
-			 , remk2
-			 , atfile_conn_no1   AS ATFILE_CONN_NO1 
-			 , atfile_conn_no2   AS ATFILE_CONN_NO2 
-			 , atfile_conn_no3   AS ATFILE_CONN_NO3 
-			 , atfile_conn_no4   AS ATFILE_CONN_NO4 
-			 , atfile_conn_no5   AS ATFILE_CONN_NO5 
-			 , atfile_conn_no6   AS ATFILE_CONN_NO6 
-			 , atfile_conn_no7   AS ATFILE_CONN_NO7 
-			 , atfile_conn_no8   AS ATFILE_CONN_NO8 
-			 , atfile_conn_no9   AS ATFILE_CONN_NO9 
-			 , atfile_conn_no10  AS ATFILE_CONN_NO10
-			 , atfile_conn_no11  AS ATFILE_CONN_NO11
-			 , atfile_conn_no12  AS ATFILE_CONN_NO12
-			 , atfile_conn_no13  AS ATFILE_CONN_NO13
-			 , atfile_conn_no14  AS ATFILE_CONN_NO14
-			 , atfile_conn_no15  AS ATFILE_CONN_NO15
-			 , atfile_conn_no16  AS ATFILE_CONN_NO16
-			 , cnst_bb
-			 , cnst_bb_etc
-			 , cnst_tax
-			 , cnst_amt
-			 , cnst_dt
-			 , mntn_bb
-			 , mntn_bb_etc
-			 , mntn_tax
-			 , mntn_paymt
-			 , mntn_amt
-			 , mntn_dt
-			 , mntn_dedt
-		  FROM li_boardinfo
-		 WHERE 1=1
-		   AND idx = #idx#
-		   AND del_yn = 'N'
-	</select>
 </sqlMap>

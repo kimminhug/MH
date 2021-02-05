@@ -37,7 +37,7 @@
 
 .search-wrapper ul.primary{
 	/* background-image: -webkit-gradient(linear, left top, right bottom, from(#0084e7), to(#0067b4)); */
-  background-image: linear-gradient(to bottom right, #e83e8c, #e83e8c);
+  background-image: linear-gradient(to bottom right, #4682b4, #4682b4);
   border-bottom: none;
   border-top-left-radius: .25rem;
   border-top-right-radius: .25rem;

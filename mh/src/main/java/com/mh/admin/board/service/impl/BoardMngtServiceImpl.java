@@ -48,6 +48,17 @@ public class BoardMngtServiceImpl extends EgovAbstractServiceImpl implements Boa
 	public void deleteBoard(Map<String, Object> map) throws Exception{
 		dao.deleteBoard(map);
 	}
+	
+	public void insertBoardInfo(Map<String, Object> map) throws Exception{
+		dao.insertBoardInfo(map);
+	}
+	public void updateBoardInfo(Map<String, Object> map) throws Exception{
+		dao.updateBoardInfo(map);
+	}
+	public void deleteBoardInfo(Map<String, Object> map) throws Exception{
+		dao.deleteBoardInfo(map);
+	}
+
 	/**
 	 * 관리자 게시판관리 목록 조회
 	 * @param vo
@@ -150,17 +161,17 @@ public class BoardMngtServiceImpl extends EgovAbstractServiceImpl implements Boa
 			//resultFileNo = fileService.insertMultiFile(request, "file", "li_board");
 			//map.putAll(resultFileNo);
 			
-			this.insertBoard(map);
+			this.insertBoardInfo(map);
 			msg = "정상적으로 저장되었습니다.";
 		}else if (map.get("STATUS").toString().equals("U")) {
 			
 			//resultFileNo = fileService.updateMultiFile(request, "file", "li_board");
 			//map.putAll(resultFileNo);
 
-			this.updateBoard(map);
+			this.updateBoardInfo(map);
 			msg = "정상적으로 수정되었습니다.";
 		}else if (map.get("STATUS").toString().equals("D")) {
-			this.deleteBoard(map);
+			this.deleteBoardInfo(map);
 			msg = "정상적으로 삭제되었습니다.";
 		}
 

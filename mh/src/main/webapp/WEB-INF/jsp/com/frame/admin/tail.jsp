@@ -9,3 +9,5 @@
 	</div>
 </footer>
 
+<!-- AdminLTE App -->
+<script src="/dist/js/adminlte.js"></script>

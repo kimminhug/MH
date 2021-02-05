@@ -8,8 +8,8 @@
 	grid1.gridDiv = "grid1"; // 그리드
 	grid1.rowCheckboxYn = true; // 그리드 로우 체크박스사용 여부
 	grid1.searchForm = "#searchForm";
-	grid1.searchUrl = "<c:url value='/admin/board/boardListAjax.do'/>";
-	grid1.saveUrl = "<c:url value='/admin/board/boardSaveAjax.do'/>";
+	grid1.searchUrl = "<c:url value='/admin/board/boardInfoAjax.do'/>";
+	grid1.saveUrl = "<c:url value='/admin/board/boardInfoSaveAjax.do'/>";
 	
 	grid1.noPaging = true;
 	//grid1.pagination = false; // true(그리드 네비게이션), false(무한 스크롤)
@@ -25,17 +25,15 @@
 	grid1.pushColumnDef("No.", "RNUM", "center", 70, false, false, 'rownum');
 	grid1.pushColumnDef("상태", "STATUS", "left", 0, false, true);
 	
-	grid1.pushColumnDef("매출관리"," ","center",70,false,false, 'button', '<button onClick="fnBtSales(#rowId#);" class="btn btn-default btn-sm"><i class="fa fa-fw fa-won-sign"></i></button>');
-	grid1.pushColumnDef("앱구분", "app_knd", "center", 85, false, false, 'html', fnAppDiv);
-	grid1.pushColumnDef("앱이름", "biz_nm", "left", 180, false, false, null, null, null, null, 'text');
-	var tot_mem_cnt_data = "<cmn:selectdata tableNm='vw_comtccmmncode' codeCol='CODE' nameCol='CODE_NM' whereCol1='CODE_ID' whereVal1='COM009' />";
-	grid1.pushColumnDef("총회원수", "tot_mem_cnt", "center", 120, false, false, 'selectBox', tot_mem_cnt_data, null, null);
-	var app_stus_data = "<cmn:selectdata tableNm='vw_comtccmmncode' codeCol='CODE' nameCol='CODE_NM' whereCol1='CODE_ID' whereVal1='COM004' />";
-	grid1.pushColumnDef("앱구축과정", "app_stus", "center", 120, false, false, 'selectBox', app_stus_data, null, null);
-	grid1.pushColumnDef("웹노출", "", "center", 80, false, false, 'html', fnWebDp, null, null);
-	grid1.pushColumnDef("구축비", "", "center", 80, false, false, 'html', fnCnstDp, null, null);
-	grid1.pushColumnDef("유지비", "", "center", 80, false, false, 'html', fnMntnDp, null, null);
-	grid1.pushColumnDef("상세"," ","center",70,false,false, 'button', '<button onClick="fnBtMod(#rowId#);" class="btn btn-default btn-sm"><i class="fa fa-fw fa-search"></i></button>');
+	grid1.pushColumnDef("게시판ID", "bbs_id", "left", 120, false, false, null, null, null, null, 'text');
+	grid1.pushColumnDef("게시판명", "bbs_nm", "left", 150, false, false, null, null, null, null, 'text');
+	grid1.pushColumnDef("게시판설명", "biz_intrcn", "left", 300, false, false, null, null, null, null, 'text');
+	grid1.pushColumnDef("게시판타입", "biz_type", "left", 120, false, false, null, null, null, null, 'text');
+	grid1.pushColumnDef("게시판속성", "biz_attr", "left", 120, false, false, null, null, null, null, 'text');
+	//var sel_data = "<cmn:selectdata tableNm='code' codeCol='code_dc' nameCol='code_nm' whereCol1='code_id' whereVal1='COM004' />";
+	var sel_data = "{'Y: 사용', 'N: 사용안함'}"
+	grid1.pushColumnDef("사용여부", "app_stus", "center", 120, false, false, 'selectBox', sel_data, null, null);
+	grid1.pushColumnDef("게시판관리"," ", "center", 120, false, false, 'button', '<button onClick="fnBoardDetail(#rowId#);" class="btn btn-default btn-sm"><i class="fa fa-fw fa-search"></i></button>');
 
 /* 	grid1.pushColumnDefGroupStart("사원정보");
 		//grid1.pushColumnDef("고객코드", "CCODE", "center", 100, false, false, null, null, null, null, 'text', null, null, true);
@@ -147,7 +145,7 @@
 		grid1.agGridInit();
 
 		// 그리드 조회
-		//fnBtSearch();
+		fnBtSearch();
 	});
 	
 	//사원검색버튼
@@ -165,70 +163,27 @@
 	}
 	
 	//신규추가 모달
-	function fnBtNew(){
+	/* function fnBtNew(){
 		var url = "<c:url value='/admin/biz/bizViewAjax.li'/>";
 		var title = "신규추가";
 		fnDialogForm(url, "bizModal", title, 1000, 700);
-	}
+	} */
 	
 	//수정 모달
 	function fnBtMod(rowId){
 		var rowNode = fnGetRowNode(grid1, rowId);
-		var bizNm = rowNode.data.biz_nm
+		var bbsId = rowNode.data.bbs_id
 		//alert("usid ::: " + rowNode.data.orgmem_no);
 		var data = {"idx":rowNode.data.idx};
 		
-		var url = "<c:url value='/admin/biz/bizViewAjax.li'/>";
-		var title = bizNm;
-		fnDialogForm(url, "bizModal", title, 1000, 700, data);
+		var url = "<c:url value='/admin/board/boardListPopupAjax.li'/>";
+		var title = bbsId;
+		fnDialogForm(url, "boardModal", title, 1000, 700, data);
 	}
 	
 	function fnBtSales(rowId){
 		
 	}
-	
-	function fnAppDiv(params){
-		//var rowNode = fnGetRowNode(grid1, rowId);
-		var rowId = params.data.RNUM;
-		var andApp = params.data.andro_reg_dt;
-		var appleApp = params.data.apple_reg_dt;
-		var rtnAnd = '';
-		var rtnApp = '';
-		
-		if(andApp != '' && andApp != undefined){
-			rtnAnd = "<img src='${contextPath}/images/ico/android.png' />";
-		}else{
-			rtnAnd = '';
-		}
-		if(appleApp != '' && appleApp != undefined){
-			rtnApp = "<img src='${contextPath}/images/ico/ios.png' />";
-		}else{
-			rtnApp = "";
-		}
-		return rtnAnd + rtnApp;
-	}
-	
-	function fnWebDp(params){
-		var dpYn = params.data.dp_yn;
-		var rtnVal = '';
-		if(dpYn == 'Y' && dpYn != undefined){
-			rtnVal = '<i class="fa fa-2x fa-eye" style="color:#142de4;"></i>';
-		}else{
-			rtnVal = '<i class="fa fa-2x fa-eye-slash" style="color:#9e9e9e;"></i>';
-		}
-		return rtnVal;
-	}
-	function fnCnstDp(params){
-		var dpYn = params.data.cnst_dt;
-		var rtnVal = '';
-		if(dpYn != '' && dpYn != undefined){
-			rtnVal = '<i class="fa fa-2x fa-smile" style="color:#e414ae;"></i>';
-		}else{
-			rtnVal = '<i class="fa fa-2x fa-frown" style="color:#9e9e9e;"></i>';
-		}
-		return rtnVal;
-	}
-	function fnMntnDp(params){}
 
 	//그리드1 저장
 	function fnBtSave() {
@@ -291,50 +246,73 @@
 	}
 	
 </script>
-<form name="popupform" id="popupForm">
-		<input type="hidden" name="status" id="status" /> <input type="hidden" name="id" id="id" />
-</form>
 
-
-<section class="content">
-	<form id="searchForm" name="searchForm" method="post">
-		<input type="hidden" name="startNum" value="0"/>
-		<input type="hidden" name="pageSize" />
-		<input type="hidden" name="sortName" id ="sortName" value="" />
-		<input type="hidden" name="sortOrder"  id ="sortOrder" value="" />
-		
-		<div class="search-wrapper">
-			<ul class="primary">
-				<li class="title"><i class="fa fa-fw fa-star"></i> 조회조건</li>
-				<li class="search-bt-wrapper">
-					<button type="button" id="btnMore" class="btn btn-default btn-sm">+더보기</button>
-					<button type="button" id="btnInq" class="btn btn-default btn-sm">조회</button>
-				</li>
-			</ul>
-			
-			<div class="search-area">
-				<div class="col-md-3">
-						<div class="form-group">
-								<label>이름</label> <input type="text" id="searchName" name="searchName">
-						</div>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0 text-dark">Board Management</h1>
 				</div>
+				<!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item active">Board Management</li>
+					</ol>
+				</div>
+				<!-- /.col -->
 			</div>
+			<!-- /.row -->
 		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+
+	<form name="popupform" id="popupForm">
+			<input type="hidden" name="status" id="status" /> <input type="hidden" name="id" id="id" />
 	</form>
 	
-	<div class="grid-wrapper">
-		<ul class="primary">
-			<li class="title"><i class="fa fa-fw fa-heart"></i> 목록</li>
-			<li class="active">
-				<!-- <button type="button" id="btnExcel" class="btn btn-default btn-sm"><i class="fa fa-lg fa-file-excel"></i> 엑셀</button> -->
-				<button type="button" id="btnNew" class="btn btn-default btn-sm">신규</button>
-				<!-- <button type="button" id="btnSave" class="btn btn-default btn-sm">저장</button> -->
-				<button type="button" id="btnDel" class="btn btn-default btn-sm">삭제</button>
-			</li>
-		</ul>
-		<div id="grid1" style="height: 70vh;" class="ag-theme-balham"></div>
-	</div>
-</section>
-
+	<section class="content">
+		<form id="searchForm" name="searchForm" method="post">
+			<input type="hidden" name="startNum" value="0"/>
+			<input type="hidden" name="pageSize" />
+			<input type="hidden" name="sortName" id ="sortName" value="" />
+			<input type="hidden" name="sortOrder"  id ="sortOrder" value="" />
+			
+			<div class="search-wrapper">
+				<ul class="primary">
+					<li class="title"><i class="fa fa-fw fa-star"></i>&nbsp;조회조건</li>
+					<li class="search-bt-wrapper">
+						<button type="button" id="btnMore" class="btn btn-default btn-sm">+더보기</button>
+						<button type="button" id="btnInq" class="btn btn-default btn-sm">조회</button>
+					</li>
+				</ul>
+				
+				<div class="search-area">
+					<div class="col-md-3">
+							<div class="form-group">
+									<label>이름</label> <input type="text" id="searchName" name="searchName">
+							</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		
+		<div class="grid-wrapper">
+			<ul class="primary">
+				<li class="title"><i class="fa fa-fw fa-star"></i>&nbsp;목록</li>
+				<li class="active">
+					<!-- <button type="button" id="btnExcel" class="btn btn-default btn-sm"><i class="fa fa-lg fa-file-excel"></i> 엑셀</button> -->
+					<button type="button" id="btnNew" class="btn btn-default btn-sm">신규</button>
+					<!-- <button type="button" id="btnSave" class="btn btn-default btn-sm">저장</button> -->
+					<button type="button" id="btnDel" class="btn btn-default btn-sm">삭제</button>
+				</li>
+			</ul>
+			<div id="grid1" style="height: 70vh;" class="ag-theme-balham"></div>
+		</div>
+	</section>
+</div>
 
                     

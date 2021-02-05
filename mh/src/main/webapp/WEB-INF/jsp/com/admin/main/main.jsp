@@ -586,8 +586,6 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 
-<!-- AdminLTE App -->
-<script src="/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->

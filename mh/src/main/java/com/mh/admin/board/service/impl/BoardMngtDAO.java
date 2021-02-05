@@ -64,4 +64,28 @@ public class BoardMngtDAO extends EgovAbstractDAO{
 		return (Map<String, Object>)select("BoardMngt.selectBoardInfo", map);
 	}
 	
+	/**
+	 * 게시판정보 등록
+	 * @param map
+	 */
+	public void insertBoardInfo(Map<String, Object> map){
+		insert("BoardMngt.insertBoardInfo", map);
+	}
+	
+	/**
+	 * 게시판정보 수정
+	 * @param map
+	 */
+	public void updateBoardInfo(Map<String, Object> map){
+		update("BoardMngt.updateBoardInfo", map);
+	}
+	
+	/**
+	 * 게시판정보 삭제
+	 * @param map
+	 */
+	public void deleteBoardInfo(Map<String, Object> map){
+		update("BoardMngt.deleteBoardInfo", map);
+	}
+	
 }

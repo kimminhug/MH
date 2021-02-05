@@ -35,16 +35,12 @@
 						</li>
 					</ul>
 				</li>
-				<li class="nav-item has-treeview menu-open">
-					<a href="#" class="nav-link"> 
-						<i class="nav-icon fas fa-edit"></i><p>Board <i class="right fas fa-angle-left"></i></p>
-					</a>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="/admin/board/boardMngt.do" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Free board</p></a>
-						</li>
-					</ul>
-				</li>
+				<li class="nav-item">
+		            <a href="/admin/board/boardMngt.do" class="nav-link">
+		            	<i class="nav-icon fas fa-edit"></i>
+		            	<p>board Management</p>
+		            </a>
+		        </li>
 			</ul>
 		</nav>
 		<!-- /.sidebar-menu -->
