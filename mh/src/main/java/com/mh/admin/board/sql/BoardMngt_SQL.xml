@@ -11,7 +11,7 @@
 	<sql id="BoardMngt.selectBoardInfoListBaseOrderby">
 		<dynamic prepend="ORDER BY">
 			<isEmpty property="sortName">
-				board_nm ASC
+				bbs_nm ASC
 			</isEmpty>
 			<isNotEmpty property="sortName">
 				$sortName$ $sortOrder$
@@ -22,7 +22,7 @@
 	
 	</sql>
 	
-	<select id="BoardMngt.selectBoardInfoList" parameterClass="boardMngtVO" resultClass="HashMap">
+	<select id="BoardMngt.selectBoardInfoList" parameterClass="HashMap" resultClass="HashMap">
 		SELECT @rownum:=@rownum+1 AS RNUM
 			 , A.*
 		  FROM (
@@ -53,7 +53,7 @@
 			 ) A, (SELECT @rownum:=#startNum#) TMP
 	</select>
 	
-	<select id="BoardMngt.selectBoardInfoCount" parameterClass="boardMngtVO" resultClass="java.lang.Integer">
+	<select id="BoardMngt.selectBoardInfoCount" parameterClass="HashMap" resultClass="java.lang.Integer">
 		SELECT COUNT(1) AS CNT
 		  FROM bbs_info
 		 WHERE 1=1

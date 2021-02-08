@@ -29,6 +29,24 @@ public class BoardMngtDAO extends EgovAbstractDAO{
 	public int selectBoardCount(BoardMngtVO vo) {
 		return (int)select("BoardMngt.selectBoardCount", vo);
 	}
+	
+	/**
+	 * 게시판정보 목록 조회
+	 * @param vo
+	 * @return
+	 */
+	public List<?> selectBoardInfoList(Map<String, Object> map) {
+		return (List<?>)list("BoardMngt.selectBoardInfoList", map);
+	}
+	
+	/**
+	 * 게시판정보 목록 카운트
+	 * @param vo
+	 * @return
+	 */
+	public int selectBoardInfoCount(Map<String, Object> map) {
+		return (int)select("BoardMngt.selectBoardInfoCount", map);
+	}
 
 	/**
 	 * 게시판 등록
@@ -61,7 +79,7 @@ public class BoardMngtDAO extends EgovAbstractDAO{
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectBoardInfo(Map<String, Object> map) {
-		return (Map<String, Object>)select("BoardMngt.selectBoardInfo", map);
+		return (Map<String, Object>)select("BoardMngt.selectBoardInfoList", map);
 	}
 	
 	/**

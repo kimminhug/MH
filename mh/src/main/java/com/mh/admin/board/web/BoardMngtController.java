@@ -56,6 +56,8 @@ public class BoardMngtController {
 	 */
 	@RequestMapping(value="/admin/board/boardListAjax.do")		
 	public void boardList(@ModelAttribute("searchVO") BoardMngtVO vo, ModelMap model, HttpServletRequest request, HttpServletResponse response, Writer out ) throws Exception {
+		System.out.println(request.getServerName() + " :::::::::::: " + request.getServletPath());
+		
 		service.boardListServiceCall(request, response, vo, model, out);
 	}
 	

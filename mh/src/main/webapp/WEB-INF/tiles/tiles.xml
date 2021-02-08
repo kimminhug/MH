@@ -80,5 +80,7 @@
 	<definition name="*/*/*/*.ajax" template="/WEB-INF/jsp/com/layout/ajax.jsp">
 		<put-attribute name="ajax_content" value="/WEB-INF/jsp/com/{1}/{2}/{3}/{4}.jsp" />
 	</definition>
+	<definition name="*/*Ajax.do" template="/WEB-INF/jsp/com/layout/ajax.jsp"></definition> 
+	<definition name="*/*/*Ajax.do" template="/WEB-INF/jsp/com/layout/ajax.jsp"></definition> 
 		
 </tiles-definitions>

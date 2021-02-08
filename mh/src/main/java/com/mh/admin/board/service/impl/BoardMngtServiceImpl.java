@@ -35,8 +35,11 @@ public class BoardMngtServiceImpl extends EgovAbstractServiceImpl implements Boa
 	public int selectBoardCount(BoardMngtVO vo) throws Exception{
 		return dao.selectBoardCount(vo);
 	}
-	public Map<String, Object> selectBoardInfo(Map<String, Object> map) throws Exception{
-		return dao.selectBoardInfo(map);
+	public List<?> selectBoardInfoList(Map<String, Object> map) throws Exception{
+		return dao.selectBoardInfoList(map);
+	}
+	public int selectBoardInfoCount(Map<String, Object> map) throws Exception{
+		return dao.selectBoardInfoCount(map);
 	}
 	
 	public void insertBoard(Map<String, Object> map) throws Exception{
@@ -126,16 +129,13 @@ public class BoardMngtServiceImpl extends EgovAbstractServiceImpl implements Boa
 		Bind bind = new Bind(request);
 		Map<String, Object> bindMap = bind.getDto();
 		
-		Map<String, Object> map = this.selectBoardInfo(bindMap);
-
-		//첨부파일 처리
-		//int fileCnt = 16;	//해당 테이블의 파일 컬럼 갯수만큼 반복
-		//map.put("fileCnt", fileCnt);	//view 처리용 파일갯수 카운트(반드시 'fileCnt' 키값으로 사용)
-		//Map<String, Object> fileListMap = fileService.selectListMultiFile(map, fileCnt);
-		//map.putAll(fileListMap);
-		//CommonUtil.mapInfo(map);
-
-		CommonUtil.jsonResponseMultiList(response, map);
+		List<?> selectList = this.selectBoardInfoList(bindMap);
+		int selectCount = this.selectBoardInfoCount(bindMap);
+		
+		//System.out.println("selectCount :::: " + selectCount);
+		//System.out.println("selectList :::: " + selectList);
+		
+		CommonUtil.jsonResponse(response, selectList, selectCount);
 	}
 	
 	/**
